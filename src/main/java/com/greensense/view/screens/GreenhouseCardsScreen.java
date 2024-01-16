@@ -32,6 +32,7 @@ import com.greensense.constants.Fonts;
 import com.greensense.constants.Images;
 import com.greensense.controller.GreenhouseCardsController;
 import com.greensense.model.GreenhouseModel;
+import com.greensense.model.Greenhouses;
 import com.greensense.util.ActionBuilder;
 import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
@@ -41,61 +42,27 @@ import com.greensense.view.components.GreenhouseCard;
 
 public class GreenhouseCardsScreen extends JPanel implements Screen {
 
-    private JSONManager jsonManager;
-
     private GreenhouseCardsController controller;
 
     private AbstractAction actionSearch, actionBack;
 
     private GreenhouseScreen greenhouseScreen;
-    private List<GreenhouseModel> greenhouses;
-    private List<GreenhouseCard> itemPanels;
-    private JScrollPane greenhousesPanel;
-    // private JList<Greenhouse> greenhouseList;
-    // private DefaultListModel<Greenhouse> greenhouseListModel;
 
-    JButton btnSearch;
+    private Greenhouses greenhouses;
 
     public GreenhouseCardsScreen() {
 
-        jsonManager = new JSONManager();
-
+        greenhouses = new Greenhouses();
         controller = new GreenhouseCardsController(this);
         this.createActions();
-
-        itemPanels = new ArrayList<>();
-
-        try {
-            
-            greenhouses = jsonManager.loadJSON("json/greenhouses.json", new TypeReference<List<GreenhouseModel>>(){});
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // GreenhouseModel m = new GreenhouseModel("Greenhouse #8", GreenhouseModel.Mode.AUTO, 234);
-
-        setLayout(new BorderLayout(0, 0));
-        setBackground(Palette.MAIN_BG);
 
         JToolBar header = createHeaderPanel();
         JPanel content = createContentPanel();
 
+        setLayout(new BorderLayout(0, 0));
+        setBackground(Palette.MAIN_BG);
         add(header, BorderLayout.NORTH);
         add(content, BorderLayout.CENTER);
-
-        System.out.println(btnSearch.getSize());
-
-        // foo();
-
-    }
-
-    public void foo(){
-
-        itemPanels.forEach(itemPanel -> System.out.println(itemPanel.getSize()) );
-
-        System.out.println(greenhousesPanel.getSize());
-        System.out.println(greenhousesPanel.getWidth());
 
     }
 
@@ -147,9 +114,9 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
         JLabel title = ComponentFactory.createLabel("Greenhouses", Palette.TEXT_PRIMARY_FG, InterMedium_32);
     
         JTextField input = ComponentFactory.createTextField(JTextField.class);
-        btnSearch = ComponentFactory.createPrimaryButton(actionSearch, ButtonSize.LARGE);
+        JButton btnSearch = ComponentFactory.createPrimaryButton(actionSearch, ButtonSize.LARGE);
 
-        greenhousesPanel = new JScrollPane(){
+        JScrollPane greenhousesPanel = new JScrollPane(){
 
             {
 
@@ -165,7 +132,7 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
                 gbc.anchor = GridBagConstraints.WEST; 
 
                 int i = 0;
-                for (GreenhouseModel greenhouse : greenhouses) {
+                for (GreenhouseModel greenhouse : greenhouses.getGreenhouses()) {
 
                     GreenhouseCard card = new GreenhouseCard(greenhouse, controller);
 
