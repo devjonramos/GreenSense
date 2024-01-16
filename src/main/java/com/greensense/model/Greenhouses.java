@@ -9,13 +9,17 @@ import lombok.Setter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Greenhouses implements Constants {
 
     private static int current = 0;
+
+    private static Greenhouses instance;
+
     private List<GreenhouseModel> greenhouses;
 
-    public Greenhouses(){
+    private Greenhouses(){
 
         greenhouses = new ArrayList<>();
         try {
@@ -27,7 +31,19 @@ public class Greenhouses implements Constants {
 
     }
 
+    public static Greenhouses getInstance(){
+
+        if (instance == null) {
+            instance = new Greenhouses();
+        }
+
+        return instance;
+
+    }
+
     public GreenhouseModel next(){
+
+        if (current == greenhouses.size() - 1) return null;
 
         current++;
 
@@ -37,9 +53,23 @@ public class Greenhouses implements Constants {
 
     public GreenhouseModel previous(){
 
+        if (current == 0) return null;
+
         current--;
 
         return greenhouses.get(current);
+
+    }
+
+    public GreenhouseModel getGreenhouseByID(String id){
+
+        List<GreenhouseModel> filteredResults = getGreenhouses().stream().filter(
+                g -> g.getId().equals(id)
+        ).collect(Collectors.toList());
+
+        if (filteredResults.size() == 1) return new GreenhouseModel(filteredResults.get(0));
+
+        return  null;
 
     }
 

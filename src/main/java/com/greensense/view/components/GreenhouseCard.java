@@ -69,7 +69,7 @@ public class GreenhouseCard extends JPanel implements Constants, Images, Fonts {
                 JLabel name = ComponentFactory.createLabel(greenhouse.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_18);
                 JLabel desc = ComponentFactory.createLabel("Mode: " + greenhouse.getMode(), Palette.TEXT_SECONDARY_FG, InterRegular_12);
 
-                AbstractAction actionOpen = ActionBuilder.createAction("Ireki Negutegia", PROPERTY_OPEN_GREENHOUSE, listener).putValue("greenhouse", greenhouse).build();
+                AbstractAction actionOpen = ActionBuilder.createAction("Ireki Negutegia", PROPERTY_OPEN_GREENHOUSE, listener).putValue("greenhouseID", greenhouse.getId()).build();
                 JButton btnOpen = ComponentFactory.createPrimaryButton(actionOpen, ButtonSize.SMALL);
 
                 AbstractAction actionChangeName = ActionBuilder.createAction("Aldatu Izena", PROPERTY_CHANGE_GREENHOUSE_NAME, listener).putValue("greenhouse", greenhouse).build();

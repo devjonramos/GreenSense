@@ -10,8 +10,10 @@ import javax.swing.JButton;
 
 import com.greensense.constants.Constants;
 import com.greensense.model.GreenhouseModel;
+import com.greensense.model.Greenhouses;
 import com.greensense.view.screens.GreenhouseCardsScreen;
 import com.greensense.view.screens.GreenhouseScreen;
+import com.greensense.view.screens.Screen;
 import com.greensense.view.screens.ScreenManager;
 
 public class GreenhouseCardsController implements Constants, ActionListener {
@@ -58,36 +60,31 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
                 JButton button = (JButton)e.getSource();
 
-                GreenhouseModel greenhouse = (GreenhouseModel)button.getAction().getValue("greenhouse");
-                GreenhouseScreen greenhouseScreen = view.getGreenhouseScreen();
+                //GreenhouseModel model = (GreenhouseModel)button.getAction().getValue("greenhouse");
+                String greenhouseID = (String)button.getAction().getValue("greenhouseID");
+                GreenhouseModel model = Greenhouses.getInstance().getGreenhouseByID(greenhouseID);
+                Screen screen = screenManager.getScreen("greenhouse");
 
-                if (greenhouseScreen == null) {
-                    
-                    greenhouseScreen = new GreenhouseScreen(greenhouse);
+                if (screen instanceof GreenhouseScreen){
 
-                    view.setGreenhouseScreen(greenhouseScreen);
+                    GreenhouseScreen greenhouseScreen = (GreenhouseScreen) screen;
 
-                    screenManager.addScreen(greenhouseScreen, "greenhouse");
+                    greenhouseScreen.setGreenhouseModel(model);
+
+                }
+                else {
+
+                    screen = new GreenhouseScreen(model);
+
+                    screenManager.addScreen(screen, "greenhouse");
 
                 }
 
-                greenhouseScreen.setGreenhouseModel(greenhouse);
-
-                // greenhouseScreen.updateCO2(
-                //     Integer.toString(
-                //         greenhouse.getCO2level()
-                //     )
-                // );
-
                 screenManager.showScreen("greenhouse");
 
-                System.out.println(greenhouse.getId());
+                System.out.println(model.getId());
 
             }
-
-            // ScreenManager screenManager = ScreenManager.getInstance();
-
-            // screenManager.showScreen("view");
 
         });
 

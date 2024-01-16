@@ -19,6 +19,8 @@ public interface Constants {
     String PROPERTY_LOGIN = "Login to account";
     String PROPERTY_UPDATE_CO2 = "Update CO2 level";
 
+    String PROPERTY_UPDATE_GREENHOUSE_MODEL = "Update greenhouse model";
+
     // Greenhouse Screen
     String PROPERTY_NEXT_GREENHOUSE = "Load next greenhouse screen";
     String PROPERTY_PREVIOUS_GREENHOUSE = "Load previous greenhouse screen";

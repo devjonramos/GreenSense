@@ -1,42 +1,30 @@
 package com.greensense.view.screens;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.beans.PropertyChangeEvent;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.AbstractAction;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.GroupLayout.Alignment;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.greensense.Palette;
-import com.greensense.constants.Constants;
-import com.greensense.constants.Fonts;
-import com.greensense.constants.Images;
 import com.greensense.controller.GreenhouseCardsController;
 import com.greensense.model.GreenhouseModel;
 import com.greensense.model.Greenhouses;
 import com.greensense.util.ActionBuilder;
 import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
-import com.greensense.util.JSONManager;
 import com.greensense.util.ComponentFactory.ButtonSize;
 import com.greensense.view.components.GreenhouseCard;
 
@@ -46,13 +34,10 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
 
     private AbstractAction actionSearch, actionBack;
 
-    private GreenhouseScreen greenhouseScreen;
-
-    private Greenhouses greenhouses;
+    private Greenhouses greenhouses = Greenhouses.getInstance();
 
     public GreenhouseCardsScreen() {
 
-        greenhouses = new Greenhouses();
         controller = new GreenhouseCardsController(this);
         this.createActions();
 
@@ -129,7 +114,7 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
                 gbc.gridy = 0;
                 gbc.weightx = 1.0; // Expand horizontally
                 gbc.fill = GridBagConstraints.HORIZONTAL;
-                gbc.anchor = GridBagConstraints.WEST; 
+                gbc.anchor = GridBagConstraints.WEST;
 
                 int i = 0;
                 for (GreenhouseModel greenhouse : greenhouses.getGreenhouses()) {
@@ -212,14 +197,6 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
 
         return panel;
 
-    }
-
-    public GreenhouseScreen getGreenhouseScreen(){
-        return greenhouseScreen;
-    }
-
-    public void setGreenhouseScreen(GreenhouseScreen greenhouseScreen){
-        this.greenhouseScreen = greenhouseScreen;
     }
 
     @Override

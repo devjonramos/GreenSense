@@ -50,7 +50,12 @@ public class ScreenManager {
     public void showNextScreen() {
         layout.next(mainPanel);
     }
-    
+
+    public void reloadCurrentScreen(){
+        currentScreen.dispose();
+        currentScreen.load();
+    }
+
     public void showScreen(String screenName){
 
         if (currentScreen != null) {

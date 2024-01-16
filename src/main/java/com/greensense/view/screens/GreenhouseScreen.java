@@ -43,7 +43,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
     private GreenhouseModel greenhouseModel;
 
-    private AbstractAction actionBack, actionNext;
+    private AbstractAction actionBack, actionNext, actionPrevious;
 
     private DisplayCard displayCard;
 
@@ -68,6 +68,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
     private void createActions() {
         actionBack = ActionBuilder.createAction("", PROPERTY_GO_BACK, controller).build();
         actionNext = ActionBuilder.createAction("", PROPERTY_NEXT_GREENHOUSE, controller).build();
+        actionPrevious = ActionBuilder.createAction("", PROPERTY_PREVIOUS_GREENHOUSE, controller).build();
     }
 
     public JToolBar createHeaderPanel(){
@@ -79,7 +80,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
         JLabel logo = ComponentFactory.createLabel("GreenSense", Palette.LOGO_BG, PoppinsSemiBold_24);
 
         JButton btnBack = ComponentFactory.createIconButton(actionBack, ICON_SM_BACK);
-        JButton btnNavPrev = ComponentFactory.createIconButton(null, ICON_SM_PREVIOUS);
+        JButton btnNavPrev = ComponentFactory.createIconButton(actionPrevious, ICON_SM_PREVIOUS);
         JButton btnNavNext = ComponentFactory.createIconButton(actionNext, ICON_SM_NEXT);
         JButton btnAlerts = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
         JButton btnSettings = ComponentFactory.createIconButton(null, ICON_SM_SETTINGS);
@@ -181,9 +182,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
     // }
 
-    public void setGreenhouseModel(GreenhouseModel greenhouseModel) {
-        this.greenhouseModel = greenhouseModel;
-    }
+    public void setGreenhouseModel(GreenhouseModel greenhouseModel) { this.greenhouseModel = greenhouseModel; }
 
     public void updateCO2(String newCO2level) {
 

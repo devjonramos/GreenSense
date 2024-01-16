@@ -66,9 +66,26 @@ public class GreenhouseModel implements Constants {
         this.support = new PropertyChangeSupport(this);
     }
 
+    public GreenhouseModel(GreenhouseModel model){
+        this.id = model.id;
+        this.name = model.name;
+        this.mode = model.mode;
+        this.CO2level = model.CO2level;
+        this.support = model.support;
+    }
+
     public void setCO2level(int newCO2level) {
         this.CO2level = newCO2level;
         support.firePropertyChange(PROPERTY_UPDATE_CO2, null, newCO2level);
+    }
+
+    public void update(GreenhouseModel model){
+
+        this.setId(model.id);
+        this.setName(model.name);
+        this.setMode(model.mode);
+        this.setCO2level(model.CO2level);
+
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
