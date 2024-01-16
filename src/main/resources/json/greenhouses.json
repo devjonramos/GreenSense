@@ -1,0 +1,44 @@
+[
+    {
+        "id": "1",
+        "name": "Greenhouse#1",
+        "CO2Level": 967,
+        "mode": "AUTO"
+    },
+    {
+        "id": "2",
+        "name": "Greenhouse#2",
+        "CO2Level": 724,
+        "mode": "MAN"
+    },
+    {
+        "id": "3",
+        "name": "Greenhouse#3",
+        "CO2Level": 512,
+        "mode": "AUTO"
+    },
+    {
+        "id": "4",
+        "name": "Greenhouse#4",
+        "CO2Level": 836,
+        "mode": "MAN"
+    },
+    {
+        "id": "5",
+        "name": "Greenhouse#5",
+        "CO2Level": 689,
+        "mode": "AUTO"
+    },
+    {
+        "id": "6",
+        "name": "Greenhouse#6",
+        "CO2Level": 689,
+        "mode": "AUTO"
+    },
+    {
+        "id": "7",
+        "name": "Greenhouse#7",
+        "CO2Level": 689,
+        "mode": "AUTO"
+    }
+]
