@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.greensense.view.screens.Screen;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -71,9 +72,19 @@ public class GreenhouseController implements Constants, ActionListener, MqttCall
 
         });
 
-        commandHandler.put(PROPERTY_CHANGE_GREENHOUSE_NAME, () -> {
-            
+        commandHandler.put(PROPERTY_NEXT_GREENHOUSE, () -> {
 
+            Screen screen = screenManager.getScreen("greenhouse");
+
+            if (screen instanceof GreenhouseScreen){
+
+                GreenhouseScreen greenhouseScreen = (GreenhouseScreen) screen;
+
+                greenhouseScreen.setGreenhouseModel(null);
+
+                screenManager.showScreen("greenhouse");
+
+            }
 
         });
 

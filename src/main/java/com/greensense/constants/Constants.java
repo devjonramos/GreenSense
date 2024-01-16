@@ -17,14 +17,16 @@ public interface Constants {
     String PROPERTY_LOAD_PAGE_USERS = "Load Users";
     String PROPERTY_LOAD_PAGE_SETTINGS = "Load Settings";
     String PROPERTY_LOGIN = "Login to account";
-
     String PROPERTY_UPDATE_CO2 = "Update CO2 level";
-    
+
+    // Greenhouse Screen
+    String PROPERTY_NEXT_GREENHOUSE = "Load next greenhouse screen";
+    String PROPERTY_PREVIOUS_GREENHOUSE = "Load previous greenhouse screen";
+
     // MQTT Constants
     String MQTT_BROKER = "tcp://localhost";
     String MQTT_TOPIC_SENSOR_CO2 = "Sensor/CO2";
     String MQTT_TOPIC_SENSOR_ALERTS = "Sensor/Alerts";
     int MQTT_QoS = 2;
-
 
 }

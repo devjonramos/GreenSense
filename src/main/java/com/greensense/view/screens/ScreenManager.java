@@ -1,5 +1,7 @@
 package com.greensense.view.screens;
 
+import lombok.Getter;
+
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.HashMap;
@@ -42,6 +44,8 @@ public class ScreenManager {
 
         mainPanel.add((Component)screen, screenName);
     }
+
+    public Screen getScreen(String screenName) { return screens.getOrDefault(screenName, null); }
 
     public void showNextScreen() {
         layout.next(mainPanel);

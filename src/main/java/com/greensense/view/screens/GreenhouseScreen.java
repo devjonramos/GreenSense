@@ -40,9 +40,10 @@ import com.greensense.view.components.togglebutton.ToggleButtonListener;
 public class GreenhouseScreen extends JPanel implements Screen {
 
     private GreenhouseController controller;
+
     private GreenhouseModel greenhouseModel;
 
-    private AbstractAction actionBack;
+    private AbstractAction actionBack, actionNext;
 
     private DisplayCard displayCard;
 
@@ -66,6 +67,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
     private void createActions() {
         actionBack = ActionBuilder.createAction("", PROPERTY_GO_BACK, controller).build();
+        actionNext = ActionBuilder.createAction("", PROPERTY_NEXT_GREENHOUSE, controller).build();
     }
 
     public JToolBar createHeaderPanel(){
@@ -77,8 +79,8 @@ public class GreenhouseScreen extends JPanel implements Screen {
         JLabel logo = ComponentFactory.createLabel("GreenSense", Palette.LOGO_BG, PoppinsSemiBold_24);
 
         JButton btnBack = ComponentFactory.createIconButton(actionBack, ICON_SM_BACK);
-        JButton btnNavLeft = ComponentFactory.createIconButton(null, ICON_SM_PREVIOUS);
-        JButton btnNavRight = ComponentFactory.createIconButton(null, ICON_SM_NEXT);
+        JButton btnNavPrev = ComponentFactory.createIconButton(null, ICON_SM_PREVIOUS);
+        JButton btnNavNext = ComponentFactory.createIconButton(actionNext, ICON_SM_NEXT);
         JButton btnAlerts = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
         JButton btnSettings = ComponentFactory.createIconButton(null, ICON_SM_SETTINGS);
         JButton btnLogout = ComponentFactory.createIconButton(null, ICON_SM_LOGOUT);
@@ -87,9 +89,9 @@ public class GreenhouseScreen extends JPanel implements Screen {
         toolBar.add(Box.createRigidArea(new Dimension(16, 0)));
         toolBar.add(logo);
 		toolBar.add(Box.createHorizontalGlue());
-        toolBar.add(btnNavLeft);
+        toolBar.add(btnNavPrev);
         toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnNavRight);
+        toolBar.add(btnNavNext);
         toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
         toolBar.addSeparator();
         toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
