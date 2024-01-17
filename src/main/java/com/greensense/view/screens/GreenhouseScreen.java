@@ -190,6 +190,12 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
     }
 
+    public void updateView(GreenhouseModel model) {
+
+
+
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 

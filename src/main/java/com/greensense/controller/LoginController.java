@@ -69,7 +69,7 @@ public class LoginController implements Constants, ActionListener {
 
             }
             else {
-                JOptionPane.showMessageDialog(login, "Credenciales invalidas", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(login, "Erabiltzailea edo pasahitza ez da zuzena", "Error", JOptionPane.ERROR_MESSAGE);
             }
 
             // if (username.equals("a") && password.equals("b")) {

@@ -17,16 +17,18 @@ import com.greensense.util.MQTTService;
 import com.greensense.view.screens.GreenhouseScreen;
 import com.greensense.view.screens.ScreenManager;
 
+import javax.swing.*;
+
 public class GreenhouseController implements Constants, ActionListener, MqttCallback {
 
     private ScreenManager screenManager = ScreenManager.getInstance();
 
-    private GreenhouseScreen greenhouseScreen;
+    private GreenhouseScreen view;
     private GreenhouseModel greenhouseModel;
     private MQTTService mqttService;
 
     public GreenhouseController(GreenhouseScreen greenhouseScreen, GreenhouseModel greenhouseModel) {
-        this.greenhouseScreen = greenhouseScreen;
+        this.view = greenhouseScreen;
         this.greenhouseModel = greenhouseModel;
 
         this.greenhouseModel.addPropertyChangeListener(greenhouseScreen);
@@ -37,7 +39,7 @@ public class GreenhouseController implements Constants, ActionListener, MqttCall
 
     public void loadData(){
 
-        greenhouseScreen.updateCO2(Integer.toString(greenhouseModel.getCO2level()));
+        view.updateCO2(Integer.toString(greenhouseModel.getCO2level()));
 
     }
 
@@ -82,6 +84,9 @@ public class GreenhouseController implements Constants, ActionListener, MqttCall
                 screenManager.reloadCurrentScreen();
 
             }
+            else {
+                JOptionPane.showMessageDialog(view, "Azkenengo negutegian zaude!", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
 
         });
 
@@ -95,6 +100,9 @@ public class GreenhouseController implements Constants, ActionListener, MqttCall
 
                 screenManager.reloadCurrentScreen();
 
+            }
+            else {
+                JOptionPane.showMessageDialog(view, "Lehenengo negutegian zaude!", "Info", JOptionPane.INFORMATION_MESSAGE);
             }
 
         });

@@ -7,12 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import com.greensense.view.screens.GreenhouseScreen;
-import com.greensense.view.screens.GreenhouseCardsScreen;
-import com.greensense.view.screens.HomepageScreen;
-import com.greensense.view.screens.LoginScreen;
-import com.greensense.view.screens.ScreenManager;
-import com.greensense.view.screens.UsersScreen;
+import com.greensense.view.screens.*;
 
 public class Main {
 
@@ -33,12 +28,14 @@ public class Main {
             HomepageScreen homepage = new HomepageScreen();
             GreenhouseCardsScreen greenhouseCards = new GreenhouseCardsScreen();
             UsersScreen usersScreen = new UsersScreen();
+            AlertsScreen alertsScreen = new AlertsScreen();
             // GreenhouseScreen greenhouse = new GreenhouseScreen();
 
             screenManager.addScreen(login, "login");
             screenManager.addScreen(homepage, "homepage");
             screenManager.addScreen(greenhouseCards, "greenhouses");
             screenManager.addScreen(usersScreen, "users");
+            screenManager.addScreen(alertsScreen, "alerts");
             // screenManager.addScreen(greenhouse, "greenhouse");
 
             screenManager.showScreen("login");
