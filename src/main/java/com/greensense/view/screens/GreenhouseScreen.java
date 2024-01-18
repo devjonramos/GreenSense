@@ -110,9 +110,9 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
         JLabel nameLabel = ComponentFactory.createLabel(greenhouseModel.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_48);
 
-        ControlCard controlCard1 = new ControlCard("Modua", ICON_MD_TOOL);
-        ControlCard controlCard2 = new ControlCard("Haizagailua1", ICON_MD_WIND);
-        ControlCard controlCard3 = new ControlCard("Haizagailua2", ICON_MD_WIND);
+        ControlCard controlCard1 = new ControlCard("Modua", ICON_MD_TOOL, controller);
+        ControlCard controlCard2 = new ControlCard("Haizagailua1", ICON_MD_WIND, controller);
+        ControlCard controlCard3 = new ControlCard("Haizagailua2", ICON_MD_WIND, controller);
         DisplayCard displayCard2 = new DisplayCard("Grafikoa", "542");
         displayCard = new DisplayCard("CO2", "542");
 

@@ -8,6 +8,7 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import com.greensense.constants.Constants;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MQTTService implements Constants {
 
@@ -26,6 +27,14 @@ public class MQTTService implements Constants {
         this.topics = new ArrayList<>();
         this.callback = callback;
         
+    }
+
+    public void addTopic(String topic) {
+
+        if (!topics.contains(topic)) {
+            topics.add(topic);
+        }
+
     }
 
     public void startService() {
@@ -56,6 +65,15 @@ public class MQTTService implements Constants {
 
     }
 
+    public synchronized void publish(String topic, String content) throws MqttException {
+
+        MqttMessage message = new MqttMessage(content.getBytes());
+        message.setQos(MQTT_QoS);
+
+        this.client.publish(topic, message);
+
+    }
+
     public void stopService() {
 
         try {
@@ -75,13 +93,7 @@ public class MQTTService implements Constants {
 
     }
 
-    public void addTopic(String topic) {
 
-        if (!topics.contains(topic)) {
-            topics.add(topic);
-        }
-
-    }
 
     public void setCallback(MqttCallback callback){
         this.callback = callback;

@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.greensense.model.Greenhouses;
+import com.greensense.view.components.togglebutton.ToggleButtonListener;
 import com.greensense.view.screens.Screen;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import com.greensense.constants.Constants;
@@ -19,7 +21,7 @@ import com.greensense.view.screens.ScreenManager;
 
 import javax.swing.*;
 
-public class GreenhouseController implements Constants, ActionListener, MqttCallback {
+public class GreenhouseController implements Constants, ActionListener, ToggleButtonListener, MqttCallback {
 
     private ScreenManager screenManager = ScreenManager.getInstance();
 
@@ -32,7 +34,6 @@ public class GreenhouseController implements Constants, ActionListener, MqttCall
         this.greenhouseModel = greenhouseModel;
 
         this.greenhouseModel.addPropertyChangeListener(greenhouseScreen);
-
     }
 
     public void setGreenhouseModel(GreenhouseModel greenhouseModel) { this.greenhouseModel = greenhouseModel; }
@@ -111,18 +112,43 @@ public class GreenhouseController implements Constants, ActionListener, MqttCall
 
     }
 
+    @Override
+    public void onSelected(String toggleButtonName, boolean selected) {
+
+        System.out.println(selected);
+
+        if (mqttService != null) {
+
+            String topic = greenhouseModel.getName() + "/" + toggleButtonName;
+            String message = (selected) ? "1" : "0";
+
+            try {
+
+                //mqttService.publish(topic, message);
+                mqttService.publish("Topic", "message");
+
+            } catch (MqttException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+    }
 
     // MQTT callback implementations
     // We use the "synchronized" keyword to avoid any concurrency problems. This way we ensure only one thread executes them at the same time
     @Override
     public synchronized void connectionLost(Throwable cause) {
         System.err.println("Connection to MQTT broker lost!" + cause);
+        cause.printStackTrace();
     }
 
     @Override
     public synchronized void messageArrived(String topic, MqttMessage message) throws Exception {
 
         String content = new String(message.getPayload());
+
+        System.out.println("Message arrived");
 
         switch (topic) {
             
@@ -139,8 +165,7 @@ public class GreenhouseController implements Constants, ActionListener, MqttCall
 
     @Override
     public synchronized void deliveryComplete(IMqttDeliveryToken token) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deliveryComplete'");
+
     }
 
 }

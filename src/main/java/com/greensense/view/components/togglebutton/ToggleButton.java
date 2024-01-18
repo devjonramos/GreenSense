@@ -29,6 +29,7 @@ public class ToggleButton extends Component{
     public final Color COLOR_TOGGLE_OFF = Palette.BLACK_50;
     public final Color COLOR_TOGGLE_ON = Palette.GREEN_400;
 
+    private String name;
     private Timer timer;
     private float location;
     private boolean selected;
@@ -36,7 +37,9 @@ public class ToggleButton extends Component{
     private float speed = 0.1f;
     private List<ToggleButtonListener> listeners;
 
-    public ToggleButton() {
+    private int ticks = 0;
+
+    public ToggleButton(String name) {
 
         setBackground(COLOR_TOGGLE_ON); // new Color(0, 174, 255)
         setForeground(Color.WHITE);
@@ -44,10 +47,11 @@ public class ToggleButton extends Component{
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        listeners = new ArrayList<>();
-        location = 2;
+        this.name = name;
+        this.location = 2;
+        this.listeners = new ArrayList<>();
 
-        timer = new Timer(0, new ActionListener() {
+        timer = new Timer(1, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -57,11 +61,11 @@ public class ToggleButton extends Component{
                     int endLocation = getWidth() - getHeight() + 2;
                     if (location < endLocation) {
                         location += speed;
-                        repaint();
+                        //repaint();
                     } else {
                         timer.stop();
                         location = endLocation;
-                        repaint();
+                        //repaint();
                     }
 
                 } else {
@@ -69,14 +73,22 @@ public class ToggleButton extends Component{
                     int endLocation = 2;
                     if (location > endLocation) {
                         location -= speed;
-                        repaint();
+                        //repaint();
                     } else {
                         timer.stop();
                         location = endLocation;
-                        repaint();
+                        //repaint();
                     }
 
                 }
+
+
+                if (ticks >= 10) {
+                    repaint();
+                    ticks = 0;
+                }
+
+                ticks++;
 
             }
 
@@ -104,7 +116,7 @@ public class ToggleButton extends Component{
                         runEvent();
                     }
                 }
-                
+
             }
 
         });
@@ -148,7 +160,7 @@ public class ToggleButton extends Component{
     }
 
     private float getAlpha() {
-        
+
         float width = getWidth() - getHeight();
         float alpha = (location - 2) / width;
 
@@ -158,14 +170,14 @@ public class ToggleButton extends Component{
         else if (alpha > 1) {
             alpha = 1;
         }
-        
+
         return alpha;
 
     }
 
     private void runEvent() {
         for (ToggleButtonListener listener : listeners) {
-            listener.onSelected(selected);
+            listener.onSelected(name, selected);
         }
     }
 
