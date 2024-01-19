@@ -51,7 +51,7 @@ public class MQTTService implements Constants {
                 System.out.println("[MQTT] Connected");
 
                 for (String topic : topics) {
-                    client.subscribe(topic, MQTT_QoS);
+                    client.subscribe(topic, QoS2);
                     System.out.println("[MQTT] Subscribed to topic:  " + topic);
                 }
                 System.out.println("[MQTT] Ready");
@@ -65,12 +65,14 @@ public class MQTTService implements Constants {
 
     }
 
-    public synchronized void publish(String topic, String content) throws MqttException {
+    public synchronized void publish(String topic, String content, int qos, boolean retained) throws MqttException {
 
-        MqttMessage message = new MqttMessage(content.getBytes());
-        message.setQos(MQTT_QoS);
+//        MqttMessage message = new MqttMessage(content.getBytes());
+//        message.setQos(MQTT_QoS);
+//
+//        this.client.publish(topic, message);
 
-        this.client.publish(topic, message);
+        this.client.publish(topic, content.getBytes(), qos, retained);
 
     }
 

@@ -125,7 +125,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
             try {
 
                 //mqttService.publish(topic, message);
-                mqttService.publish("Topic", "message");
+                mqttService.publish("Topic", "message", QoS2, true);
 
             } catch (MqttException e) {
                 throw new RuntimeException(e);
@@ -156,6 +156,12 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
                 // System.out.println(content);
                 // greenhouse.updateCO2(content);
                 greenhouseModel.setCO2level(Integer.parseInt(content));
+            break;
+
+            case MQTT_TOPIC_SENSOR_ALERTS:
+
+                System.out.println("alerts");
+
             break;
 
             default: break;
