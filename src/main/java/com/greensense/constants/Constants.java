@@ -26,7 +26,7 @@ public interface Constants {
     String PROPERTY_PREVIOUS_GREENHOUSE = "Load previous greenhouse screen";
 
     // MQTT Constants
-    String MQTT_BROKER = "tcp://localhost";
+    String MQTT_BROKER = "tcp://192.168.1.103";
     String MQTT_TOPIC_SENSOR_CO2 = "Sensor/CO2";
     String MQTT_TOPIC_SENSOR_ALERTS = "Sensor/Alerts";
     int MQTT_QoS = 2;

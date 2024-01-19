@@ -146,13 +146,14 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
     @Override
     public synchronized void messageArrived(String topic, MqttMessage message) throws Exception {
 
-        String content = new String(message.getPayload());
+        String content = new String(message.getPayload()).replaceAll("[^a-zA-Z0-9]", "");
 
-        System.out.println("Message arrived");
+        //System.out.println("Message arrived");
 
         switch (topic) {
             
             case MQTT_TOPIC_SENSOR_CO2:
+                // System.out.println(content);
                 // greenhouse.updateCO2(content);
                 greenhouseModel.setCO2level(Integer.parseInt(content));
             break;
