@@ -20,6 +20,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import com.greensense.Palette;
+import lombok.Getter;
 
 public class ToggleButton extends Component{
 
@@ -32,7 +33,8 @@ public class ToggleButton extends Component{
     private String name;
     private Timer timer;
     private float location;
-    private boolean selected;
+
+    @Getter private boolean selected;
     private boolean mouseOver;
     private float speed = 0.1f;
     private ToggleEvent toggleEvent;
@@ -53,46 +55,36 @@ public class ToggleButton extends Component{
         this.toggleEvent = new ToggleEvent(this, "", false);
         this.listeners = new ArrayList<>();
 
-        timer = new Timer(1, new ActionListener() {
+        timer = new Timer(1, (ActionEvent ae) -> {
 
-            @Override
-            public void actionPerformed(ActionEvent ae) {
+            if (isSelected()) {
 
-                if (isSelected()) {
-
-                    int endLocation = getWidth() - getHeight() + 2;
-                    if (location < endLocation) {
-                        location += speed;
-                        //repaint();
-                    } else {
-                        timer.stop();
-                        location = endLocation;
-                        //repaint();
-                    }
-
+                int endLocation = getWidth() - getHeight() + 2;
+                if (location < endLocation) {
+                    location += speed;
                 } else {
-
-                    int endLocation = 2;
-                    if (location > endLocation) {
-                        location -= speed;
-                        //repaint();
-                    } else {
-                        timer.stop();
-                        location = endLocation;
-                        //repaint();
-                    }
-
+                    timer.stop();
+                    location = endLocation;
                 }
 
+            } else {
 
-                if (ticks >= 10) {
-                    repaint();
-                    ticks = 0;
+                int endLocation = 2;
+                if (location > endLocation) {
+                    location -= speed;
+                } else {
+                    timer.stop();
+                    location = endLocation;
                 }
-
-                ticks++;
 
             }
+
+            if (ticks >= 10) {
+                repaint();
+                ticks = 0;
+            }
+
+            ticks++;
 
         });
 
@@ -123,10 +115,6 @@ public class ToggleButton extends Component{
             }
 
         });
-    }
-
-    public boolean isSelected() {
-        return selected;
     }
 
     public void setSelected(boolean selected) {

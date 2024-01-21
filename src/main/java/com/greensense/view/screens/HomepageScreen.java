@@ -6,7 +6,6 @@ import java.beans.PropertyChangeEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -16,12 +15,14 @@ import javax.swing.JToolBar;
 
 import com.greensense.Palette;
 import com.greensense.controller.HomepageController;
+import com.greensense.model.Session;
 import com.greensense.util.ActionBuilder;
-import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
 import com.greensense.view.components.Header;
 
 public class HomepageScreen extends JPanel implements Screen {
+
+    private Session session = Session.getInstance();
 
     private HomepageController controller;
 
@@ -34,7 +35,7 @@ public class HomepageScreen extends JPanel implements Screen {
         this.controller = new HomepageController(this);
         this.createActions();
 
-        JToolBar header = new Header(false);
+        JToolBar header = createHeader();
         JPanel content = createContentPanel();
         
         add(header, BorderLayout.NORTH);
@@ -53,25 +54,7 @@ public class HomepageScreen extends JPanel implements Screen {
 
     }
 
-    private JToolBar createHeaderPanel(){
-
-		JToolBar toolBar = new JToolBar();
-        toolBar.setOpaque(false);
-		toolBar.setBorder(BorderCreator.createEmptyBorder(64, 24));
-
-        JLabel logo = new JLabel("GreenSense");
-        logo.setForeground(Palette.LOGO_BG);
-        logo.setFont(PoppinsSemiBold_24);
-
-        JButton btnSettings = ComponentFactory.createIconButton(null, ICON_SM_SETTINGS);
-        JButton btnLogout = ComponentFactory.createIconButton(ACTION_LOGOUT, ICON_SM_LOGOUT);
-
-		toolBar.add(logo);
-
-		toolBar.add(Box.createHorizontalGlue());
-
-        toolBar.add(btnSettings);
-        toolBar.add(btnLogout);
+    private JToolBar createHeader(){
 
         return new Header(false);
 
@@ -83,10 +66,7 @@ public class HomepageScreen extends JPanel implements Screen {
         panel.setOpaque(false);
         panel.setBorder(BorderFactory.createEmptyBorder(16, 64, 16, 64));
 
-        // String username = Session.getInstance().getUser().getName();
-        // JTextArea heading = ComponentFactory.createTextArea("Arratsalde on,\n" + username + "!", Palette.TEXT_PRIMARY_FG, PoppinsSemiBold_64);
-
-        JTextArea heading = ComponentFactory.createTextArea("Arratsalde on,\nJon", Palette.TEXT_PRIMARY_FG, PoppinsSemiBold_64);
+        JTextArea heading = ComponentFactory.createTextArea("Ongi etorri,\n" + session.getUser().getName(), Palette.TEXT_PRIMARY_FG, PoppinsSemiBold_64);
         JLabel subheading = ComponentFactory.createLabel("Zer egin nahi duzu gaur?", Palette.TEXT_SECONDARY_FG, InterMedium_32);
         JPanel sectionsPanel = new JPanel(new GridLayout(2, 3, 48, 48)){
 
@@ -125,27 +105,6 @@ public class HomepageScreen extends JPanel implements Screen {
         );
 
         panel.setLayout(layout);
-
-        return panel;
-
-    }
-
-    private JPanel createSectionsPanel() {
-
-        JPanel panel = new JPanel(new GridLayout(2, 3, 48, 48));
-        panel.setOpaque(false);
-
-        JButton btnGreenhouses = ComponentFactory.createSectionButton(actionGreenhouses);
-        JButton btnAlerts = ComponentFactory.createSectionButton(actionAlerts);
-        JButton btnAnalytics = ComponentFactory.createSectionButton(actionAnalytics);
-        JButton btnUsers = ComponentFactory.createSectionButton(actionUsers);
-        JButton btnSettings = ComponentFactory.createSectionButton(actionSettings);
-
-        panel.add(btnGreenhouses);
-        panel.add(btnAlerts);
-        panel.add(btnUsers);
-        panel.add(btnAnalytics);
-        panel.add(btnSettings);
 
         return panel;
 

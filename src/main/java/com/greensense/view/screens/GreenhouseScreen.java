@@ -1,11 +1,10 @@
 package com.greensense.view.screens;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
+
 import java.beans.PropertyChangeEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -122,41 +121,11 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
     }
 
-    // public JPanel createAttributesPanel() {
-
-    //     JPanel panel = new JPanel(new GridLayout(2, 4));
-
-    //     CO2Label = new JLabel("");
-    //     AttributeCard controlCard1 = new AttributeCard("Modua", ICON_LG_ALERT);
-    //     AttributeCard controlCard2 = new AttributeCard("Ureztatze", ICON_LG_ALERT);
-    //     AttributeCard controlCard3 = new AttributeCard("CO2", ICON_LG_ALERT);
-    //     AttributeCard controlCard4 = new AttributeCard("Haizea", ICON_LG_ALERT);
-    //     AttributeCard controlCard5 = new AttributeCard("Graph", ICON_LG_ALERT);
-    //     AttributeCard controlCard6 = new AttributeCard("CO2", ICON_LG_ALERT);
-
-    //     // panel.add(CO2Label);
-    //     panel.add(controlCard1);
-    //     panel.add(controlCard2);
-    //     panel.add(controlCard3);
-    //     panel.add(controlCard4);
-    //     panel.add(controlCard5);
-    //     panel.add(controlCard6);
-
-    //     return panel;
-
-    // }
-
     public void setGreenhouseModel(GreenhouseModel greenhouseModel) { this.greenhouseModel = greenhouseModel; }
 
     public void updatePPM(String ppm) {
 
         ppmDisplayCard.setValue(ppm);
-
-    }
-
-    public void updateView(GreenhouseModel model) {
-
-
 
     }
 

@@ -8,7 +8,7 @@ import com.greensense.constants.Images;
 
 public interface Screen extends Constants, Fonts, Images, PropertyChangeListener {
 
-    public void load();
-    public void dispose();
+    void load();
+    void dispose();
 
 }

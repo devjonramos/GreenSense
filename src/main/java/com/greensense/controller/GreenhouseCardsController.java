@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
 
 import com.greensense.constants.Constants;
@@ -18,7 +17,7 @@ import com.greensense.view.screens.ScreenManager;
 
 public class GreenhouseCardsController implements Constants, ActionListener {
 
-    private ScreenManager screenManager = ScreenManager.getInstance();
+    private final ScreenManager screenManager = ScreenManager.getInstance();
     private GreenhouseCardsScreen view;
 
     public GreenhouseCardsController(GreenhouseCardsScreen view) {
@@ -32,21 +31,13 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
         Map<String, Runnable> commandHandler = new HashMap<>();
 
-//        commandHandler.put(PROPERTY_GO_BACK, () -> {
-//
-//            screenManager.showScreen("homepage");
-//
-//        });
-
         commandHandler.put(PROPERTY_SEARCH_GREENHOUSES, () -> {
 
             if (e.getSource() instanceof JButton) {
                 
                 JButton button = (JButton)e.getSource();
 
-                Thread thread = new Thread(() -> {
-                    System.out.println(button.getSize());
-                });
+                Thread thread = new Thread(() -> System.out.println(button.getSize()));
 
                 thread.start();
 
@@ -60,7 +51,6 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
                 JButton button = (JButton)e.getSource();
 
-                //GreenhouseModel model = (GreenhouseModel)button.getAction().getValue("greenhouse");
                 int greenhouseID = (int)button.getAction().getValue("greenhouseID");
                 GreenhouseModel model = Greenhouses.getInstance().getGreenhouseByID(greenhouseID);
                 Screen screen = screenManager.getScreen("greenhouse");
@@ -101,10 +91,6 @@ public class GreenhouseCardsController implements Constants, ActionListener {
                 greenhouseModel.setName("Name changed");
 
             }
-
-            // ScreenManager screenManager = ScreenManager.getInstance();
-
-            // screenManager.showScreen("view");
 
         });
 

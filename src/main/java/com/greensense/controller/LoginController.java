@@ -1,13 +1,10 @@
 package com.greensense.controller;
 
-import java.awt.Desktop.Action;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import com.greensense.constants.Constants;
@@ -16,7 +13,7 @@ import com.greensense.view.screens.*;
 
 public class LoginController implements Constants, ActionListener {
 
-    private ScreenManager screenManager = ScreenManager.getInstance();
+    private final ScreenManager screenManager = ScreenManager.getInstance();
     private LoginScreen login;
 
     public LoginController(LoginScreen login){

@@ -66,11 +66,6 @@ public class MQTTService implements Constants {
 
     public synchronized void publish(String topic, String content, int qos, boolean retained) throws MqttException {
 
-//        MqttMessage message = new MqttMessage(content.getBytes());
-//        message.setQos(MQTT_QoS);
-//
-//        this.client.publish(topic, message);
-
         this.client.publish(topic, content.getBytes(), qos, retained);
 
     }

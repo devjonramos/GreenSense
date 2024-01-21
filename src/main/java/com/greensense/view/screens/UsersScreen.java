@@ -2,14 +2,12 @@ package com.greensense.view.screens;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -99,20 +97,7 @@ public class UsersScreen extends JPanel implements Screen{
         }
 
 
-        String[] usersTableColumnNames = {"Izena", "Abizena", "Role", "Last Seen"};
-
-        DefaultTableModel usersTableModel = new DefaultTableModel(usersTableData, usersTableColumnNames);
-
-        JTable usersTable = new JTable(usersTableModel);
-        usersTable.setFont(InterSemiBold_16);
-        usersTable.setForeground(Palette.TEXT_PRIMARY_FG);
-        usersTable.setBorder(
-            BorderFactory.createMatteBorder(0, 1, 1, 1, Palette.GREEN_400)
-        );
-        usersTable.setRowHeight(51);
-        usersTable.setGridColor(Palette.GREEN_100);
-        usersTable.setShowHorizontalLines(true);
-        usersTable.setShowVerticalLines(false);
+        JTable usersTable = createUsersTable(usersTableData);
         usersTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
 
             @Override
@@ -182,6 +167,27 @@ public class UsersScreen extends JPanel implements Screen{
         panel.setLayout(layout);
 
         return panel;
+
+    }
+
+    private static JTable createUsersTable(String[][] usersTableData) {
+
+        String[] usersTableColumnNames = {"Izena", "Abizena", "Role", "Last Seen"};
+
+        DefaultTableModel usersTableModel = new DefaultTableModel(usersTableData, usersTableColumnNames);
+
+        JTable usersTable = new JTable(usersTableModel);
+        usersTable.setFont(InterSemiBold_16);
+        usersTable.setForeground(Palette.TEXT_PRIMARY_FG);
+        usersTable.setBorder(
+            BorderFactory.createMatteBorder(0, 1, 1, 1, Palette.GREEN_400)
+        );
+        usersTable.setRowHeight(51);
+        usersTable.setGridColor(Palette.GREEN_100);
+        usersTable.setShowHorizontalLines(true);
+        usersTable.setShowVerticalLines(false);
+
+        return usersTable;
 
     }
 

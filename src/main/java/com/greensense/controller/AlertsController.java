@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class AlertsController implements Constants, ActionListener {
 
-    private ScreenManager screenManager = ScreenManager.getInstance();
+    private final ScreenManager screenManager = ScreenManager.getInstance();
 
     private AlertsScreen view;
 

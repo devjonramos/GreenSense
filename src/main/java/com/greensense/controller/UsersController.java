@@ -11,7 +11,7 @@ import com.greensense.view.screens.UsersScreen;
 
 public class UsersController implements Constants, ActionListener {
 
-    private ScreenManager screenManager = ScreenManager.getInstance();
+    private final ScreenManager screenManager = ScreenManager.getInstance();
     private UsersScreen usersScreen;
 
     public UsersController(UsersScreen usersScreen) {
@@ -25,11 +25,7 @@ public class UsersController implements Constants, ActionListener {
 
         Map<String, Runnable> commandHandler = new HashMap<>();
 
-//        commandHandler.put(PROPERTY_GO_BACK, () -> {
-//
-//            screenManager.showScreen("homepage");
-//
-//        });
+
 
         commandHandler.getOrDefault(actionCommand, () ->  System.out.println("default action") ).run();
 

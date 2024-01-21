@@ -14,7 +14,7 @@ import com.greensense.view.screens.ScreenManager;
 
 public class HomepageController implements Constants, ActionListener {
 
-    private ScreenManager screenManager = ScreenManager.getInstance();
+    private final ScreenManager screenManager = ScreenManager.getInstance();
     private HomepageScreen homepage;
     
     public HomepageController(HomepageScreen homepage) {

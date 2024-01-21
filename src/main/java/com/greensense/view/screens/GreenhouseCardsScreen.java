@@ -1,14 +1,12 @@
 package com.greensense.view.screens;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.beans.PropertyChangeEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -83,8 +81,6 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
             {
 
                 JPanel panel = new JPanel(new GridBagLayout()){{setOpaque(false);}};
-                // panel.setBackground(Palette.MAIN_BG);
-                // panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 1));
 
                 GridBagConstraints gbc = new GridBagConstraints();
                 gbc.gridx = 0;
@@ -122,32 +118,6 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
             }
 
         };
-
-        // greenhousesPanel = new JScrollPane(){
-
-        //     {
-
-        //         JPanel panel = new JPanel(new GridLayout(3, 3, 32, 32));
-        //         panel.setBackground(Palette.MAIN_BG);
-        //         // panel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 1));
-
-        //         greenhouses.forEach(greenhouse -> {
-
-        //             GreenhouseCard card = new GreenhouseCard(greenhouse, controller);
-
-        //             panel.add(card);
-        //             itemPanels.add(card);
-                    
-        //         });
-
-        //         // setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        //         setViewportView(panel);
-        //         setBorder(null);
-        //         setOpaque(false);
-
-        //     }
-
-        // };
 
         layout.setHorizontalGroup(layout.createParallelGroup()
             .addComponent(title)

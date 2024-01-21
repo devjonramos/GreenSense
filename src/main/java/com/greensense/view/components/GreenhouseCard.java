@@ -28,8 +28,7 @@ public class GreenhouseCard extends JPanel implements Constants, Images, Fonts {
 
     public GreenhouseCard(GreenhouseModel greenhouse, ActionListener listener){
         super(new BorderLayout(0, 8));
-
-        // setOpaque(false);
+        
         setBackground(CARD_BG);
         setBorder(
             BorderFactory.createCompoundBorder(
@@ -37,24 +36,15 @@ public class GreenhouseCard extends JPanel implements Constants, Images, Fonts {
                 BorderFactory.createEmptyBorder(16, 16, 16, 16)
             )
         );
-        // setPreferredSize(new Dimension(278, 264));
 
         JPanel thumbnail = new JPanel(new BorderLayout()){
 
             {
                 
                 JLabel image = new JLabel(IMG_GREENHOUSE);
-                // image.setPreferredSize(new Dimension(192, 192));
 
                 add(image, BorderLayout.CENTER);
-                // setBorder(BorderFactory.createMatteBorder(1, 1, 2, 1, borderColor));
-                // setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
-                // setBorder(
-                //     BorderFactory.createCompoundBorder(
-                //         BorderFactory.createMatteBorder(1, 1, 2, 1, borderColor),
-                //         BorderFactory.createEmptyBorder(16, 16, 16, 16)
-                //     )
-                // );
+
                 setBorder(BorderFactory.createEmptyBorder(12, 24, 12, 24));
                 setBackground(THUMBNAIL_BG);
 

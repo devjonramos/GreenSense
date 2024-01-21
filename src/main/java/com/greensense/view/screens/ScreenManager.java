@@ -1,25 +1,22 @@
 package com.greensense.view.screens;
 
-import lombok.Getter;
-
 import java.awt.CardLayout;
 import java.awt.Component;
+
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 public class ScreenManager {
  
     private static ScreenManager instance;
 
-    private JPanel mainPanel;
-    private CardLayout layout;
+    private final JPanel mainPanel;
+    private final CardLayout layout;
     private Screen currentScreen;
     private LinkedList<Screen> screenHistory;
-    private Screen previousScreen;
     private Map<String, Screen> screens;
 
     private ScreenManager(JPanel mainPanel) {
@@ -93,7 +90,6 @@ public class ScreenManager {
 
         if (currentScreen != null) {
             currentScreen.dispose();
-            previousScreen = currentScreen;
         }
 
         currentScreen = screens.get(screenName);

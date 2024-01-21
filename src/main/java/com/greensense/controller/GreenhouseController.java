@@ -23,7 +23,7 @@ import javax.swing.*;
 
 public class GreenhouseController implements Constants, ActionListener, ToggleButtonListener, MqttCallback {
 
-    private ScreenManager screenManager = ScreenManager.getInstance();
+    private final ScreenManager screenManager = ScreenManager.getInstance();
 
     private GreenhouseScreen view;
     private GreenhouseModel greenhouseModel;
@@ -66,12 +66,6 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
         System.out.println(actionCommand);
 
         Map<String, Runnable> commandHandler = new HashMap<>();
-
-//        commandHandler.put(PROPERTY_GO_BACK, () -> {
-//
-//            screenManager.showScreen("greenhouses");
-//
-//        });
 
         commandHandler.put(PROPERTY_NEXT_GREENHOUSE, () -> {
 
@@ -160,24 +154,6 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
             //System.out.println("Message arrived: " + content);
             greenhouseModel.setPpm(Integer.parseInt(content));
         }
-
-//        switch (topic) {
-//
-//            case greenhouseModel.TOPIC_SENSORS_CO2:
-//                // System.out.println(content);
-//                // greenhouse.updateCO2(content);
-//                greenhouseModel.setPpm(Integer.parseInt(content));
-//            break;
-//
-//            case MQTT_TOPIC_SENSOR_ALERTS:
-//
-//                System.out.println("alerts");
-//
-//            break;
-//
-//            default: break;
-//
-//        }
 
     }
 
