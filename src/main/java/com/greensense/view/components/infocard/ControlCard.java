@@ -26,13 +26,18 @@ public class ControlCard extends JPanel implements InfoCard {
     private ImageIcon icon;
     private ControlCard controlCard = this;
 
+    private ToggleButton toggleButton;
+
     private ToggleButtonListener listener;
 
-    public ControlCard(String name, ImageIcon icon, ToggleButtonListener listener) {
+    public ControlCard(String name, ImageIcon icon, String command, ToggleButtonListener listener) {
 
         this.name = name;
         this.icon = icon;
         this.listener = listener;
+        this.toggleButton = new ToggleButton(this.name.toLowerCase());
+        this.toggleButton.addToggleListener(listener);
+        this.toggleButton.setToggleCommand(command);
 
         setUI();
 
@@ -40,26 +45,11 @@ public class ControlCard extends JPanel implements InfoCard {
 
     private void setUI(){
 
-        JLabel iconLabel = new JLabel(this.icon);
-        ToggleButton toggleButton = new ToggleButton(this.name.toLowerCase());
-        toggleButton.addToggleListener(listener);
-        //toggleButton.addToggleListener(new ToggleButtonListener() {
-        //
-        //    @Override
-        //    public void onSelected(boolean selected) {
-        //
-        //        if (selected) {
-        //            System.out.println(controlCard.getSize());
-        //        } else {
-        //        }
-        //
-        //    }
-        //
-        //});
-
         JPanel cardHeader = new JPanel(){{
 
             BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
+
+            JLabel iconLabel = new JLabel(icon);
 
             setLayout(layout);
             setOpaque(false);
@@ -115,7 +105,5 @@ public class ControlCard extends JPanel implements InfoCard {
     public JPanel getCardPanel() {
         return this;
     }
-
-
 
 }

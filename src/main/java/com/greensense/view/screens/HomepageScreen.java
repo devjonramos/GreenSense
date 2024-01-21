@@ -1,32 +1,25 @@
 package com.greensense.view.screens;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.beans.PropertyChangeEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
 
 import com.greensense.Palette;
-import com.greensense.constants.Constants;
-import com.greensense.constants.Fonts;
-import com.greensense.constants.Images;
 import com.greensense.controller.HomepageController;
-import com.greensense.model.Session;
 import com.greensense.util.ActionBuilder;
 import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
+import com.greensense.view.components.Header;
 
 public class HomepageScreen extends JPanel implements Screen {
 
@@ -41,7 +34,7 @@ public class HomepageScreen extends JPanel implements Screen {
         this.controller = new HomepageController(this);
         this.createActions();
 
-        JToolBar header = createHeaderPanel();
+        JToolBar header = new Header(false);
         JPanel content = createContentPanel();
         
         add(header, BorderLayout.NORTH);
@@ -64,30 +57,23 @@ public class HomepageScreen extends JPanel implements Screen {
 
 		JToolBar toolBar = new JToolBar();
         toolBar.setOpaque(false);
-        // toolBar.setBackground(Color.RED);
 		toolBar.setBorder(BorderCreator.createEmptyBorder(64, 24));
 
         JLabel logo = new JLabel("GreenSense");
         logo.setForeground(Palette.LOGO_BG);
         logo.setFont(PoppinsSemiBold_24);
 
-        JButton btnLogout = ComponentFactory.createIconButton(null, ICON_SM_LOGOUT);
+        JButton btnSettings = ComponentFactory.createIconButton(null, ICON_SM_SETTINGS);
+        JButton btnLogout = ComponentFactory.createIconButton(ACTION_LOGOUT, ICON_SM_LOGOUT);
 
 		toolBar.add(logo);
 
 		toolBar.add(Box.createHorizontalGlue());
 
-        // toolBar.add(new JButton(ICON_SM_PLUS));
-        // toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        // toolBar.add(new JButton(ICON_SM_EDIT));
-        // toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        // toolBar.addSeparator();
-        // toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        // toolBar.add(new JButton(ICON_SM_SETTINGS));
-        // toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
+        toolBar.add(btnSettings);
         toolBar.add(btnLogout);
 
-		return toolBar;
+        return new Header(false);
 
     }
 
@@ -157,8 +143,8 @@ public class HomepageScreen extends JPanel implements Screen {
 
         panel.add(btnGreenhouses);
         panel.add(btnAlerts);
-        panel.add(btnAnalytics);
         panel.add(btnUsers);
+        panel.add(btnAnalytics);
         panel.add(btnSettings);
 
         return panel;

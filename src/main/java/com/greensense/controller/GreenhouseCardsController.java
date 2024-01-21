@@ -32,11 +32,11 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
         Map<String, Runnable> commandHandler = new HashMap<>();
 
-        commandHandler.put(PROPERTY_GO_BACK, () -> {
-
-            screenManager.showScreen("homepage");
-
-        });
+//        commandHandler.put(PROPERTY_GO_BACK, () -> {
+//
+//            screenManager.showScreen("homepage");
+//
+//        });
 
         commandHandler.put(PROPERTY_SEARCH_GREENHOUSES, () -> {
 
@@ -61,7 +61,7 @@ public class GreenhouseCardsController implements Constants, ActionListener {
                 JButton button = (JButton)e.getSource();
 
                 //GreenhouseModel model = (GreenhouseModel)button.getAction().getValue("greenhouse");
-                String greenhouseID = (String)button.getAction().getValue("greenhouseID");
+                int greenhouseID = (int)button.getAction().getValue("greenhouseID");
                 GreenhouseModel model = Greenhouses.getInstance().getGreenhouseByID(greenhouseID);
                 Screen screen = screenManager.getScreen("greenhouse");
 

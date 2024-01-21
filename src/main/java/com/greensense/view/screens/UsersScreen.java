@@ -31,12 +31,13 @@ import com.greensense.util.ActionBuilder;
 import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
 import com.greensense.util.ComponentFactory.ButtonSize;
+import com.greensense.view.components.Header;
 
 public class UsersScreen extends JPanel implements Screen{
 
     private UsersController controller;
 
-    private AbstractAction actionSearch, actionBack;
+    private AbstractAction actionSearch;
     
     public UsersScreen(){
 
@@ -46,7 +47,7 @@ public class UsersScreen extends JPanel implements Screen{
         setLayout(new BorderLayout(0, 0));
         setBackground(Palette.MAIN_BG);
 
-        JToolBar header = createHeaderPanel();
+        JToolBar header = createHeader();
         JPanel content = createContentPanel();
 
         add(header, BorderLayout.NORTH);
@@ -55,39 +56,15 @@ public class UsersScreen extends JPanel implements Screen{
     }
 
     private void createActions() {
-        actionBack = ActionBuilder.createAction("", PROPERTY_GO_BACK, controller).build();
         actionSearch = ActionBuilder.createAction("Bilatu", PROPERTY_SEARCH_GREENHOUSES, controller).build();
     }
 
-    public JToolBar createHeaderPanel(){
+    public JToolBar createHeader(){
 
-		JToolBar toolBar = new JToolBar();
-        toolBar.setOpaque(false);
-		toolBar.setBorder(BorderCreator.createEmptyBorder(64, 24));
+        JButton btnAddUser = ComponentFactory.createIconButton(null, ICON_SM_PLUS);
+        JButton btnEditUser = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
 
-        JLabel logo = ComponentFactory.createLabel("GreenSense", Palette.LOGO_BG, PoppinsSemiBold_24);
-
-        JButton btnBack = ComponentFactory.createIconButton(actionBack, ICON_SM_BACK);
-        JButton btnPlus = ComponentFactory.createIconButton(null, ICON_SM_PLUS);
-        JButton btnEdit = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
-        JButton btnSettings = ComponentFactory.createIconButton(null, ICON_SM_SETTINGS);
-        JButton btnLogout = ComponentFactory.createIconButton(null, ICON_SM_LOGOUT);
-
-        toolBar.add(btnBack);
-        toolBar.add(Box.createRigidArea(new Dimension(16, 0)));
-		toolBar.add(logo);
-		toolBar.add(Box.createHorizontalGlue());
-        toolBar.add(btnPlus);
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnEdit);
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.addSeparator();
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnSettings);
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnLogout);
-
-		return toolBar;
+		return new Header(true, btnAddUser, btnEditUser);
 
     }
 

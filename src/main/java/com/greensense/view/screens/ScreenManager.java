@@ -5,9 +5,11 @@ import lombok.Getter;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class ScreenManager {
  
@@ -16,6 +18,8 @@ public class ScreenManager {
     private JPanel mainPanel;
     private CardLayout layout;
     private Screen currentScreen;
+    private LinkedList<Screen> screenHistory;
+    private Screen previousScreen;
     private Map<String, Screen> screens;
 
     private ScreenManager(JPanel mainPanel) {
@@ -23,6 +27,7 @@ public class ScreenManager {
         this.layout = new CardLayout();
         this.mainPanel.setLayout(layout);
         this.screens = new HashMap<>();
+        this.screenHistory = new LinkedList<>();
     }
 
     // Public method to get the instance with optional argument
@@ -47,8 +52,36 @@ public class ScreenManager {
 
     public Screen getScreen(String screenName) { return screens.getOrDefault(screenName, null); }
 
-    public void showNextScreen() {
-        layout.next(mainPanel);
+    private String getScreenNameFromScreen(Screen screen){
+
+        for (Map.Entry<String, Screen> entry : screens.entrySet()) {
+
+            if (screen.equals(entry.getValue())) {
+                return entry.getKey();
+            }
+
+        }
+
+        return null;
+
+    }
+
+    public void goBack(){
+
+        if (screenHistory.size() < 2) return;
+
+        screenHistory.removeFirst();
+
+        Screen screen = screenHistory.getFirst();
+
+        if (screen != null){
+
+            String screenName = getScreenNameFromScreen(screen);
+
+            showScreen(screenName);
+
+        }
+
     }
 
     public void reloadCurrentScreen(){
@@ -60,11 +93,16 @@ public class ScreenManager {
 
         if (currentScreen != null) {
             currentScreen.dispose();
+            previousScreen = currentScreen;
         }
 
         currentScreen = screens.get(screenName);
 
         currentScreen.load();
+
+        if (!screenHistory.contains(currentScreen)) {
+            screenHistory.addFirst(currentScreen);
+        }
 
         layout.show(mainPanel, screenName);
 

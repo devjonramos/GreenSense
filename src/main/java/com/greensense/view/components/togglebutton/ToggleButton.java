@@ -35,6 +35,7 @@ public class ToggleButton extends Component{
     private boolean selected;
     private boolean mouseOver;
     private float speed = 0.1f;
+    private ToggleEvent toggleEvent;
     private List<ToggleButtonListener> listeners;
 
     private int ticks = 0;
@@ -49,6 +50,7 @@ public class ToggleButton extends Component{
 
         this.name = name;
         this.location = 2;
+        this.toggleEvent = new ToggleEvent(this, "", false);
         this.listeners = new ArrayList<>();
 
         timer = new Timer(1, new ActionListener() {
@@ -112,6 +114,7 @@ public class ToggleButton extends Component{
                 if (SwingUtilities.isLeftMouseButton(me)) {
                     if (mouseOver) {
                         selected = !selected;
+                        toggleEvent.setSelected(selected);
                         timer.start();
                         runEvent();
                     }
@@ -130,6 +133,10 @@ public class ToggleButton extends Component{
         this.selected = selected;
         timer.start();
         runEvent();
+    }
+
+    public void setToggleCommand(String command){
+        this.toggleEvent.setToggleCommand(command);
     }
 
     @Override
@@ -177,7 +184,7 @@ public class ToggleButton extends Component{
 
     private void runEvent() {
         for (ToggleButtonListener listener : listeners) {
-            listener.onSelected(name, selected);
+            listener.onToggle(toggleEvent);
         }
     }
 

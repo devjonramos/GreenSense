@@ -8,7 +8,6 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 import com.greensense.constants.Constants;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 public class MQTTService implements Constants {
 
@@ -26,7 +25,7 @@ public class MQTTService implements Constants {
         this.clientID = clientID;
         this.topics = new ArrayList<>();
         this.callback = callback;
-        
+
     }
 
     public void addTopic(String topic) {

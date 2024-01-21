@@ -2,6 +2,9 @@ package com.greensense.model;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.greensense.constants.Constants;
@@ -20,6 +23,12 @@ public class GreenhouseModel implements Constants {
 
     public static int count = 1;
 
+    private final String TOP_TOPIC_LEVEL = "greenhouses/";
+    public final String TOPIC_SENSORS_CO2 = TOP_TOPIC_LEVEL + count + "/sensors/ppm";
+    public final String TOPIC_MODE = TOP_TOPIC_LEVEL + count + "/mode";
+    public final String TOPIC_FAN_1 = TOP_TOPIC_LEVEL + count + "/fans/1";
+    public final String TOPIC_FAN_2 = TOP_TOPIC_LEVEL + count + "/fans/2";
+
     public enum Mode {
         MAN, AUTO;
 
@@ -36,14 +45,14 @@ public class GreenhouseModel implements Constants {
     };
 
     @JsonProperty("id")
-    private String id;
+    private int id;
 
     @JsonProperty("name")
     private String name;
 
-    @JsonProperty("CO2Level")
+    @JsonProperty("ppm")
     @Setter(AccessLevel.NONE)
-    private int CO2level;
+    private int ppm;
 
     @JsonProperty("mode")
     private Mode mode;
@@ -52,11 +61,11 @@ public class GreenhouseModel implements Constants {
     @Setter(AccessLevel.NONE)
     private PropertyChangeSupport support;
 
-    public GreenhouseModel(String name, Mode mode, int co2) {
-        this.id = "Greenhouse#" + count++;
+    public GreenhouseModel(String name, Mode mode, int ppm) {
+        this.id = count++;
         this.name = name;
         this.mode = mode;
-        this.CO2level = co2;
+        this.ppm = ppm;
 
         this.support = new PropertyChangeSupport(this);
 
@@ -70,13 +79,13 @@ public class GreenhouseModel implements Constants {
         this.id = model.id;
         this.name = model.name;
         this.mode = model.mode;
-        this.CO2level = model.CO2level;
+        this.ppm = model.ppm;
         this.support = model.support;
     }
 
-    public void setCO2level(int newCO2level) {
-        this.CO2level = newCO2level;
-        support.firePropertyChange(PROPERTY_UPDATE_CO2, null, newCO2level);
+    public void setPpm(int ppm) {
+        this.ppm = ppm;
+        support.firePropertyChange(PROPERTY_UPDATE_CO2, null, this.ppm);
     }
 
     public void update(GreenhouseModel model){
@@ -84,7 +93,7 @@ public class GreenhouseModel implements Constants {
         this.setId(model.id);
         this.setName(model.name);
         this.setMode(model.mode);
-        this.setCO2level(model.CO2level);
+        this.setPpm(model.ppm);
 
     }
 

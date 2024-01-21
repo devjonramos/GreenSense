@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.greensense.model.Greenhouses;
 import com.greensense.view.components.togglebutton.ToggleButtonListener;
-import com.greensense.view.screens.Screen;
+import com.greensense.view.components.togglebutton.ToggleEvent;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -40,15 +40,14 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
     public void loadData(){
 
-        view.updateCO2(Integer.toString(greenhouseModel.getCO2level()));
+        view.updatePPM(Integer.toString(greenhouseModel.getPpm()));
 
     }
 
     public void startMQTTService(){
 
-        mqttService = new MQTTService(MQTT_BROKER, greenhouseModel.getId(), this);
-        mqttService.addTopic(MQTT_TOPIC_SENSOR_CO2);
-        mqttService.addTopic(MQTT_TOPIC_SENSOR_ALERTS);
+        mqttService = new MQTTService(MQTT_BROKER, greenhouseModel.getName(), this);
+        mqttService.addTopic(greenhouseModel.TOPIC_SENSORS_CO2);
         mqttService.startService();
 
     }
@@ -68,11 +67,11 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
         Map<String, Runnable> commandHandler = new HashMap<>();
 
-        commandHandler.put(PROPERTY_GO_BACK, () -> {
-            
-            screenManager.showScreen("greenhouses");
-
-        });
+//        commandHandler.put(PROPERTY_GO_BACK, () -> {
+//
+//            screenManager.showScreen("greenhouses");
+//
+//        });
 
         commandHandler.put(PROPERTY_NEXT_GREENHOUSE, () -> {
 
@@ -82,7 +81,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
                 greenhouseModel.update(nextGreenhouseModel);
 
-                screenManager.reloadCurrentScreen();
+                screenManager.reloadCurrentScreen(); // This will update the mqtt client to the new greenhouse
 
             }
             else {
@@ -99,7 +98,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
                 greenhouseModel.update(prevGreenhouseModel);
 
-                screenManager.reloadCurrentScreen();
+                screenManager.reloadCurrentScreen(); // Refer to line 84
 
             }
             else {
@@ -113,22 +112,29 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
     }
 
     @Override
-    public void onSelected(String toggleButtonName, boolean selected) {
+    public void onToggle(ToggleEvent e) {
 
-        System.out.println(selected);
+        String topic;
+        String toggleCommand = e.getToggleCommand();
+        switch (toggleCommand) {
+            case PROPERTY_TOGGLE_MODE -> topic = greenhouseModel.TOPIC_MODE;
+            case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.TOPIC_FAN_1;
+            case PROPERTY_TOGGLE_FAN2 -> topic = greenhouseModel.TOPIC_FAN_2;
+            default -> topic = "";
+        }
+
+        String message = Boolean.toString(e.isSelected());
+        //System.out.println(message);
 
         if (mqttService != null) {
-
-            String topic = greenhouseModel.getName() + "/" + toggleButtonName;
-            String message = (selected) ? "1" : "0";
 
             try {
 
                 //mqttService.publish(topic, message);
-                mqttService.publish("Topic", "message", QoS2, true);
+                mqttService.publish(topic, message, QoS2, true);
 
-            } catch (MqttException e) {
-                throw new RuntimeException(e);
+            } catch (MqttException ex) {
+                throw new RuntimeException(ex);
             }
 
         }
@@ -148,25 +154,30 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
         String content = new String(message.getPayload()).replaceAll("[^a-zA-Z0-9]", "");
 
-        //System.out.println("Message arrived");
+        //System.out.println(topic);
 
-        switch (topic) {
-            
-            case MQTT_TOPIC_SENSOR_CO2:
-                // System.out.println(content);
-                // greenhouse.updateCO2(content);
-                greenhouseModel.setCO2level(Integer.parseInt(content));
-            break;
-
-            case MQTT_TOPIC_SENSOR_ALERTS:
-
-                System.out.println("alerts");
-
-            break;
-
-            default: break;
-
+        if (topic.equals(greenhouseModel.TOPIC_SENSORS_CO2)){
+            //System.out.println("Message arrived: " + content);
+            greenhouseModel.setPpm(Integer.parseInt(content));
         }
+
+//        switch (topic) {
+//
+//            case greenhouseModel.TOPIC_SENSORS_CO2:
+//                // System.out.println(content);
+//                // greenhouse.updateCO2(content);
+//                greenhouseModel.setPpm(Integer.parseInt(content));
+//            break;
+//
+//            case MQTT_TOPIC_SENSOR_ALERTS:
+//
+//                System.out.println("alerts");
+//
+//            break;
+//
+//            default: break;
+//
+//        }
 
     }
 

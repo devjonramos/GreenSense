@@ -25,11 +25,11 @@ public class UsersController implements Constants, ActionListener {
 
         Map<String, Runnable> commandHandler = new HashMap<>();
 
-        commandHandler.put(PROPERTY_GO_BACK, () -> {
-
-            screenManager.showScreen("homepage");
-
-        });
+//        commandHandler.put(PROPERTY_GO_BACK, () -> {
+//
+//            screenManager.showScreen("homepage");
+//
+//        });
 
         commandHandler.getOrDefault(actionCommand, () ->  System.out.println("default action") ).run();
 

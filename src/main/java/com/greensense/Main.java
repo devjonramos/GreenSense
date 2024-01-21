@@ -25,19 +25,8 @@ public class Main {
             ScreenManager screenManager = ScreenManager.getInstance(mainPanel);
 
             LoginScreen login = new LoginScreen();
-            HomepageScreen homepage = new HomepageScreen();
-            GreenhouseCardsScreen greenhouseCards = new GreenhouseCardsScreen();
-            UsersScreen usersScreen = new UsersScreen();
-            AlertsScreen alertsScreen = new AlertsScreen();
-            // GreenhouseScreen greenhouse = new GreenhouseScreen();
 
             screenManager.addScreen(login, "login");
-            screenManager.addScreen(homepage, "homepage");
-            screenManager.addScreen(greenhouseCards, "greenhouses");
-            screenManager.addScreen(usersScreen, "users");
-            screenManager.addScreen(alertsScreen, "alerts");
-            // screenManager.addScreen(greenhouse, "greenhouse");
-
             screenManager.showScreen("login");
 
             frame.setContentPane(mainPanel);

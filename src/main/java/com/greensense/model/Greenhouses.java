@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class Greenhouses implements Constants {
 
-    private static int current = 0;
+    private static int current = 1;
 
     private static Greenhouses instance;
 
@@ -61,10 +61,10 @@ public class Greenhouses implements Constants {
 
     }
 
-    public GreenhouseModel getGreenhouseByID(String id){
+    public GreenhouseModel getGreenhouseByID(int id){
 
         List<GreenhouseModel> filteredResults = getGreenhouses().stream().filter(
-                g -> g.getId().equals(id)
+                g -> g.getId() == id
         ).collect(Collectors.toList());
 
         if (filteredResults.size() == 1) return new GreenhouseModel(filteredResults.get(0));

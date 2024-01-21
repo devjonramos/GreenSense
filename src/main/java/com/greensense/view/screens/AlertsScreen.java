@@ -4,6 +4,7 @@ import com.greensense.Palette;
 import com.greensense.constants.Fonts;
 import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
+import com.greensense.view.components.Header;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +17,7 @@ public class AlertsScreen extends JPanel implements Screen {
         setLayout(new BorderLayout(0, 0));
         setBackground(Palette.MAIN_BG);
 
-        JToolBar header = createHeaderPanel();
+        JToolBar header = createHeader();
         JPanel content = createContentPanel();
 
         add(header, BorderLayout.NORTH);
@@ -24,28 +25,9 @@ public class AlertsScreen extends JPanel implements Screen {
 
     }
 
-    public JToolBar createHeaderPanel(){
+    public JToolBar createHeader(){
 
-        JToolBar toolBar = new JToolBar();
-        toolBar.setOpaque(false);
-        toolBar.setBorder(BorderCreator.createEmptyBorder(64, 24));
-
-        JLabel logo = ComponentFactory.createLabel("GreenSense", Palette.LOGO_BG, PoppinsSemiBold_24);
-
-        JButton btnBack = ComponentFactory.createIconButton(null, ICON_SM_BACK);
-        JButton btnSettings = ComponentFactory.createIconButton(null, ICON_SM_SETTINGS);
-        JButton btnLogout = ComponentFactory.createIconButton(null, ICON_SM_LOGOUT);
-
-        toolBar.add(btnBack);
-        toolBar.add(Box.createRigidArea(new Dimension(16, 0)));
-        toolBar.add(logo);
-        toolBar.add(Box.createHorizontalGlue());
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnSettings);
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnLogout);
-
-        return toolBar;
+        return new Header(true);
 
     }
 

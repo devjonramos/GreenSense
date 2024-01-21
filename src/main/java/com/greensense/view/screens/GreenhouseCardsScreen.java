@@ -27,12 +27,13 @@ import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
 import com.greensense.util.ComponentFactory.ButtonSize;
 import com.greensense.view.components.GreenhouseCard;
+import com.greensense.view.components.Header;
 
 public class GreenhouseCardsScreen extends JPanel implements Screen {
 
     private GreenhouseCardsController controller;
 
-    private AbstractAction actionSearch, actionBack;
+    private AbstractAction actionSearch;
 
     private Greenhouses greenhouses = Greenhouses.getInstance();
 
@@ -41,7 +42,7 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
         controller = new GreenhouseCardsController(this);
         this.createActions();
 
-        JToolBar header = createHeaderPanel();
+        JToolBar header = createHeader();
         JPanel content = createContentPanel();
 
         setLayout(new BorderLayout(0, 0));
@@ -52,39 +53,15 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
     }
 
     private void createActions() {
-        actionBack = ActionBuilder.createAction("", PROPERTY_GO_BACK, controller).build();
         actionSearch = ActionBuilder.createAction("Bilatu", PROPERTY_SEARCH_GREENHOUSES, controller).build();
     }
 
-    public JToolBar createHeaderPanel(){
+    public JToolBar createHeader(){
 
-		JToolBar toolBar = new JToolBar();
-        toolBar.setOpaque(false);
-		toolBar.setBorder(BorderCreator.createEmptyBorder(64, 24));
-
-        JLabel logo = ComponentFactory.createLabel("GreenSense", Palette.LOGO_BG, PoppinsSemiBold_24);
-
-        JButton btnBack = ComponentFactory.createIconButton(actionBack, ICON_SM_BACK);
         JButton btnPlus = ComponentFactory.createIconButton(null, ICON_SM_PLUS);
         JButton btnEdit = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
-        JButton btnSettings = ComponentFactory.createIconButton(null, ICON_SM_SETTINGS);
-        JButton btnLogout = ComponentFactory.createIconButton(null, ICON_SM_LOGOUT);
 
-        toolBar.add(btnBack);
-        toolBar.add(Box.createRigidArea(new Dimension(16, 0)));
-		toolBar.add(logo);
-		toolBar.add(Box.createHorizontalGlue());
-        toolBar.add(btnPlus);
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnEdit);
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.addSeparator();
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnSettings);
-        toolBar.add(Box.createRigidArea(new Dimension(24, 0)));
-        toolBar.add(btnLogout);
-
-		return toolBar;
+		return new Header(true, btnPlus, btnEdit);
 
     }
 

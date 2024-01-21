@@ -12,11 +12,7 @@ import javax.swing.JOptionPane;
 
 import com.greensense.constants.Constants;
 import com.greensense.model.Session;
-import com.greensense.view.screens.GreenhouseCardsScreen;
-import com.greensense.view.screens.HomepageScreen;
-import com.greensense.view.screens.LoginScreen;
-import com.greensense.view.screens.ScreenManager;
-import com.greensense.view.screens.UsersScreen;
+import com.greensense.view.screens.*;
 
 public class LoginController implements Constants, ActionListener {
 
@@ -31,14 +27,6 @@ public class LoginController implements Constants, ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         String actionCommand = e.getActionCommand();
-
-        // if (e.getSource() instanceof JButton) {
-        //     JButton button = (JButton)e.getSource();
-        //     System.out.println(button.getAction().getValue(AbstractAction.ACTION_COMMAND_KEY));
-        // }
-        // else {
-        //     System.out.println("no action");
-        // }
 
         Map<String, Runnable> commandHandler = new HashMap<>();
 
@@ -57,13 +45,15 @@ public class LoginController implements Constants, ActionListener {
 
             if (session.login(username, password)) {
 
-                // HomepageScreen homepage = new HomepageScreen();
-                // GreenhouseCardsScreen greenhouseCards = new GreenhouseCardsScreen();
-                // UsersScreen usersScreen = new UsersScreen();
+                 HomepageScreen homepage = new HomepageScreen();
+                 GreenhouseCardsScreen greenhouseCards = new GreenhouseCardsScreen();
+                 UsersScreen usersScreen = new UsersScreen();
+                 AlertsScreen alertsScreen = new AlertsScreen();
 
-                // screenManager.addScreen(homepage, "homepage");
-                // screenManager.addScreen(greenhouseCards, "greenhouses");
-                // screenManager.addScreen(usersScreen, "users");
+                 screenManager.addScreen(homepage, "homepage");
+                 screenManager.addScreen(greenhouseCards, "greenhouses");
+                 screenManager.addScreen(usersScreen, "users");
+                 screenManager.addScreen(alertsScreen, "alerts");
 
                 screenManager.showScreen("homepage");
 
@@ -71,17 +61,6 @@ public class LoginController implements Constants, ActionListener {
             else {
                 JOptionPane.showMessageDialog(login, "Erabiltzailea edo pasahitza ez da zuzena", "Error", JOptionPane.ERROR_MESSAGE);
             }
-
-            // if (username.equals("a") && password.equals("b")) {
-                
-            //     ScreenManager screenManager = ScreenManager.getInstance();
-
-            //     screenManager.showScreen("homepage");
-
-            // }
-            // else {
-            //     JOptionPane.showMessageDialog(login, "Credenciales invalidas", "Error", JOptionPane.ERROR_MESSAGE);
-            // }
 
         });
 
