@@ -110,6 +110,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
         String topic;
         String toggleCommand = e.getToggleCommand();
+        boolean isSelected = e.isSelected();
         switch (toggleCommand) {
             case PROPERTY_TOGGLE_MODE -> topic = greenhouseModel.TOPIC_MODE;
             case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.TOPIC_FAN_1;
@@ -117,10 +118,16 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
             default -> topic = "";
         }
 
-        String message = Boolean.toString(e.isSelected());
-        //System.out.println(message);
+        if (toggleCommand.equals(PROPERTY_TOGGLE_MODE) && isSelected){
+
+
+
+        }
 
         if (mqttService != null) {
+
+            String message = Boolean.toString(e.isSelected());
+            //System.out.println(message);
 
             try {
 

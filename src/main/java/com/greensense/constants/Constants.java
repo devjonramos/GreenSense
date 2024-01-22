@@ -69,7 +69,7 @@ public interface Constants {
     };
 
     // MQTT Constants
-    String MQTT_BROKER = "tcp://192.168.1.100";
+    String MQTT_BROKER = "tcp://192.168.1.103";
     int QoS0 = 0;
     int QoS1 = 1;
     int QoS2 = 2;

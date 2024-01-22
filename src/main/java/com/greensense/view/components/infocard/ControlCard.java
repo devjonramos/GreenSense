@@ -106,4 +106,6 @@ public class ControlCard extends JPanel implements InfoCard {
         return this;
     }
 
+
+
 }
