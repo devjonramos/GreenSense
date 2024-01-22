@@ -1,5 +1,7 @@
 package com.greensense.view.screens;
 
+import lombok.Getter;
+
 import java.awt.CardLayout;
 import java.awt.Component;
 
@@ -8,18 +10,22 @@ import java.util.LinkedList;
 import java.util.Map;
 
 import javax.swing.JPanel;
+import javax.swing.JFrame;
 
 public class ScreenManager {
  
     private static ScreenManager instance;
 
+    @Getter
+    private final JFrame frame;
     private final JPanel mainPanel;
     private final CardLayout layout;
     private Screen currentScreen;
     private LinkedList<Screen> screenHistory;
     private Map<String, Screen> screens;
 
-    private ScreenManager(JPanel mainPanel) {
+    private ScreenManager(JFrame frame, JPanel mainPanel) {
+        this.frame = frame;
         this.mainPanel = mainPanel;
         this.layout = new CardLayout();
         this.mainPanel.setLayout(layout);
@@ -29,13 +35,13 @@ public class ScreenManager {
 
     // Public method to get the instance with optional argument
     public static ScreenManager getInstance() {
-        return getInstance(null); // Calls the other getInstance method with null argument
+        return getInstance(null, null); // Calls the other getInstance method with null argument
     }
 
     // Public method to get the instance with the JPanel argument
-    public static ScreenManager getInstance(JPanel panel) {
+    public static ScreenManager getInstance(JFrame frame, JPanel panel) {
         if (instance == null) {
-            instance = new ScreenManager(panel);
+            instance = new ScreenManager(frame, panel);
         }
         return instance;
     }

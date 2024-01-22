@@ -148,8 +148,7 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'propertyChange'");
+
     }
 
     @Override

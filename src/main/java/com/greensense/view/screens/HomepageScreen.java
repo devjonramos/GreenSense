@@ -46,11 +46,11 @@ public class HomepageScreen extends JPanel implements Screen {
 
     private void createActions() {
 
-        actionGreenhouses = ActionBuilder.createAction("Negutegiak", PROPERTY_LOAD_PAGE_GREENHOUSES, controller).largeIcon(ICON_XL_GRID).build();
-        actionAlerts = ActionBuilder.createAction("Alertak", PROPERTY_LOAD_PAGE_ALERTS, controller).largeIcon(ICON_XL_LOG).build();
-        actionAnalytics = ActionBuilder.createAction("Estatistikak", PROPERTY_LOAD_PAGE_ANALYTICS, controller).largeIcon(ICON_XL_STATISTICS).build();
-        actionUsers = ActionBuilder.createAction("Erabiltzaileak", PROPERTY_LOAD_PAGE_USERS, controller).largeIcon(ICON_XL_USERS).build();
-        actionSettings = ActionBuilder.createAction("Ezarpenak", PROPERTY_LOAD_PAGE_SETTINGS, controller).largeIcon(ICON_XL_SETTINGS).build();
+        actionGreenhouses = ActionBuilder.createAction("Negutegiak", PROPERTY_LOAD_SCREEN_GREENHOUSES, controller).largeIcon(ICON_XL_GRID).build();
+        actionAlerts = ActionBuilder.createAction("Alertak", PROPERTY_LOAD_SCREEN_ALERTS, controller).largeIcon(ICON_XL_LOG).build();
+        actionAnalytics = ActionBuilder.createAction("Estatistikak", PROPERTY_LOAD_SCREEN_ANALYTICS, controller).largeIcon(ICON_XL_STATISTICS).build();
+        actionUsers = ActionBuilder.createAction("Erabiltzaileak", PROPERTY_LOAD_SCREEN_USERS, controller).largeIcon(ICON_XL_USERS).build();
+        actionSettings = ActionBuilder.createAction("Ezarpenak", PROPERTY_LOAD_SCREEN_SETTINGS, controller).largeIcon(ICON_XL_SETTINGS).build();
 
     }
 

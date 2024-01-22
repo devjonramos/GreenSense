@@ -28,25 +28,25 @@ public class HomepageController implements Constants, ActionListener {
 
         Map<String, Runnable> commandHandler = new HashMap<>();
 
-        commandHandler.put(PROPERTY_LOAD_PAGE_GREENHOUSES, () -> {
+        commandHandler.put(PROPERTY_LOAD_SCREEN_GREENHOUSES, () -> {
 
             screenManager.showScreen("greenhouses");
 
         });
 
-        commandHandler.put(PROPERTY_LOAD_PAGE_ALERTS, () -> {
+        commandHandler.put(PROPERTY_LOAD_SCREEN_ALERTS, () -> {
             
             
 
         });
 
-        commandHandler.put(PROPERTY_LOAD_PAGE_ANALYTICS, () -> {
+        commandHandler.put(PROPERTY_LOAD_SCREEN_ANALYTICS, () -> {
             
             
 
         });
 
-        commandHandler.put(PROPERTY_LOAD_PAGE_USERS, () -> {
+        commandHandler.put(PROPERTY_LOAD_SCREEN_USERS, () -> {
             
             Session session = Session.getInstance();
 
@@ -61,7 +61,7 @@ public class HomepageController implements Constants, ActionListener {
 
         });
 
-        commandHandler.put(PROPERTY_LOAD_PAGE_SETTINGS, () -> {
+        commandHandler.put(PROPERTY_LOAD_SCREEN_SETTINGS, () -> {
             
             
 

@@ -3,7 +3,6 @@ package com.greensense;
 import java.awt.Color;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -11,14 +10,14 @@ import com.greensense.view.screens.*;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         SwingUtilities.invokeLater(() -> {
 
             JFrame frame = new JFrame("GreenSense");
 
             JPanel mainPanel = new JPanel() {{ setBackground(Color.WHITE);}};
-            ScreenManager screenManager = ScreenManager.getInstance(mainPanel);
+            ScreenManager screenManager = ScreenManager.getInstance(frame, mainPanel);
 
             LoginScreen login = new LoginScreen();
 

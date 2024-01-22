@@ -14,11 +14,11 @@ public interface Constants {
 
 
     // HomepageScreen
-    String PROPERTY_LOAD_PAGE_GREENHOUSES = "Load Greenhouse List";
-    String PROPERTY_LOAD_PAGE_ALERTS = "Load Alerts";
-    String PROPERTY_LOAD_PAGE_ANALYTICS = "Load Analytics";
-    String PROPERTY_LOAD_PAGE_USERS = "Load Users";
-    String PROPERTY_LOAD_PAGE_SETTINGS = "Load Settings";
+    String PROPERTY_LOAD_SCREEN_GREENHOUSES = "Load GreenhouseCards Screen";
+    String PROPERTY_LOAD_SCREEN_ALERTS = "Load Alerts Screen";
+    String PROPERTY_LOAD_SCREEN_ANALYTICS = "Load Analytics Screen";
+    String PROPERTY_LOAD_SCREEN_USERS = "Load Users Screen";
+    String PROPERTY_LOAD_SCREEN_SETTINGS = "Load Settings Screen";
 
 
     // GreenhouseCardsScreen
@@ -44,7 +44,6 @@ public interface Constants {
 
 
     // Actions used across all the app
-
     AbstractAction ACTION_LOGOUT = new AbstractAction() {
         @Override
         public void actionPerformed(ActionEvent e) {
