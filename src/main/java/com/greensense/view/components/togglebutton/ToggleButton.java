@@ -103,7 +103,7 @@ public class ToggleButton extends Component{
             @Override
             public void mouseReleased(MouseEvent me) {
 
-                if (SwingUtilities.isLeftMouseButton(me)) {
+                if (SwingUtilities.isLeftMouseButton(me) && isEnabled()) {
                     if (mouseOver) {
                         selected = !selected;
                         toggleEvent.setSelected(selected);

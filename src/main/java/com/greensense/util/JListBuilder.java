@@ -32,6 +32,11 @@ public class JListBuilder<T> {
         return this;
     }
 
+    public JListBuilder<T> setSelectedIndex(int selectedIndex){
+        list.setSelectedIndex(selectedIndex);
+        return this;
+    }
+
     public JListBuilder<T> setBackground(Color background){
         list.setBackground(background);
         return this;
@@ -47,18 +52,13 @@ public class JListBuilder<T> {
         return this;
     }
 
-    public JListBuilder<T> setLayoutOrientation(int layoutOrientation){
-        list.setLayoutOrientation(layoutOrientation);
-        return this;
-    }
-
-    public JListBuilder<T> setVisibleRowCount(int visibleRowCount){
-        list.setVisibleRowCount(visibleRowCount);
+    public JListBuilder<T> setEnabled(boolean isEnabled){
+        list.setEnabled(isEnabled);
         return this;
     }
 
     public JListBuilder<T> addListSelectionListener(ListSelectionListener listener){
-        list.addListSelectionListener(listener);
+        if (listener != null) list.addListSelectionListener(listener);
         return this;
     }
 

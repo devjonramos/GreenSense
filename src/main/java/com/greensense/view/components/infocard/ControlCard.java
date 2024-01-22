@@ -17,6 +17,7 @@ import com.greensense.constants.Fonts;
 import com.greensense.util.ComponentFactory;
 import com.greensense.view.components.togglebutton.ToggleButton;
 import com.greensense.view.components.togglebutton.ToggleButtonListener;
+import lombok.Getter;
 
 public class ControlCard extends JPanel implements InfoCard {
 
@@ -26,6 +27,7 @@ public class ControlCard extends JPanel implements InfoCard {
     private ImageIcon icon;
     private ControlCard controlCard = this;
 
+    @Getter
     private ToggleButton toggleButton;
 
     private ToggleButtonListener listener;

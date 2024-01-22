@@ -36,7 +36,7 @@ public class HomepageController implements Constants, ActionListener {
 
         commandHandler.put(PROPERTY_LOAD_SCREEN_ALERTS, () -> {
             
-            
+            screenManager.showScreen("alerts");
 
         });
 
