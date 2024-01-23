@@ -1,23 +1,24 @@
 package com.greensense.view.renderer;
 
-import com.greensense.Palette;
 import com.greensense.constants.Images;
+import com.greensense.model.AlertModel;
 import com.greensense.view.components.AlertCard;
 
-import javax.swing.*;
-import java.awt.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-public class AlertRenderer implements Images, ListCellRenderer<String> {
+import javax.swing.JPanel;
+import javax.swing.JList;
+import javax.swing.BorderFactory;
+import javax.swing.ListCellRenderer;
+
+import java.awt.Component;
+import java.awt.BorderLayout;
+
+public class AlertRenderer implements Images, ListCellRenderer<AlertModel> {
     @Override
-    public Component getListCellRendererComponent(JList<? extends String> list, String value, int index, boolean isSelected, boolean cellHasFocus) {
+    public Component getListCellRendererComponent(JList<? extends AlertModel> list, AlertModel alertModel, int index, boolean isSelected, boolean cellHasFocus) {
 
-        JPanel panel = new JPanel();
-        BoxLayout layout = new BoxLayout(panel, BoxLayout.Y_AXIS);
-        panel.setLayout(layout);
-        //panel.setOpaque(false);
+        JPanel panel = new JPanel(new BorderLayout(0,0));
+        panel.setOpaque(false);
         panel.setBorder(
                 BorderFactory.createEmptyBorder(
                         0,
@@ -27,8 +28,12 @@ public class AlertRenderer implements Images, ListCellRenderer<String> {
                 )
         );
 
-        panel.add(new AlertCard());
+        AlertCard alertCard = new AlertCard(alertModel.getAlertType(), alertModel.getDescription(), alertModel.getSource());
+
+        panel.add(alertCard, BorderLayout.CENTER);
 
         return panel;
+
     }
+
 }

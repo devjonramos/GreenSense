@@ -3,6 +3,8 @@ package com.greensense.view.screens;
 import com.greensense.Palette;
 import com.greensense.constants.Fonts;
 import com.greensense.controller.AlertsController;
+import com.greensense.model.AlertModel;
+import com.greensense.model.AlertType;
 import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
 import com.greensense.util.JListBuilder;
@@ -17,20 +19,20 @@ public class AlertsScreen extends JPanel implements Screen {
 
     private AlertsController controller;
 
-    private JList<String> alertsList;
-    private DefaultListModel<String> alertsListModel;
+    private JList<AlertModel> alertsList;
+    private DefaultListModel<AlertModel> alertsListModel;
 
     public AlertsScreen(){
 
         controller = new AlertsController(this);
 
         alertsListModel = new DefaultListModel<>();
-        alertsListModel.addElement("Alert1");
-        alertsListModel.addElement("Alert2");
-        alertsListModel.addElement("Alert3");
-        alertsListModel.addElement("Alert4");
-        alertsListModel.addElement("Alert5");
-        alertsListModel.addElement("Alert6");
+        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 1", "Greenhouse1"));
+        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 2", "Greenhouse2"));
+        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 3", "Greenhouse3"));
+        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 4", "Greenhouse4"));
+        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 5", "Greenhouse5"));
+        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 6", "Greenhouse6"));
 
         setLayout(new BorderLayout(0, 0));
         setBackground(Palette.MAIN_BG);
@@ -57,7 +59,7 @@ public class AlertsScreen extends JPanel implements Screen {
 
         JLabel label = ComponentFactory.createLabel("Alertak", Palette.TEXT_PRIMARY_FG, InterMedium_32);
 
-        alertsList = JListBuilder.<String>create()
+        alertsList = JListBuilder.<AlertModel>create()
                 .setBackground(Color.WHITE)
                 .setEnabled(true)
                 .addListSelectionListener(controller)
