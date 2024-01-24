@@ -13,13 +13,13 @@ import java.util.Date;
 
 public class AlertCard extends JPanel implements Images, Fonts, Constants {
 
-    public AlertCard(AlertType alertType, String description, String source){
+    public AlertCard(AlertType alertType, String description, String source, String date){
 
         JLabel iconLabel = new JLabel(alertType.getIcon());
         JLabel nameLabel = ComponentFactory.createLabel(alertType.getTitle(), Palette.TEXT_PRIMARY_FG, InterMedium_24);
         JLabel descLabel = ComponentFactory.createLabel(description, Palette.TEXT_PRIMARY_FG, InterRegular_16);
         JLabel sourceLabel = ComponentFactory.createLabel(source, Palette.ALERT_SOURCE_FG, InterRegular_16, RIGHT_ALIGNMENT);
-        JLabel dateLabel = ComponentFactory.createLabel(capitalize(DATE_FORMAT.format(new Date())), Palette.TEXT_PRIMARY_FG, InterRegular_16, RIGHT_ALIGNMENT);
+        JLabel dateLabel = ComponentFactory.createLabel(date, Palette.TEXT_PRIMARY_FG, InterRegular_16, RIGHT_ALIGNMENT);
 
         JPanel centerPanel = ComponentFactory.createComponentGroup(nameLabel, descLabel, 8, BoxLayout.Y_AXIS);
         JPanel rightPanel = ComponentFactory.createComponentGroup(sourceLabel, dateLabel, 8, BoxLayout.Y_AXIS);
@@ -42,8 +42,8 @@ public class AlertCard extends JPanel implements Images, Fonts, Constants {
 
     }
 
-    private String capitalize(String input) {
-        return input.substring(0, 1).toUpperCase() + input.substring(1);
-    }
+//    private String capitalize(String input) {
+//        return input.substring(0, 1).toUpperCase() + input.substring(1);
+//    }
 
 }

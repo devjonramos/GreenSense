@@ -114,6 +114,18 @@ public class GreenhouseModel implements Constants {
         return (isAuto) ? "AUTO" : "MAN";
     }
 
+    public String getTopicMode(){
+        return TOP_TOPIC_LEVEL + this.id + "/mode";
+    }
+
+    public String getTopicPPM(){
+        return TOP_TOPIC_LEVEL + this.id + "/sensors/ppm";
+    }
+
+    public String getTopicFan(int fanId){
+        return TOP_TOPIC_LEVEL + this.id + "/fans/" + fanId;
+    }
+
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }

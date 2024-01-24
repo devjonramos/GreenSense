@@ -60,7 +60,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
     public void startMQTTService(){
 
         mqttService = new MQTTService(MQTT_BROKER, greenhouseModel.getName(), this);
-        mqttService.addTopic(greenhouseModel.TOPIC_SENSORS_PPM);
+        mqttService.addTopic(greenhouseModel.getTopicPPM());
         mqttService.startService();
 
         Alerts.getInstance().addAlert(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully", greenhouseModel.getName()));
@@ -131,12 +131,12 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
         switch (toggleCommand) {
             case PROPERTY_TOGGLE_MODE -> {
-                topic = greenhouseModel.TOPIC_MODE;
+                topic = greenhouseModel.getTopicMode();
                 view.getFanControlCard1().getToggleButton().setEnabled(!isSelected);
                 view.getFanControlCard2().getToggleButton().setEnabled(!isSelected);
             }
-            case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.TOPIC_FAN_1;
-            case PROPERTY_TOGGLE_FAN2 -> topic = greenhouseModel.TOPIC_FAN_2;
+            case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.getTopicFan(1);
+            case PROPERTY_TOGGLE_FAN2 -> topic = greenhouseModel.getTopicFan(2);
             default -> topic = "";
         }
 
@@ -177,7 +177,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
         //System.out.println(topic);
 
-        if (topic.equals(greenhouseModel.TOPIC_SENSORS_PPM)){
+        if (topic.equals(greenhouseModel.getTopicPPM())){
             //System.out.println("Message arrived: " + content);
             greenhouseModel.setPpm(Integer.parseInt(content));
         }

@@ -79,6 +79,14 @@ public interface Constants {
     // Date constants
     SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEEE, MMM d", new Locale("eu", "ES"));
 
+    default int m(int a, int b) {
+        return a * b;
+    }
+
+    default String capitalize(String input) {
+        return input.substring(0, 1).toUpperCase() + input.substring(1);
+    }
+
 
     // Deprecated
     @Deprecated String PROPERTY_EXIT = "exit";

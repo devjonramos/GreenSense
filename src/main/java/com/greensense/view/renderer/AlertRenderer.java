@@ -28,7 +28,7 @@ public class AlertRenderer implements Images, ListCellRenderer<AlertModel> {
                 )
         );
 
-        AlertCard alertCard = new AlertCard(alertModel.getAlertType(), alertModel.getDescription(), alertModel.getSource());
+        AlertCard alertCard = new AlertCard(alertModel.getAlertType(), alertModel.getDescription(), alertModel.getSource(), alertModel.getDate());
 
         panel.add(alertCard, BorderLayout.CENTER);
 
