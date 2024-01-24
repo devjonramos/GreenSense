@@ -3,6 +3,9 @@ package com.greensense.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.greensense.model.alert.AlertModel;
+import com.greensense.model.alert.AlertType;
+import com.greensense.model.alert.Alerts;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -68,6 +71,10 @@ public class MQTTService implements Constants {
 
         this.client.publish(topic, content.getBytes(), qos, retained);
 
+    }
+
+    public boolean isConnected(){
+        return client.isConnected();
     }
 
     public void stopService() {

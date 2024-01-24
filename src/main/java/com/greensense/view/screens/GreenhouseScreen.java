@@ -30,7 +30,9 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
     private AbstractAction actionNext, actionPrevious;
 
-    @Getter private ControlCard modeControlCard, windControlCard1, windControlCard2;
+    private JLabel nameLabel;
+
+    @Getter private ControlCard modeControlCard, fanControlCard1, fanControlCard2;
     @Getter private DisplayCard ppmDisplayCard, graphicDisplayCard;
     // @Getter private DisplayCard graphicDisplayCard;
 
@@ -71,11 +73,11 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
         JPanel panel = new JPanel();
 
-        JLabel nameLabel = ComponentFactory.createLabel(greenhouseModel.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_48);
+        nameLabel = ComponentFactory.createLabel(greenhouseModel.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_48);
 
         modeControlCard = new ControlCard("Modua", ICON_MD_TOOL, PROPERTY_TOGGLE_MODE, controller);
-        windControlCard1 = new ControlCard("Haizagailua1", ICON_MD_WIND, PROPERTY_TOGGLE_FAN1, controller);
-        windControlCard2 = new ControlCard("Haizagailua2", ICON_MD_WIND, PROPERTY_TOGGLE_FAN2, controller);
+        fanControlCard1 = new ControlCard("Haizagailua1", ICON_MD_WIND, PROPERTY_TOGGLE_FAN1, controller);
+        fanControlCard2 = new ControlCard("Haizagailua2", ICON_MD_WIND, PROPERTY_TOGGLE_FAN2, controller);
         graphicDisplayCard = new DisplayCard("Grafikoa", "967");
         ppmDisplayCard = new DisplayCard("CO2", "542");
 
@@ -86,9 +88,9 @@ public class GreenhouseScreen extends JPanel implements Screen {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(modeControlCard, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Integer.MAX_VALUE)
                 .addGap(24)
-                .addComponent(windControlCard1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Integer.MAX_VALUE)
+                .addComponent(fanControlCard1, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Integer.MAX_VALUE)
                 .addGap(24)
-                .addComponent(windControlCard2, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Integer.MAX_VALUE)
+                .addComponent(fanControlCard2, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Integer.MAX_VALUE)
             )
             .addGroup(layout.createSequentialGroup()
                 .addComponent(graphicDisplayCard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 438)
@@ -102,8 +104,8 @@ public class GreenhouseScreen extends JPanel implements Screen {
             .addGap(48)
             .addGroup(layout.createParallelGroup()
                 .addComponent(modeControlCard)
-                .addComponent(windControlCard1)
-                .addComponent(windControlCard2)
+                .addComponent(fanControlCard1)
+                .addComponent(fanControlCard2)
             )
             .addGap(24)
             .addGroup(layout.createParallelGroup()
@@ -124,8 +126,19 @@ public class GreenhouseScreen extends JPanel implements Screen {
     public void setGreenhouseModel(GreenhouseModel greenhouseModel) { this.greenhouseModel = greenhouseModel; }
 
     public void updatePPM(String ppm) {
-
         ppmDisplayCard.setValue(ppm);
+    }
+    public void updateName(String name) {
+        nameLabel.setText(name);
+    }
+    public void updateMode(boolean mode){
+        modeControlCard.setSelected(mode);
+    }
+
+    public void updateFan(int fanId, boolean selected){
+
+        if (fanId == 1) fanControlCard1.setSelected(selected);
+        else if (fanId == 2) fanControlCard2.setSelected(selected);
 
     }
 
@@ -136,13 +149,47 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
         switch (property) {
 
-			case PROPERTY_UPDATE_CO2:
+			case PROPERTY_UPDATE_GREENHOUSE_PPM:
 
                 int ppm = (int)evt.getNewValue();
 
                 updatePPM(Integer.toString(ppm));
 
-			break;
+			    break;
+
+            case PROPERTY_UPDATE_GREENHOUSE_NAME:
+
+                String name = (String) evt.getNewValue();
+
+                updateName(name);
+
+                break;
+
+            case PROPERTY_UPDATE_GREENHOUSE_MODE:
+
+                boolean mode = (boolean)evt.getNewValue();
+
+                updateMode(mode);
+
+                break;
+
+            case PROPERTY_UPDATE_GREENHOUSE_FAN_1:
+
+                updateFan(
+                        1,
+                        (boolean)evt.getNewValue()
+                );
+
+                break;
+
+            case PROPERTY_UPDATE_GREENHOUSE_FAN_2:
+
+                updateFan(
+                        2,
+                        (boolean)evt.getNewValue()
+                );
+
+                break;
 
 			default: break;
 
@@ -152,9 +199,11 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
     @Override
     public void load() {
-        
+
+        controller.setGreenhouseScreen(this);
         controller.setGreenhouseModel(greenhouseModel);
         controller.loadData();
+        this.repaint();
         controller.startMQTTService();
     }
 

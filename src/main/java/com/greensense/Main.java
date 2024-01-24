@@ -1,12 +1,18 @@
 package com.greensense;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import com.greensense.view.screens.*;
+import com.greensense.model.Greenhouses;
+import com.greensense.model.Users;
+import com.greensense.model.alert.Alerts;
+import com.greensense.view.screens.LoginScreen;
+import com.greensense.view.screens.ScreenManager;
 
 public class Main {
 
@@ -14,9 +20,14 @@ public class Main {
 
         SwingUtilities.invokeLater(() -> {
 
-            JFrame frame = new JFrame("GreenSense");
+            // Load data used across all the app
+            Alerts.getInstance();
+            Users.getInstance();
+            Greenhouses.getInstance();
 
-            JPanel mainPanel = new JPanel() {{ setBackground(Color.WHITE);}};
+            // Create frame and initialize the ScreenManager class
+            JFrame frame = new JFrame("GreenSense");
+            JPanel mainPanel = new JPanel() {{ setBackground(Color.WHITE); }};
             ScreenManager screenManager = ScreenManager.getInstance(frame, mainPanel);
 
             LoginScreen login = new LoginScreen();
@@ -31,6 +42,40 @@ public class Main {
             frame.setLocationRelativeTo(null);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
+            frame.addWindowListener(new WindowListener() {
+
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    System.out.println("Window closing");
+                    Alerts.getInstance().save();
+                }
+
+                @Override
+                public void windowOpened(WindowEvent e) {
+
+                }
+                @Override
+                public void windowClosed(WindowEvent e) {
+
+                }
+                @Override
+                public void windowIconified(WindowEvent e) {
+
+                }
+                @Override
+                public void windowDeiconified(WindowEvent e) {
+
+                }
+                @Override
+                public void windowActivated(WindowEvent e) {
+
+                }
+                @Override
+                public void windowDeactivated(WindowEvent e) {
+
+                }
+
+            });
 
         });
 

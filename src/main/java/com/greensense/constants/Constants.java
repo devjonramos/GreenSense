@@ -5,6 +5,8 @@ import com.greensense.view.screens.ScreenManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public interface Constants {
 
@@ -33,14 +35,11 @@ public interface Constants {
     String PROPERTY_TOGGLE_MODE = "Toggle greenhouse's mode";
     String PROPERTY_TOGGLE_FAN1 = "Toggle greenhouse's fan 1 state";
     String PROPERTY_TOGGLE_FAN2 = "Toggle greenhouse's fan 2 state";
-    String PROPERTY_UPDATE_CO2 = "Update CO2 level";
-
-
-    // Deprecated
-    @Deprecated String PROPERTY_EXIT = "exit";
-    @Deprecated String PROPERTY_LOAD_MENU = "Load Menu";
-    @Deprecated String PROPERTY_GO_BACK = "Return to previous screen";
-    @Deprecated String PROPERTY_UPDATE_GREENHOUSE_MODEL = "Update greenhouse model";
+    String PROPERTY_UPDATE_GREENHOUSE_NAME = "Update greenhouse name";
+    String PROPERTY_UPDATE_GREENHOUSE_MODE = "Update greenhouse mode";
+    String PROPERTY_UPDATE_GREENHOUSE_FAN_1 = "Update greenhouse fan 1";
+    String PROPERTY_UPDATE_GREENHOUSE_FAN_2 = "Update greenhouse fan 2";
+    String PROPERTY_UPDATE_GREENHOUSE_PPM = "Update PPM value";
 
 
     // Actions used across all the app
@@ -69,9 +68,26 @@ public interface Constants {
     };
 
     // MQTT Constants
-    String MQTT_BROKER = "tcp://192.168.1.103";
+    String MQTT_BROKER = "tcp://localhost";
     int QoS0 = 0;
     int QoS1 = 1;
     int QoS2 = 2;
+
+    String TOP_TOPIC_LEVEL = "greenhouse/";
+
+
+    // Date constants
+    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEEE, MMM d", new Locale("eu", "ES"));
+
+
+    // Deprecated
+    @Deprecated String PROPERTY_EXIT = "exit";
+    @Deprecated String PROPERTY_LOAD_MENU = "Load Menu";
+    @Deprecated String PROPERTY_GO_BACK = "Return to previous screen";
+    @Deprecated String PROPERTY_UPDATE_GREENHOUSE_MODEL = "Update greenhouse model";
+    @Deprecated String TOPIC_MODE = TOP_TOPIC_LEVEL + "mode";
+    @Deprecated String TOPIC_FAN_1 = TOP_TOPIC_LEVEL + "fans/1";
+    @Deprecated String TOPIC_FAN_2 = TOP_TOPIC_LEVEL + "fans/2";
+    @Deprecated String TOPIC_SENSORS_CO2 = TOP_TOPIC_LEVEL + "sensors/ppm";
 
 }

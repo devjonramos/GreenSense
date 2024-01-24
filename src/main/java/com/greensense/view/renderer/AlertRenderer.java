@@ -1,7 +1,7 @@
 package com.greensense.view.renderer;
 
 import com.greensense.constants.Images;
-import com.greensense.model.AlertModel;
+import com.greensense.model.alert.AlertModel;
 import com.greensense.view.components.AlertCard;
 
 

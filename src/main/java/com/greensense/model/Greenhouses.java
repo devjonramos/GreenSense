@@ -2,8 +2,7 @@ package com.greensense.model;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.greensense.constants.Constants;
-import com.greensense.util.JSONManager;
-import lombok.Getter;
+import com.greensense.util.json.JSONManager;
 import lombok.Setter;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class Greenhouses implements Constants {
 
-    private static int current = 1;
+    @Setter  private static int current = 0;
 
     private static Greenhouses instance;
 
@@ -23,7 +22,8 @@ public class Greenhouses implements Constants {
 
         greenhouses = new ArrayList<>();
         try {
-            greenhouses = JSONManager.loadJSON(JSONManager.GREENHOUSES_FILE, new TypeReference<List<GreenhouseModel>>(){});
+            greenhouses = JSONManager.loadJSON(JSONManager.GREENHOUSES_FILE, new TypeReference<>() {
+            });
 
         } catch (IOException e) {
             e.printStackTrace();

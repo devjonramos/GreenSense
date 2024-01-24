@@ -43,5 +43,9 @@ public interface Images {
     ImageIcon ICON_XL_SETTINGS = ImageLoader.loadImageIcon("icons/xl/ti-settings.png");
     ImageIcon ICON_XL_USERS = ImageLoader.loadImageIcon("icons/xl/ti-users.png");
     ImageIcon ICON_XL_CHECK = ImageLoader.loadImageIcon("icons/xl/ti-check.png");
+    ImageIcon ICON_XL_CLOSE = ImageLoader.loadImageIcon("icons/xl/ti-close.png");
+    ImageIcon ICON_XL_WARNING = ImageLoader.loadImageIcon("icons/xl/ti-warning.png");
+    ImageIcon ICON_XL_INFO = ImageLoader.loadImageIcon("icons/xl/ti-info.png");
+
 
 }

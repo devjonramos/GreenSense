@@ -70,6 +70,8 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
                 }
 
+                Greenhouses.setCurrent(model.getId() - 1);
+
                 screenManager.showScreen("greenhouse");
 
                 System.out.println(model.getId());

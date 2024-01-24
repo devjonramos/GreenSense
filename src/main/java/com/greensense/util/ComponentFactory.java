@@ -6,16 +6,7 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.AbstractAction;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 import com.greensense.Palette;
@@ -27,8 +18,8 @@ public class ComponentFactory implements Fonts {
         SMALL(InterSemiBold_12, BorderFactory.createEmptyBorder(6, 12, 6, 12)), 
         LARGE(InterSemiBold_16, BorderFactory.createEmptyBorder(8, 16, 8, 16));
 
-        private Font font;
-        private Border border;
+        private final Font font;
+        private final Border border;
 
         ButtonSize(Font font, Border border){
             this.font = font;
@@ -38,18 +29,22 @@ public class ComponentFactory implements Fonts {
         public Font getFont() { return font; }
         public Border getBorder() { return border; }
 
-    };
+    }
 
-    public static JLabel createLabel(String text, Color fg, Font font){
+    public static JLabel createLabel(String text, Color fg, Font font, float alignment){
 
         JLabel label = new JLabel(text);
 
         label.setFont(font);
         label.setForeground(fg);
-        label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        label.setAlignmentX(alignment);
 
         return label;
 
+    }
+
+    public static JLabel createLabel(String text, Color fg, Font font){
+        return createLabel(text, fg, font, Component.LEFT_ALIGNMENT);
     }
 
     public static JTextArea createTextArea(String text, Color fg, Font font){
@@ -92,7 +87,6 @@ public class ComponentFactory implements Fonts {
         button.setOpaque(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setBorder(size.getBorder());
-        // button.setBackground(Palette.BTN_PRIMARY_BG);
         button.setForeground(Palette.TEXT_SECONDARY_FG);
 
         return button;
@@ -104,13 +98,9 @@ public class ComponentFactory implements Fonts {
         JButton button = new JButton(action);
 
         button.setIcon(icon);
-
-        // button.setFont(size.getFont());
         button.setOpaque(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setBorder(null);
-        // button.setBackground(Palette.BTN_PRIMARY_BG);
-        // button.setForeground(Palette.BTN_PRIMARY_FG);
 
         return button;
 
@@ -120,7 +110,6 @@ public class ComponentFactory implements Fonts {
 
         JButton button = new JButton(action);
 
-        // button.setIcon(icon);
         button.setFont(InterMedium_24);
         button.setOpaque(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -132,7 +121,6 @@ public class ComponentFactory implements Fonts {
         );
         button.setVerticalTextPosition(SwingConstants.BOTTOM);
         button.setHorizontalTextPosition(SwingConstants.CENTER);
-        // button.setBackground(Palette.BTN_PRIMARY_BG);
         button.setForeground(Palette.GREEN_400);
 
         return button;
@@ -161,9 +149,26 @@ public class ComponentFactory implements Fonts {
             e.printStackTrace();
         }
 
-        //JTextField field = (type.getSimpleName().equals("JPasswordField")) ? new JPasswordField(20) : new JTextField(20);
-
         return field;
+
+    }
+
+    public static JPanel createComponentGroup(JComponent component1, JComponent component2, int gap, int orientation){
+
+        JPanel panel = new JPanel();
+
+        if (orientation < 0 || orientation > 3) orientation = BoxLayout.Y_AXIS;
+
+        BoxLayout boxLayout = new BoxLayout(panel, orientation);
+
+        panel.setLayout(boxLayout);
+        panel.setOpaque(false);
+
+        panel.add(component1);
+        panel.add(Box.createRigidArea(new Dimension(0, gap)));
+        panel.add(component2);
+
+        return panel;
 
     }
 
@@ -176,8 +181,6 @@ public class ComponentFactory implements Fonts {
         // textPrompt.setFont(FontFactory.FONT_PoppinsRegular_14);
 		// textPrompt.setForeground(Palette.INPUT_PLACEHOLDER);
 		// textPrompt.changeAlpha(0.75f);
-
-
 
         JPanel panel = new JPanel();
         GroupLayout layout = new GroupLayout(panel);

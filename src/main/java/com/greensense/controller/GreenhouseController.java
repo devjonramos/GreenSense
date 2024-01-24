@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.greensense.model.Greenhouses;
+import com.greensense.model.alert.AlertModel;
+import com.greensense.model.alert.AlertType;
+import com.greensense.model.alert.Alerts;
 import com.greensense.view.components.togglebutton.ToggleButtonListener;
 import com.greensense.view.components.togglebutton.ToggleEvent;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -33,28 +36,42 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
         this.view = greenhouseScreen;
         this.greenhouseModel = greenhouseModel;
 
-        this.greenhouseModel.addPropertyChangeListener(greenhouseScreen);
+        setGreenhouseScreen(greenhouseScreen);
+        setGreenhouseModel(greenhouseModel);
+
+        //this.greenhouseModel.addPropertyChangeListener(greenhouseScreen);
     }
 
-    public void setGreenhouseModel(GreenhouseModel greenhouseModel) { this.greenhouseModel = greenhouseModel; }
+    public void setGreenhouseScreen(GreenhouseScreen screen){
+        this.view = screen;
+    }
+
+    public void setGreenhouseModel(GreenhouseModel greenhouseModel) {
+        this.greenhouseModel = greenhouseModel;
+        this.greenhouseModel.addPropertyChangeListener(view);
+    }
 
     public void loadData(){
 
-        view.updatePPM(Integer.toString(greenhouseModel.getPpm()));
+        greenhouseModel.updateView();
 
     }
 
     public void startMQTTService(){
 
         mqttService = new MQTTService(MQTT_BROKER, greenhouseModel.getName(), this);
-        mqttService.addTopic(greenhouseModel.TOPIC_SENSORS_CO2);
+        mqttService.addTopic(greenhouseModel.TOPIC_SENSORS_PPM);
         mqttService.startService();
+
+        Alerts.getInstance().addAlert(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully", greenhouseModel.getName()));
 
     }
 
     public void stopMQTTService() {
         
         mqttService.stopService();
+
+        Alerts.getInstance().addAlert(new AlertModel(AlertType.INFO, "Disconnected from MQTT Broker", greenhouseModel.getName()));
 
     }
 
@@ -115,15 +132,15 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
         switch (toggleCommand) {
             case PROPERTY_TOGGLE_MODE -> {
                 topic = greenhouseModel.TOPIC_MODE;
-                view.getWindControlCard1().getToggleButton().setEnabled(!isSelected);
-                view.getWindControlCard2().getToggleButton().setEnabled(!isSelected);
+                view.getFanControlCard1().getToggleButton().setEnabled(!isSelected);
+                view.getFanControlCard2().getToggleButton().setEnabled(!isSelected);
             }
             case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.TOPIC_FAN_1;
             case PROPERTY_TOGGLE_FAN2 -> topic = greenhouseModel.TOPIC_FAN_2;
             default -> topic = "";
         }
 
-        if (mqttService != null) {
+        if (mqttService != null && mqttService.isConnected()) {
 
             String message = Boolean.toString(e.isSelected());
             //System.out.println(message);
@@ -145,8 +162,12 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
     // We use the "synchronized" keyword to avoid any concurrency problems. This way we ensure only one thread executes them at the same time
     @Override
     public synchronized void connectionLost(Throwable cause) {
+
+        Alerts.getInstance().addAlert(new AlertModel(AlertType.ERROR, "Connection to MQTT broker lost!", greenhouseModel.getName()));
+
         System.err.println("Connection to MQTT broker lost!" + cause);
         cause.printStackTrace();
+
     }
 
     @Override
@@ -156,7 +177,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
         //System.out.println(topic);
 
-        if (topic.equals(greenhouseModel.TOPIC_SENSORS_CO2)){
+        if (topic.equals(greenhouseModel.TOPIC_SENSORS_PPM)){
             //System.out.println("Message arrived: " + content);
             greenhouseModel.setPpm(Integer.parseInt(content));
         }
@@ -165,6 +186,8 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
     @Override
     public synchronized void deliveryComplete(IMqttDeliveryToken token) {
+
+        Alerts.getInstance().addAlert(new AlertModel(AlertType.INFO, "Message delivered to client", greenhouseModel.getName()));
 
     }
 

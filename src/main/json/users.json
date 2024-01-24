@@ -1,0 +1,65 @@
+[
+    {
+        "id": 1,
+        "role": 1,
+        "name": "Caroline",
+        "surname": "Forbes",
+        "lastSeen": "24 Oct, 2023",
+        "username": "caroline",
+        "password": "1234"
+    },
+    {
+        "id": 2,
+        "role": 2,
+        "name": "Klaus",
+        "surname": "Mikaelson",
+        "lastSeen": "15 Dec, 2023",
+        "username": "klaus",
+        "password": "5678"
+    },
+    {
+        "id": 3,
+        "role": 2,
+        "name": "Hope",
+        "surname": "Mikaelson",
+        "lastSeen": "5 Feb, 2024",
+        "username": "hope",
+        "password": "abcd"
+    },
+    {
+        "id": 4,
+        "role": 2,
+        "name": "Damon",
+        "surname": "Salvatore",
+        "lastSeen": "20 Nov, 2023",
+        "username": "damon",
+        "password": "efgh"
+    },
+    {
+        "id": 5,
+        "role": 2,
+        "name": "Stefan",
+        "surname": "Salvatore",
+        "lastSeen": "28 Sep, 2023",
+        "username": "stefan",
+        "password": "mnop"
+    },
+    {
+        "id": 6,
+        "role": 2,
+        "name": "Bonnie",
+        "surname": "Bennett",
+        "lastSeen": "12 Nov, 2023",
+        "username": "bonnie",
+        "password": "qrst"
+    },
+    {
+        "id": 7,
+        "role": 2,
+        "name": "Elena",
+        "surname": "Gilbert",
+        "lastSeen": "3 Jan, 2024",
+        "username": "elena",
+        "password": "uvwx"
+    }
+]

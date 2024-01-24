@@ -1,4 +1,4 @@
-package com.greensense.util;
+package com.greensense.util.json;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

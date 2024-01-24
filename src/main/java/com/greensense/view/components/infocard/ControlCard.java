@@ -103,6 +103,11 @@ public class ControlCard extends JPanel implements InfoCard {
 
     }
 
+    public void setSelected(boolean selected){
+
+        toggleButton.setSelected(selected);
+
+    }
     @Override
     public JPanel getCardPanel() {
         return this;

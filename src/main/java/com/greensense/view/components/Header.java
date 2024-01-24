@@ -39,7 +39,7 @@ public class Header extends JToolBar implements Fonts, Images, Constants {
             add(Box.createRigidArea(new Dimension(24, 0)));
         }
 
-        addSeparator();
+        if(components.length > 0) addSeparator();
         add(Box.createRigidArea(new Dimension(24, 0)));
         add(btnSettings);
         add(Box.createRigidArea(new Dimension(24, 0)));

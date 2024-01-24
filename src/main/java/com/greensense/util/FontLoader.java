@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class FontFactory {
+public class FontLoader {
 
     private static final float SIZE_FACTOR = 1f;
 
@@ -28,7 +28,7 @@ public class FontFactory {
         
         Font font = Font.getFont("SansSerif");
 
-        try (InputStream inputStream = FontFactory.class.getClassLoader().getResourceAsStream(fontResourcePath)) {
+        try (InputStream inputStream = FontLoader.class.getClassLoader().getResourceAsStream(fontResourcePath)) {
 
             if (inputStream != null) {
                 font = Font.createFont(fontFormat, inputStream);

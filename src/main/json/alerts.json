@@ -1,0 +1,21 @@
+[ {
+  "id" : 1,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1"
+}, {
+  "id" : 2,
+  "alertType" : "INFO",
+  "description" : "Disconnected from MQTT Broker",
+  "source" : "Negutegia#1"
+}, {
+  "id" : 1,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#2"
+}, {
+  "id" : 2,
+  "alertType" : "INFO",
+  "description" : "Disconnected from MQTT Broker",
+  "source" : "Negutegia#2"
+} ]

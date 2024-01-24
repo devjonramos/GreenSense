@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.greensense.constants.Constants;
-import com.greensense.util.JSONManager;
+import com.greensense.util.json.JSONManager;
 
 public class Users implements Constants {
 

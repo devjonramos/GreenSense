@@ -1,10 +1,9 @@
 package com.greensense.view.screens;
 
 import com.greensense.Palette;
-import com.greensense.constants.Fonts;
 import com.greensense.controller.AlertsController;
-import com.greensense.model.AlertModel;
-import com.greensense.model.AlertType;
+import com.greensense.model.alert.AlertModel;
+import com.greensense.model.alert.AlertsListModel;
 import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
 import com.greensense.util.JListBuilder;
@@ -20,19 +19,14 @@ public class AlertsScreen extends JPanel implements Screen {
     private AlertsController controller;
 
     private JList<AlertModel> alertsList;
-    private DefaultListModel<AlertModel> alertsListModel;
+    //private DefaultListModel<AlertModel> alertsListModel;
+    private AlertsListModel alertsListModel;
 
     public AlertsScreen(){
 
-        controller = new AlertsController(this);
+        alertsListModel = new AlertsListModel();
+        controller = new AlertsController(this, alertsListModel);
 
-        alertsListModel = new DefaultListModel<>();
-        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 1", "Greenhouse1"));
-        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 2", "Greenhouse2"));
-        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 3", "Greenhouse3"));
-        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 4", "Greenhouse4"));
-        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 5", "Greenhouse5"));
-        alertsListModel.addElement(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully 6", "Greenhouse6"));
 
         setLayout(new BorderLayout(0, 0));
         setBackground(Palette.MAIN_BG);
@@ -70,6 +64,7 @@ public class AlertsScreen extends JPanel implements Screen {
         JScrollPane alertsListScrollPane = new JScrollPane(alertsList){{
             setBorder(BorderFactory.createEmptyBorder());
             setOpaque(false);
+            setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
             setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         }};
 
@@ -98,7 +93,7 @@ public class AlertsScreen extends JPanel implements Screen {
 
     @Override
     public void load() {
-
+        controller.loadAlerts();
     }
 
     @Override

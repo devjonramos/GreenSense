@@ -1,6 +1,7 @@
 package com.greensense.controller;
 
 import com.greensense.constants.Constants;
+import com.greensense.model.alert.AlertsListModel;
 import com.greensense.view.screens.AlertsScreen;
 import com.greensense.view.screens.ScreenManager;
 
@@ -14,9 +15,15 @@ public class AlertsController implements Constants, ActionListener, ListSelectio
     private final ScreenManager screenManager = ScreenManager.getInstance();
 
     private AlertsScreen view;
+    private AlertsListModel model;
 
-    public AlertsController(AlertsScreen alertsScreen){
+    public AlertsController(AlertsScreen alertsScreen, AlertsListModel model){
         this.view = alertsScreen;
+        this.model = model;
+    }
+
+    public void loadAlerts(){
+        model.loadAlerts();
     }
 
     @Override

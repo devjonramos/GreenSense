@@ -59,6 +59,17 @@ public class Palette{
     public static final Color INFO_CARD_BG = WHITE;
 
 
+    // Alerts
+    public static final Color ALERT_SOURCE_FG = Color.decode("#2B82E8");
+    public static final Color ALERT_SUCCESS_BG = Color.decode("#E6FAF5");
+    public static final Color ALERT_SUCCESS_BORDER = Color.decode("#00CC99");
+    public static final Color ALERT_ERROR_BG = Color.decode("#FDEEEE");
+    public static final Color ALERT_ERROR_BORDER = Color.decode("#EB5757");
+    public static final Color ALERT_WARNING_BG = Color.decode("#FDF8E8");
+    public static final Color ALERT_WARNING_BORDER = Color.decode("#F2C94C");
+    public static final Color ALERT_INFO_BG = Color.decode("#EEEEFE");
+    public static final Color ALERT_INFO_BORDER = Color.decode("#5458F7");
+
     public static Color HEXtoRGB(Color hex, float opacity){
         return new Color(hex.getRed(), hex.getGreen(), hex.getBlue(), (int) (opacity * 255));
     }
