@@ -88,7 +88,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
             if (nextGreenhouseModel != null) {
 
-                greenhouseModel.update(nextGreenhouseModel);
+                greenhouseModel.updateModel(nextGreenhouseModel);
 
                 screenManager.reloadCurrentScreen(); // This will update the mqtt client to the new greenhouse
 
@@ -105,7 +105,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
             if (prevGreenhouseModel != null) {
 
-                greenhouseModel.update(prevGreenhouseModel);
+                greenhouseModel.updateModel(prevGreenhouseModel);
 
                 screenManager.reloadCurrentScreen(); // Refer to line 84
 
@@ -132,6 +132,8 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
                 topic = greenhouseModel.getTopicMode();
                 view.setFanControlCardEnabled(1, !isSelected);
                 view.setFanControlCardEnabled(2, !isSelected);
+                greenhouseModel.setFan1(false);
+                greenhouseModel.setFan2(false);
             }
             case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.getTopicFan(1);
             case PROPERTY_TOGGLE_FAN2 -> topic = greenhouseModel.getTopicFan(2);

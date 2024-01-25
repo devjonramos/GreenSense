@@ -41,7 +41,7 @@ public class GreenhouseModel implements Constants {
 
         }
 
-    };
+    }
 
     @JsonProperty("id")
     private int id;
@@ -66,11 +66,13 @@ public class GreenhouseModel implements Constants {
     @Setter(AccessLevel.NONE)
     private PropertyChangeSupport support;
 
-    public GreenhouseModel(String name, boolean isAuto, int ppm) {
+    public GreenhouseModel(String name, boolean isAuto, int ppm, boolean fan1, boolean fan2) {
         this.id = count++;
         this.name = name;
         this.isAuto = isAuto;
         this.ppm = ppm;
+        this.fan1 = fan1;
+        this.fan2 = fan2;
 
         this.support = new PropertyChangeSupport(this);
 
@@ -81,25 +83,26 @@ public class GreenhouseModel implements Constants {
     }
 
     public GreenhouseModel(GreenhouseModel model){
-        this.id = model.id;
-        this.name = model.name;
-        this.isAuto = model.isAuto;
-        this.ppm = model.ppm;
+//        this.id = model.id;
+//        this.name = model.name;
+//        this.isAuto = model.isAuto;
+//        this.ppm = model.ppm;
+//        this.fan1 = model.fan1;
+//        this.fan2 = model.fan2;
+//        this.support = model.support;
+
+        updateModel(model);
+
+    }
+
+    public void updateModel(GreenhouseModel model){
         this.support = model.support;
-    }
-
-    public void setPpm(int ppm) {
-        this.ppm = ppm;
-        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_PPM, null, this.ppm);
-    }
-
-    public void update(GreenhouseModel model){
-
         this.setId(model.id);
         this.setName(model.name);
         this.setAuto(model.isAuto);
         this.setPpm(model.ppm);
-
+        this.setFan1(model.fan1);
+        this.setFan2(model.fan2);
     }
 
     public void updateView(){
@@ -110,6 +113,21 @@ public class GreenhouseModel implements Constants {
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_1, null, this.fan1);
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_2, null, this.fan2);
 
+    }
+
+    public void setPpm(int ppm) {
+        this.ppm = ppm;
+        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_PPM, null, this.ppm);
+    }
+
+    public void setFan1(boolean fan1){
+        this.fan1 = fan1;
+        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_1, null, this.fan1);
+    }
+
+    public void setFan2(boolean fan2){
+        this.fan2 = fan2;
+        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_2, null, this.fan2);
     }
 
     public String getMode(){

@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import com.greensense.constants.Constants;
 import com.greensense.model.GreenhouseModel;
 import com.greensense.model.Greenhouses;
+import com.greensense.view.components.Form;
 import com.greensense.view.screens.GreenhouseCardsScreen;
 import com.greensense.view.screens.GreenhouseScreen;
 import com.greensense.view.screens.Screen;
@@ -116,7 +117,7 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
                 JButton button = (JButton)e.getSource();
 
-
+                Form form = new Form(screenManager.getFrame(), "Gehitu Negutegia", true);
 
             }
 

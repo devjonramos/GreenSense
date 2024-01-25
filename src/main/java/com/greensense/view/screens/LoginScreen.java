@@ -1,7 +1,11 @@
 package com.greensense.view.screens;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import com.greensense.Palette;
+import com.greensense.controller.LoginController;
+import com.greensense.util.ActionBuilder;
+import com.greensense.util.BorderCreator;
+import com.greensense.util.ComponentFactory;
+import com.greensense.util.ComponentFactory.ButtonSize;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -15,15 +19,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.beans.PropertyChangeEvent;
-
-import com.greensense.Palette;
-import com.greensense.controller.LoginController;
-import com.greensense.util.ActionBuilder;
-import com.greensense.util.BorderCreator;
-import com.greensense.util.ComponentFactory;
-import com.greensense.util.ComponentFactory.ButtonSize;
 
 public class LoginScreen extends JPanel implements Screen {
 
@@ -130,9 +128,12 @@ public class LoginScreen extends JPanel implements Screen {
 
         JLabel heading = ComponentFactory.createLabel("Hasi Saioa", Palette.TEXT_PRIMARY_FG, InterSemiBold_24);
         JTextArea subheading = ComponentFactory.createTextArea("Sartu ezazu zure erabiltzailea eta pasahitza saioa hasteko", Palette.TEXT_SECONDARY_FG, InterRegular_16);
-        
-        JPanel username = ComponentFactory.createInputGroup(usernameField, "Erabiltzailea");
-        JPanel password = ComponentFactory.createInputGroup(passwordField, "Pasahitza");
+
+        JLabel usernameLabel = ComponentFactory.createLabel("Erabiltzailea", Palette.TEXT_PRIMARY_FG, InterMedium_16);
+        JLabel passwordLabel = ComponentFactory.createLabel("Pasahitza", Palette.TEXT_PRIMARY_FG, InterMedium_16);
+
+        JPanel username = ComponentFactory.createInputGroup(usernameLabel, usernameField);
+        JPanel password = ComponentFactory.createInputGroup(passwordLabel, passwordField);
 
         JButton btnLogin = ComponentFactory.createPrimaryButton(actionLogin, ButtonSize.LARGE);
 

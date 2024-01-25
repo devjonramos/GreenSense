@@ -187,10 +187,10 @@ public class ComponentFactory implements Fonts {
 
     }
 
-    public static JPanel createInputGroup(JTextField field, String labelText){
+    public static JPanel createInputGroup(JLabel fieldLabel, JTextField field){
 
-        JLabel label = new JLabel(labelText);
-        label.setFont(InterMedium_16);
+//        JLabel label = new JLabel(labelText);
+//        label.setFont(InterMedium_16);
 		// TextPrompt textPrompt = new TextPrompt(placeholder, field);
 
         // textPrompt.setFont(FontFactory.FONT_PoppinsRegular_14);
@@ -204,12 +204,12 @@ public class ComponentFactory implements Fonts {
         panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         layout.setHorizontalGroup(layout.createParallelGroup()
-            .addComponent(label)
+            .addComponent(fieldLabel)
             .addComponent(field)
         );
 
         layout.setVerticalGroup(layout.createSequentialGroup()
-            .addComponent(label)
+            .addComponent(fieldLabel)
             .addGap(16)
             .addComponent(field, 43, 43, 43)
         );

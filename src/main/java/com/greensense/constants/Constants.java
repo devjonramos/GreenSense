@@ -10,6 +10,9 @@ import java.util.Locale;
 
 public interface Constants {
 
+    // General use properties
+    String PROPERTY_CANCEL = "Cancel an action";
+
     // LoginScreen
     String PROPERTY_LOGIN = "Login to account";
     String PROPERTY_LOAD_HOMEPAGE = "Load Homepage";
@@ -73,7 +76,7 @@ public interface Constants {
     };
 
     // MQTT Constants
-    String MQTT_BROKER = "tcp://localhost";
+    String MQTT_BROKER = "tcp://192.168.1.103";
     int QoS0 = 0;
     int QoS1 = 1;
     int QoS2 = 2;
