@@ -63,6 +63,21 @@ public class ComponentFactory implements Fonts {
 
     }
 
+    public static JButton createButton(AbstractAction action, ButtonSize size, Color bg, Color fg){
+
+        JButton button = new JButton(action);
+
+        button.setFont(size.getFont());
+        button.setOpaque(true);
+        button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        button.setBorder(size.getBorder());
+        button.setBackground(bg);
+        button.setForeground(fg);
+
+        return button;
+
+    }
+
     public static JButton createPrimaryButton(AbstractAction action, ButtonSize size){
 
         JButton button = new JButton(action);

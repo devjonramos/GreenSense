@@ -13,6 +13,9 @@ public class Palette{
     public static final Color FROSTY_GREEN = Color.decode("#F1F9F5");
     public static final Color DARK_YELLOW = Color.decode("#DF9C20");
 
+    public static final Color PINK_50 = Color.decode("#FDEEEE");
+    public static final Color PINK_400 = Color.decode("#EC8087");
+
     public static final Color GREEN_50 = Color.decode("#eefbf3");
     public static final Color GREEN_100 = Color.decode("#d5f6e0");
     public static final Color GREEN_200 = Color.decode("#aeecc6");

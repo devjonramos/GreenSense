@@ -5,19 +5,20 @@ import com.greensense.util.json.JSONManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Alerts {
 
     private static Alerts instance;
 
-    private List<AlertModel> alerts;
+    private LinkedList<AlertModel> alerts;
 
     private Alerts(){
 
-        alerts = new ArrayList<>();
+        alerts = new LinkedList<>();
         try {
-            alerts = JSONManager.loadJSON(JSONManager.ALERTS_FILE, new TypeReference<>() {});
+            alerts = JSONManager.loadJSON(JSONManager.ALERTS_FILE, new TypeReference<LinkedList<AlertModel>>() {});
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -38,7 +39,8 @@ public class Alerts {
     public void addAlert(AlertModel alert) {
 
         if (!alerts.contains(alert)) {
-            alerts.add(alert);
+            // alerts.add(alert);
+            alerts.addFirst(alert);
         }
 
     }

@@ -22,7 +22,7 @@ public class Greenhouses implements Constants {
 
         greenhouses = new ArrayList<>();
         try {
-            greenhouses = JSONManager.loadJSON(JSONManager.GREENHOUSES_FILE, new TypeReference<>() {
+            greenhouses = JSONManager.loadJSON(JSONManager.GREENHOUSES_FILE, new TypeReference<List<GreenhouseModel>>() {
             });
 
         } catch (IOException e) {
@@ -61,6 +61,11 @@ public class Greenhouses implements Constants {
 
     }
 
+    public int indexOf(GreenhouseModel model){
+        int index = greenhouses.indexOf(model);
+        return index;
+    }
+
     public GreenhouseModel getGreenhouseByID(int id){
 
         List<GreenhouseModel> filteredResults = getGreenhouses().stream().filter(
@@ -70,6 +75,18 @@ public class Greenhouses implements Constants {
         if (filteredResults.size() == 1) return new GreenhouseModel(filteredResults.get(0));
 
         return  null;
+
+    }
+
+    public void save(){
+
+        try {
+
+            JSONManager.writeToJSON(JSONManager.GREENHOUSES_FILE, greenhouses);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

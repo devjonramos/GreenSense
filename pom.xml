@@ -85,6 +85,24 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- JFreeChart -->
+        <!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+
+        <!-- Apache Maven Compiler Plugin  -->
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.12.1</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>

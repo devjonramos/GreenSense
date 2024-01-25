@@ -19,7 +19,6 @@ public class AlertsScreen extends JPanel implements Screen {
     private AlertsController controller;
 
     private JList<AlertModel> alertsList;
-    //private DefaultListModel<AlertModel> alertsListModel;
     private AlertsListModel alertsListModel;
 
     public AlertsScreen(){
@@ -40,9 +39,7 @@ public class AlertsScreen extends JPanel implements Screen {
     }
 
     public JToolBar createHeader(){
-
         return new Header(true);
-
     }
 
     private JPanel createContentPanel() {
@@ -89,8 +86,6 @@ public class AlertsScreen extends JPanel implements Screen {
 
     }
 
-
-
     @Override
     public void load() {
         controller.loadAlerts();
@@ -103,6 +98,18 @@ public class AlertsScreen extends JPanel implements Screen {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+
+        String property = evt.getPropertyName();
+
+        switch (property){
+
+            case PROPERTY_UPDATE_ALERTS_LIST:
+
+                if(alertsList != null) alertsList.repaint();
+
+                break;
+
+        }
 
     }
 }

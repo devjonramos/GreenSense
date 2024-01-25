@@ -21,8 +21,6 @@ import lombok.Getter;
 
 public class ControlCard extends JPanel implements InfoCard {
 
-    public final Color CARD_BG = Palette.WHITE;
-
     private String name;
     private ImageIcon icon;
     private ControlCard controlCard = this;
@@ -96,7 +94,7 @@ public class ControlCard extends JPanel implements InfoCard {
         setPreferredSize(new Dimension(215, 173));
         setBorder(
                 BorderFactory.createCompoundBorder(
-                        BorderFactory.createLineBorder(Palette.BLACK_200, 1),
+                        BorderFactory.createLineBorder(BORDER_BG, 1),
                         BorderFactory.createEmptyBorder(16, 16, 16, 16)
                 )
         );

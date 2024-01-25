@@ -26,7 +26,7 @@ public interface Constants {
     // GreenhouseCardsScreen
     String PROPERTY_SEARCH_GREENHOUSES = "Search Greenhouses By Name";
     String PROPERTY_OPEN_GREENHOUSE = "Open Greenhouse";
-    String PROPERTY_CHANGE_GREENHOUSE_NAME = "Change Greenhouse's Name";
+    String PROPERTY_DELETE_GREENHOUSE = "Delete greenhouse";
 
 
     // GreenhouseScreen
@@ -40,6 +40,10 @@ public interface Constants {
     String PROPERTY_UPDATE_GREENHOUSE_FAN_1 = "Update greenhouse fan 1";
     String PROPERTY_UPDATE_GREENHOUSE_FAN_2 = "Update greenhouse fan 2";
     String PROPERTY_UPDATE_GREENHOUSE_PPM = "Update PPM value";
+
+
+    // AlertsScreen
+    String PROPERTY_UPDATE_ALERTS_LIST = "Update alerts JList"; // It repaints the JList
 
 
     // Actions used across all the app
@@ -77,11 +81,7 @@ public interface Constants {
 
 
     // Date constants
-    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEEE, MMM d", new Locale("eu", "ES"));
-
-    default int m(int a, int b) {
-        return a * b;
-    }
+    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEEE, MMM d HH:mm", new Locale("eu", "ES"));
 
     default String capitalize(String input) {
         return input.substring(0, 1).toUpperCase() + input.substring(1);

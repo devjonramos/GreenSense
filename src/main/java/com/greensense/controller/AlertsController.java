@@ -20,6 +20,7 @@ public class AlertsController implements Constants, ActionListener, ListSelectio
     public AlertsController(AlertsScreen alertsScreen, AlertsListModel model){
         this.view = alertsScreen;
         this.model = model;
+        this.model.addPropertyChangeListener(view);
     }
 
     public void loadAlerts(){

@@ -56,7 +56,7 @@ public class GreenhouseModel implements Constants {
     @JsonProperty("fan2")
     private boolean fan2;
 
-    @JsonProperty("ppm")
+    // @JsonProperty("ppm")
     @Setter(AccessLevel.NONE)
     private int ppm;
 

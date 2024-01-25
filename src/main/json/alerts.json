@@ -1,156 +1,73 @@
 [ {
-  "id" : 1,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#1"
-}, {
-  "id" : 2,
+  "id" : 1706139873454,
   "alertType" : "INFO",
   "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#1"
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 00:44"
 }, {
-  "id" : 1,
+  "id" : 1706139867167,
   "alertType" : "SUCCESS",
   "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#2"
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 00:44"
 }, {
-  "id" : 2,
+  "id" : 1706139865721,
   "alertType" : "INFO",
   "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#2"
+  "source" : "Negutegia#2",
+  "date" : "Osteguna, urt. 25 00:44"
 }, {
-  "id" : 4,
+  "id" : 1706139860401,
   "alertType" : "SUCCESS",
   "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#1"
+  "source" : "Negutegia#2",
+  "date" : "Osteguna, urt. 25 00:44"
 }, {
-  "id" : 5,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#2"
-}, {
-  "id" : 6,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#1"
-}, {
-  "id" : 7,
+  "id" : 1706139858927,
   "alertType" : "INFO",
   "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#1"
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 00:44"
 }, {
-  "id" : 8,
+  "id" : 1706139852236,
   "alertType" : "SUCCESS",
   "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#1"
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 00:44"
 }, {
-  "id" : 9,
+  "id" : 1706139373341,
   "alertType" : "SUCCESS",
   "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#1"
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 00:36"
 }, {
-  "id" : 10,
+  "id" : 1706139170718,
   "alertType" : "INFO",
   "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#2"
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 00:32"
 }, {
-  "id" : 11,
+  "id" : 1706139159514,
   "alertType" : "SUCCESS",
   "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#2"
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 00:32"
 }, {
-  "id" : 12,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#3"
-}, {
-  "id" : 13,
+  "id" : 1706139031449,
   "alertType" : "SUCCESS",
   "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#3"
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 00:30"
 }, {
-  "id" : 14,
+  "id" : 1706136365840,
   "alertType" : "INFO",
   "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#4"
+  "source" : "Negutegia#1",
+  "date" : "Asteazkena, urt. 24 23:46"
 }, {
-  "id" : 15,
+  "id" : 1706136364061,
   "alertType" : "SUCCESS",
   "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#4"
-}, {
-  "id" : 16,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#5"
-}, {
-  "id" : 17,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#5"
-}, {
-  "id" : 18,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#6"
-}, {
-  "id" : 19,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#6"
-}, {
-  "id" : 20,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#7"
-}, {
-  "id" : 21,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#7"
-}, {
-  "id" : 22,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#7"
-}, {
-  "id" : 23,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#4"
-}, {
-  "id" : 24,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#3"
-}, {
-  "id" : 25,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#3"
-}, {
-  "id" : 26,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#4"
-}, {
-  "id" : 27,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#4"
-}, {
-  "id" : 28,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#5"
-}, {
-  "id" : 29,
-  "alertType" : "SUCCESS",
-  "description" : "Connected to MQTT Broker successfully",
-  "source" : "Negutegia#5"
-}, {
-  "id" : 30,
-  "alertType" : "INFO",
-  "description" : "Disconnected from MQTT Broker",
-  "source" : "Negutegia#5"
+  "source" : "Negutegia#1",
+  "date" : "Asteazkena, urt. 24 23:46"
 } ]

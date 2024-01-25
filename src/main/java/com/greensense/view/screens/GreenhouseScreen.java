@@ -1,6 +1,9 @@
 package com.greensense.view.screens;
 
+import java.awt.Dimension;
 import java.awt.BorderLayout;
+
+import java.util.Random;
 
 import java.beans.PropertyChangeEvent;
 
@@ -20,27 +23,37 @@ import com.greensense.util.ComponentFactory;
 import com.greensense.view.components.Header;
 import com.greensense.view.components.infocard.ControlCard;
 import com.greensense.view.components.infocard.DisplayCard;
+
+import com.greensense.view.components.infocard.GraphicCard;
 import lombok.Getter;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 public class GreenhouseScreen extends JPanel implements Screen {
 
-    private GreenhouseController controller;
+    private final GreenhouseController controller;
 
-    private GreenhouseModel greenhouseModel;
+    private GreenhouseModel model;
 
     private AbstractAction actionNext, actionPrevious;
 
     private JLabel nameLabel;
 
+    private XYSeries ppmSeries;
+
     @Getter private ControlCard modeControlCard, fanControlCard1, fanControlCard2;
     @Getter private DisplayCard ppmDisplayCard, graphicDisplayCard;
-    // @Getter private DisplayCard graphicDisplayCard;
+    private GraphicCard graphicCard;
 
     public GreenhouseScreen(GreenhouseModel greenhouseModel) {
 
-        this.setGreenhouseModel(greenhouseModel);
+        this.setModel(greenhouseModel);
 
-        controller = new GreenhouseController(this, this.greenhouseModel);
+        controller = new GreenhouseController(this, this.model);
         this.createActions();
 
         setLayout(new BorderLayout(0, 0));
@@ -55,7 +68,6 @@ public class GreenhouseScreen extends JPanel implements Screen {
     }
 
     private void createActions() {
-        //actionBack = ActionBuilder.createAction("", PROPERTY_GO_BACK, controller).build();
         actionNext = ActionBuilder.createAction("", PROPERTY_NEXT_GREENHOUSE, controller).build();
         actionPrevious = ActionBuilder.createAction("", PROPERTY_PREVIOUS_GREENHOUSE, controller).build();
     }
@@ -73,13 +85,14 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
         JPanel panel = new JPanel();
 
-        nameLabel = ComponentFactory.createLabel(greenhouseModel.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_48);
+        nameLabel = ComponentFactory.createLabel(model.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_48);
 
         modeControlCard = new ControlCard("Modua", ICON_MD_TOOL, PROPERTY_TOGGLE_MODE, controller);
         fanControlCard1 = new ControlCard("Haizagailua1", ICON_MD_WIND, PROPERTY_TOGGLE_FAN1, controller);
         fanControlCard2 = new ControlCard("Haizagailua2", ICON_MD_WIND, PROPERTY_TOGGLE_FAN2, controller);
         graphicDisplayCard = new DisplayCard("Grafikoa", "967");
-        ppmDisplayCard = new DisplayCard("CO2", "542");
+        ppmDisplayCard = new DisplayCard("CO2", "0");
+        graphicCard = new GraphicCard("Grafikoa", createGraphic());
 
         GroupLayout layout = new GroupLayout(panel);
 
@@ -93,7 +106,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
                 .addComponent(fanControlCard2, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, Integer.MAX_VALUE)
             )
             .addGroup(layout.createSequentialGroup()
-                .addComponent(graphicDisplayCard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 438)
+                .addComponent(graphicCard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 438)
                 .addGap(24)
                 .addComponent(ppmDisplayCard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 438)
             )
@@ -109,8 +122,8 @@ public class GreenhouseScreen extends JPanel implements Screen {
             )
             .addGap(24)
             .addGroup(layout.createParallelGroup()
-                .addComponent(graphicDisplayCard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Integer.MAX_VALUE)
-                .addComponent(ppmDisplayCard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Integer.MAX_VALUE)
+                .addComponent(graphicCard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 411)
+                .addComponent(ppmDisplayCard, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 411)
             )
             
         );
@@ -123,7 +136,35 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
     }
 
-    public void setGreenhouseModel(GreenhouseModel greenhouseModel) { this.greenhouseModel = greenhouseModel; }
+    public ChartPanel createGraphic(){
+
+        ppmSeries = new XYSeries("CO2 PPM");
+        Random random = new Random();
+        for (int time = 1; time <= 20; time++) {
+            ppmSeries.add(time, random.nextInt(1000));
+        }
+
+        XYSeriesCollection dataset = new XYSeriesCollection(ppmSeries);
+
+        JFreeChart chart = ChartFactory.createXYLineChart(
+                "CO2 Sensor Data Over Time",
+                "Denbora",
+                "CO2 PPM",
+                dataset
+        );
+
+        return new ChartPanel(chart);
+
+    }
+
+    public void setModel(GreenhouseModel greenhouseModel) { this.model = greenhouseModel; }
+
+    public void setFanControlCardEnabled(int fanId, boolean enabled) {
+
+        if (fanId == 1) fanControlCard1.getToggleButton().setEnabled(enabled);
+        else if (fanId == 2) fanControlCard2.getToggleButton().setEnabled(enabled);
+
+    }
 
     public void updatePPM(String ppm) {
         ppmDisplayCard.setValue(ppm);
@@ -171,6 +212,11 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
                 updateMode(mode);
 
+                if (mode){
+                    setFanControlCardEnabled(1, false);
+                    setFanControlCardEnabled(2, false);
+                }
+
                 break;
 
             case PROPERTY_UPDATE_GREENHOUSE_FAN_1:
@@ -201,9 +247,8 @@ public class GreenhouseScreen extends JPanel implements Screen {
     public void load() {
 
         controller.setGreenhouseScreen(this);
-        controller.setGreenhouseModel(greenhouseModel);
+        controller.setGreenhouseModel(model);
         controller.loadData();
-        this.repaint();
         controller.startMQTTService();
     }
 

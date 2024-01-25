@@ -26,7 +26,7 @@ public class HomepageScreen extends JPanel implements Screen {
 
     private HomepageController controller;
 
-    private AbstractAction actionGreenhouses, actionAlerts, actionAnalytics, actionUsers, actionSettings;
+    private AbstractAction actionGreenhouses, actionAlerts, actionUsers, actionSettings;
 
     public HomepageScreen() {
 
@@ -48,7 +48,6 @@ public class HomepageScreen extends JPanel implements Screen {
 
         actionGreenhouses = ActionBuilder.createAction("Negutegiak", PROPERTY_LOAD_SCREEN_GREENHOUSES, controller).largeIcon(ICON_XL_GRID).build();
         actionAlerts = ActionBuilder.createAction("Alertak", PROPERTY_LOAD_SCREEN_ALERTS, controller).largeIcon(ICON_XL_LOG).build();
-        actionAnalytics = ActionBuilder.createAction("Estatistikak", PROPERTY_LOAD_SCREEN_ANALYTICS, controller).largeIcon(ICON_XL_STATISTICS).build();
         actionUsers = ActionBuilder.createAction("Erabiltzaileak", PROPERTY_LOAD_SCREEN_USERS, controller).largeIcon(ICON_XL_USERS).build();
         actionSettings = ActionBuilder.createAction("Ezarpenak", PROPERTY_LOAD_SCREEN_SETTINGS, controller).largeIcon(ICON_XL_SETTINGS).build();
 
@@ -74,16 +73,14 @@ public class HomepageScreen extends JPanel implements Screen {
 
                 JButton btnGreenhouses = ComponentFactory.createSectionButton(actionGreenhouses);
                 JButton btnAlerts = ComponentFactory.createSectionButton(actionAlerts);
-                JButton btnAnalytics = ComponentFactory.createSectionButton(actionAnalytics);
                 JButton btnUsers = ComponentFactory.createSectionButton(actionUsers);
                 JButton btnSettings = ComponentFactory.createSectionButton(actionSettings);
 
                 setOpaque(false);
                 add(btnGreenhouses);
                 add(btnAlerts);
-                add(btnAnalytics);
                 add(btnUsers);
-                add(btnSettings);
+                //add(btnSettings);
 
             }
 

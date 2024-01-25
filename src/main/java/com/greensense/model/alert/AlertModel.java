@@ -15,7 +15,8 @@ public class AlertModel implements Constants {
     public static int count = 1;
 
     @JsonProperty("id")
-    private int id;
+    @Setter(AccessLevel.NONE)
+    private long id;
 
     @JsonProperty("alertType")
     private AlertType alertType;
@@ -30,8 +31,8 @@ public class AlertModel implements Constants {
     private String date;
 
     public AlertModel(AlertType alertType, String description, String source){
-        this.id = count++;
-        this.id = Alerts.getInstance().getAlerts().size();
+        this.id = System.currentTimeMillis();
+        //this.id = Alerts.getInstance().getAlerts().size();
         this.alertType = alertType;
         this.source = source;
         this.description = description;

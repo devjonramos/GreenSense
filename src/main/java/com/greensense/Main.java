@@ -48,6 +48,8 @@ public class Main {
                 public void windowClosing(WindowEvent e) {
                     System.out.println("Window closing");
                     Alerts.getInstance().save();
+                    Users.getInstance().save();
+                    Greenhouses.getInstance().save();
                 }
 
                 @Override

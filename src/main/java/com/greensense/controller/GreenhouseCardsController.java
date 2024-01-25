@@ -59,7 +59,7 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
                     GreenhouseScreen greenhouseScreen = (GreenhouseScreen) screen;
 
-                    greenhouseScreen.setGreenhouseModel(model);
+                    greenhouseScreen.setModel(model);
 
                 }
                 else {
@@ -70,7 +70,7 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
                 }
 
-                Greenhouses.setCurrent(model.getId() - 1);
+                Greenhouses.setCurrent(Greenhouses.getInstance().indexOf(model));
 
                 screenManager.showScreen("greenhouse");
 
@@ -80,7 +80,7 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
         });
 
-        commandHandler.put(PROPERTY_CHANGE_GREENHOUSE_NAME, () -> {
+        commandHandler.put(PROPERTY_DELETE_GREENHOUSE, () -> {
             
             if (e.getSource() instanceof JButton) {
 

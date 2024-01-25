@@ -42,7 +42,7 @@ public class User {
             return "Admin";
         }
 
-        return "User";
+        return "Erabiltzailea";
 
     }
 

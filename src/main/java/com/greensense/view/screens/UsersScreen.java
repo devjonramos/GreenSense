@@ -158,7 +158,7 @@ public class UsersScreen extends JPanel implements Screen{
             .addGap(16)
             .addGroup(layout.createParallelGroup(Alignment.CENTER)
                 .addComponent(input, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addComponent(btnSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Integer.MAX_VALUE)
+                .addComponent(btnSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 40)
             )
             .addGap(32)
             .addComponent(tableScrollPane)

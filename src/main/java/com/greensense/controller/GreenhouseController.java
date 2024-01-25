@@ -38,8 +38,6 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
         setGreenhouseScreen(greenhouseScreen);
         setGreenhouseModel(greenhouseModel);
-
-        //this.greenhouseModel.addPropertyChangeListener(greenhouseScreen);
     }
 
     public void setGreenhouseScreen(GreenhouseScreen screen){
@@ -132,8 +130,8 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
         switch (toggleCommand) {
             case PROPERTY_TOGGLE_MODE -> {
                 topic = greenhouseModel.getTopicMode();
-                view.getFanControlCard1().getToggleButton().setEnabled(!isSelected);
-                view.getFanControlCard2().getToggleButton().setEnabled(!isSelected);
+                view.setFanControlCardEnabled(1, !isSelected);
+                view.setFanControlCardEnabled(2, !isSelected);
             }
             case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.getTopicFan(1);
             case PROPERTY_TOGGLE_FAN2 -> topic = greenhouseModel.getTopicFan(2);

@@ -38,6 +38,18 @@ public class Users implements Constants {
 
     }
 
+    public void save(){
+
+        try {
+
+            JSONManager.writeToJSON(JSONManager.USERS_FILE, users);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     public List<User> getUsers(){
         return new ArrayList<>(users);
     }

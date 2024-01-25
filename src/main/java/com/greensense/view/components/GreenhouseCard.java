@@ -62,8 +62,9 @@ public class GreenhouseCard extends JPanel implements Constants, Images, Fonts {
                 AbstractAction actionOpen = ActionBuilder.createAction("Ireki Negutegia", PROPERTY_OPEN_GREENHOUSE, listener).putValue("greenhouseID", greenhouse.getId()).build();
                 JButton btnOpen = ComponentFactory.createPrimaryButton(actionOpen, ButtonSize.SMALL);
 
-                AbstractAction actionChangeName = ActionBuilder.createAction("Aldatu Izena", PROPERTY_CHANGE_GREENHOUSE_NAME, listener).putValue("greenhouse", greenhouse).build();
-                JButton btnChangeName = ComponentFactory.createSecondaryButton(actionChangeName, ButtonSize.SMALL);
+                AbstractAction actionDelete = ActionBuilder.createAction("Ezabatu", PROPERTY_DELETE_GREENHOUSE, listener).putValue("greenhouse", greenhouse).build();
+                JButton btnDelete = ComponentFactory.createButton(actionDelete, ButtonSize.SMALL, Palette.PINK_50, Palette.PINK_400);
+                // JButton btnDelete = ComponentFactory.createSecondaryButton(actionDelete, ButtonSize.SMALL);
 
 
                 GroupLayout layout = new GroupLayout(this);
@@ -73,8 +74,8 @@ public class GreenhouseCard extends JPanel implements Constants, Images, Fonts {
                     .addComponent(desc)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnOpen)
-                        .addGap(8)
-                        .addComponent(btnChangeName, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(48)
+                        .addComponent(btnDelete, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                     )
                 );
 
@@ -85,7 +86,7 @@ public class GreenhouseCard extends JPanel implements Constants, Images, Fonts {
                     .addGap(24)
                     .addGroup(layout.createParallelGroup()
                         .addComponent(btnOpen)
-                        .addComponent(btnChangeName)
+                        .addComponent(btnDelete)
                     )
                 );
 

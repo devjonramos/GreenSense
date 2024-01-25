@@ -24,8 +24,6 @@ import com.greensense.util.ComponentFactory;
 
 public class DisplayCard extends JPanel implements InfoCard {
 
-    public final Color CARD_BG = Palette.WHITE;
-
     private JLabel nameLabel;
     private JLabel valueLabel;
 
@@ -33,6 +31,12 @@ public class DisplayCard extends JPanel implements InfoCard {
         
         this.nameLabel = ComponentFactory.createLabel(name, Palette.TEXT_PRIMARY_FG, InterMedium_32);
         this.valueLabel = ComponentFactory.createLabel(value, Palette.TEXT_PRIMARY_FG, InterMedium_128);
+
+        this.setUI();
+
+    }
+
+    public void setUI(){
 
         JPanel valuePanel = new JPanel(){
             {
@@ -42,7 +46,7 @@ public class DisplayCard extends JPanel implements InfoCard {
                 // Configure GridBagConstraints for center alignment
                 GridBagConstraints gbc = new GridBagConstraints(){
                     {
-                        
+
                         this.gridx = 0;
                         this.gridy = 0;
                         this.weightx = 1.0; // Expand horizontally
@@ -64,24 +68,24 @@ public class DisplayCard extends JPanel implements InfoCard {
         GroupLayout layout = new GroupLayout(this);
 
         layout.setHorizontalGroup(layout.createParallelGroup()
-            .addComponent(nameLabel)
-            .addGap(16)
-            .addComponent(valuePanel)
+                .addComponent(nameLabel)
+                .addGap(16)
+                .addComponent(valuePanel)
         );
 
         layout.setVerticalGroup(layout.createSequentialGroup()
-            .addComponent(nameLabel)
-            .addGap(16)
-            .addComponent(valuePanel)
+                .addComponent(nameLabel)
+                .addGap(16)
+                .addComponent(valuePanel)
         );
 
         setLayout(layout);
         setBackground(CARD_BG);
         setBorder(
-            BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(Palette.BLACK_200, 1),
-                BorderFactory.createEmptyBorder(16, 16, 16, 16)    
-            )
+                BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(BORDER_BG, 1),
+                        BorderFactory.createEmptyBorder(16, 16, 16, 16)
+                )
         );
 
     }
