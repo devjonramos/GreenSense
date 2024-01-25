@@ -1,9 +1,6 @@
 package com.greensense.view.screens;
 
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.beans.PropertyChangeEvent;
 
 import javax.swing.AbstractAction;
@@ -18,22 +15,25 @@ import javax.swing.GroupLayout.Alignment;
 
 import com.greensense.Palette;
 import com.greensense.controller.GreenhouseCardsController;
-import com.greensense.model.GreenhouseModel;
 import com.greensense.model.Greenhouses;
 import com.greensense.util.ActionBuilder;
 import com.greensense.util.BorderCreator;
 import com.greensense.util.ComponentFactory;
 import com.greensense.util.ComponentFactory.ButtonSize;
-import com.greensense.view.components.GreenhouseCard;
+import com.greensense.view.components.GreenhouseCardsPanel;
 import com.greensense.view.components.Header;
+import lombok.Getter;
 
 public class GreenhouseCardsScreen extends JPanel implements Screen {
 
     private GreenhouseCardsController controller;
 
-    private AbstractAction actionSearch;
+    private AbstractAction actionSearch, actionAdd, actionEdit;
 
     private Greenhouses greenhouses = Greenhouses.getInstance();
+
+    @Getter private GreenhouseCardsPanel cardsPanel;
+    @Getter private JScrollPane cardsScrollPane;
 
     public GreenhouseCardsScreen() {
 
@@ -51,15 +51,16 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
     }
 
     private void createActions() {
+        actionAdd = ActionBuilder.createAction("", PROPERTY_ADD_GREENHOUSE, controller).build();
         actionSearch = ActionBuilder.createAction("Bilatu", PROPERTY_SEARCH_GREENHOUSES, controller).build();
     }
 
     public JToolBar createHeader(){
 
-        JButton btnPlus = ComponentFactory.createIconButton(null, ICON_SM_PLUS);
+        JButton btnAdd = ComponentFactory.createIconButton(actionAdd, ICON_SM_PLUS);
         JButton btnEdit = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
 
-		return new Header(true, btnPlus, btnEdit);
+		return new Header(true, btnAdd, btnEdit);
 
     }
 
@@ -76,48 +77,11 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
         JTextField input = ComponentFactory.createTextField(JTextField.class);
         JButton btnSearch = ComponentFactory.createPrimaryButton(actionSearch, ButtonSize.LARGE);
 
-        JScrollPane greenhousesPanel = new JScrollPane(){
-
-            {
-
-                JPanel panel = new JPanel(new GridBagLayout()){{setOpaque(false);}};
-
-                GridBagConstraints gbc = new GridBagConstraints();
-                gbc.gridx = 0;
-                gbc.gridy = 0;
-                gbc.weightx = 1.0; // Expand horizontally
-                gbc.fill = GridBagConstraints.HORIZONTAL;
-                gbc.anchor = GridBagConstraints.WEST;
-
-                int i = 0;
-                for (GreenhouseModel greenhouse : greenhouses.getGreenhouses()) {
-
-                    GreenhouseCard card = new GreenhouseCard(greenhouse, controller);
-
-                    gbc.gridx = i % 3; // Columns within each row
-                    gbc.insets = (i % 3 == 2) ? new Insets(0, 0, 32, 16) : new Insets(0, 0, 32, 32);
-
-                    panel.add(card, gbc);
-
-                    if (i % 3 == 2) {
-                        
-                        gbc.gridy++; // Move to the next row after three components
-                        gbc.gridx = 0; // Reset column position
-
-                    }
-
-                    i++;
-
-                }
-
-                // setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-                setViewportView(panel);
-                setBorder(null);
-                setOpaque(false);
-
-            }
-
-        };
+        cardsPanel = new GreenhouseCardsPanel(controller);
+        cardsScrollPane = new JScrollPane(cardsPanel){{
+            setBorder(null);
+            setOpaque(false);
+        }};
 
         layout.setHorizontalGroup(layout.createParallelGroup()
             .addComponent(title)
@@ -126,7 +90,7 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
                 .addGap(8)
                 .addComponent(btnSearch)
             )
-            .addComponent(greenhousesPanel)
+            .addComponent(cardsScrollPane)
         );
 
         layout.setVerticalGroup(layout.createSequentialGroup()
@@ -134,10 +98,10 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
             .addGap(16)
             .addGroup(layout.createParallelGroup(Alignment.CENTER)
                 .addComponent(input, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addComponent(btnSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Integer.MAX_VALUE)
+                .addComponent(btnSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, 40)
             )
             .addGap(32)
-            .addComponent(greenhousesPanel)
+            .addComponent(cardsScrollPane)
         );
 
         panel.setLayout(layout);
@@ -148,6 +112,12 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+
+        String property = evt.getPropertyName();
+
+        switch (property){
+            case PROPERTY_DELETE_GREENHOUSE -> cardsPanel.updateCards();
+        }
 
     }
 

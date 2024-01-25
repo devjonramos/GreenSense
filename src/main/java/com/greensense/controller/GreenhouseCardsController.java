@@ -3,9 +3,11 @@ package com.greensense.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import com.greensense.constants.Constants;
 import com.greensense.model.GreenhouseModel;
@@ -22,6 +24,11 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
     public GreenhouseCardsController(GreenhouseCardsScreen view) {
         this.view = view;
+        Greenhouses.getInstance().addPropertyChangeListener(this.view);
+    }
+
+    public List<GreenhouseModel> getGreenhouses(){
+        return Greenhouses.getInstance().getGreenhouses();
     }
 
     @Override
@@ -37,7 +44,10 @@ public class GreenhouseCardsController implements Constants, ActionListener {
                 
                 JButton button = (JButton)e.getSource();
 
-                Thread thread = new Thread(() -> System.out.println(button.getSize()));
+                Thread thread = new Thread(() -> {
+                    System.out.println(view.getCardsPanel().getSize());
+                    System.out.println(view.getCardsScrollPane().getSize());
+                });
 
                 thread.start();
 
@@ -84,13 +94,29 @@ public class GreenhouseCardsController implements Constants, ActionListener {
             
             if (e.getSource() instanceof JButton) {
 
-                System.out.println("change name");
-
                 JButton button = (JButton)e.getSource();
 
                 GreenhouseModel greenhouseModel = (GreenhouseModel)button.getAction().getValue("greenhouse");
 
-                greenhouseModel.setName("Name changed");
+                String message = String.format("Ziur zaude '%s' negutegia ezabatu nahi duzula?", greenhouseModel.getName());
+
+                int option = JOptionPane.showConfirmDialog(screenManager.getFrame(), message, "Ezabatu Negutegia", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                if (option == JOptionPane.OK_OPTION) {
+                    Greenhouses.getInstance().remove(greenhouseModel);
+                }
+
+            }
+
+        });
+
+        commandHandler.put(PROPERTY_ADD_GREENHOUSE, () -> {
+
+            if (e.getSource() instanceof JButton) {
+
+                JButton button = (JButton)e.getSource();
+
+
 
             }
 

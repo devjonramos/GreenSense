@@ -3,6 +3,7 @@ package com.greensense.model;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.greensense.constants.Constants;
 
@@ -16,6 +17,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode
+@JsonIgnoreProperties({"TOP_TOPIC_LEVEL", "TOPIC_SENSORS_PPM", "TOPIC_MODE", "TOPIC_FAN_1", "TOPIC_FAN_2"})
 public class GreenhouseModel implements Constants {
 
     public static int count = 0;

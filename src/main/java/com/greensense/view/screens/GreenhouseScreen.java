@@ -88,8 +88,8 @@ public class GreenhouseScreen extends JPanel implements Screen {
         nameLabel = ComponentFactory.createLabel(model.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_48);
 
         modeControlCard = new ControlCard("Modua", ICON_MD_TOOL, PROPERTY_TOGGLE_MODE, controller);
-        fanControlCard1 = new ControlCard("Haizagailua1", ICON_MD_WIND, PROPERTY_TOGGLE_FAN1, controller);
-        fanControlCard2 = new ControlCard("Haizagailua2", ICON_MD_WIND, PROPERTY_TOGGLE_FAN2, controller);
+        fanControlCard1 = new ControlCard("Haizea kanpora", ICON_MD_WIND, PROPERTY_TOGGLE_FAN1, controller);
+        fanControlCard2 = new ControlCard("Haizea barrura", ICON_MD_WIND, PROPERTY_TOGGLE_FAN2, controller);
         graphicDisplayCard = new DisplayCard("Grafikoa", "967");
         ppmDisplayCard = new DisplayCard("CO2", "0");
         graphicCard = new GraphicCard("Grafikoa", createGraphic());
@@ -114,7 +114,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
         layout.setVerticalGroup(layout.createSequentialGroup()
             .addComponent(nameLabel)
-            .addGap(48)
+            .addGap(32)
             .addGroup(layout.createParallelGroup()
                 .addComponent(modeControlCard)
                 .addComponent(fanControlCard1)

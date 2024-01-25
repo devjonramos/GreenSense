@@ -27,6 +27,7 @@ public interface Constants {
     String PROPERTY_SEARCH_GREENHOUSES = "Search Greenhouses By Name";
     String PROPERTY_OPEN_GREENHOUSE = "Open Greenhouse";
     String PROPERTY_DELETE_GREENHOUSE = "Delete greenhouse";
+    String PROPERTY_ADD_GREENHOUSE = "Add new greenhouse";
 
 
     // GreenhouseScreen

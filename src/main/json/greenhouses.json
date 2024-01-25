@@ -1,70 +1,24 @@
 [ {
-  "TOPIC_SENSORS_PPM" : "greenhouses/0/sensors/ppm",
-  "TOPIC_MODE" : "greenhouses/0/mode",
-  "TOPIC_FAN_1" : "greenhouses/0/fans/1",
-  "TOPIC_FAN_2" : "greenhouses/0/fans/2",
   "id" : 1,
   "name" : "Negutegia#1",
   "isAuto" : true,
   "fan1" : false,
   "fan2" : false
 }, {
-  "TOPIC_SENSORS_PPM" : "greenhouses/0/sensors/ppm",
-  "TOPIC_MODE" : "greenhouses/0/mode",
-  "TOPIC_FAN_1" : "greenhouses/0/fans/1",
-  "TOPIC_FAN_2" : "greenhouses/0/fans/2",
   "id" : 2,
   "name" : "Negutegia#2",
   "isAuto" : false,
   "fan1" : false,
   "fan2" : false
 }, {
-  "TOPIC_SENSORS_PPM" : "greenhouses/0/sensors/ppm",
-  "TOPIC_MODE" : "greenhouses/0/mode",
-  "TOPIC_FAN_1" : "greenhouses/0/fans/1",
-  "TOPIC_FAN_2" : "greenhouses/0/fans/2",
   "id" : 3,
   "name" : "Negutegia#3",
   "isAuto" : true,
   "fan1" : false,
   "fan2" : false
 }, {
-  "TOPIC_SENSORS_PPM" : "greenhouses/0/sensors/ppm",
-  "TOPIC_MODE" : "greenhouses/0/mode",
-  "TOPIC_FAN_1" : "greenhouses/0/fans/1",
-  "TOPIC_FAN_2" : "greenhouses/0/fans/2",
   "id" : 4,
   "name" : "Negutegia#4",
-  "isAuto" : false,
-  "fan1" : false,
-  "fan2" : false
-}, {
-  "TOPIC_SENSORS_PPM" : "greenhouses/0/sensors/ppm",
-  "TOPIC_MODE" : "greenhouses/0/mode",
-  "TOPIC_FAN_1" : "greenhouses/0/fans/1",
-  "TOPIC_FAN_2" : "greenhouses/0/fans/2",
-  "id" : 5,
-  "name" : "Negutegia#5",
-  "isAuto" : true,
-  "fan1" : false,
-  "fan2" : false
-}, {
-  "TOPIC_SENSORS_PPM" : "greenhouses/0/sensors/ppm",
-  "TOPIC_MODE" : "greenhouses/0/mode",
-  "TOPIC_FAN_1" : "greenhouses/0/fans/1",
-  "TOPIC_FAN_2" : "greenhouses/0/fans/2",
-  "id" : 6,
-  "name" : "Negutegia#6",
-  "isAuto" : true,
-  "fan1" : false,
-  "fan2" : false
-}, {
-  "TOPIC_SENSORS_PPM" : "greenhouses/0/sensors/ppm",
-  "TOPIC_MODE" : "greenhouses/0/mode",
-  "TOPIC_FAN_1" : "greenhouses/0/fans/1",
-  "TOPIC_FAN_2" : "greenhouses/0/fans/2",
-  "id" : 7,
-  "name" : "Negutegia#7",
   "isAuto" : true,
   "fan1" : false,
   "fan2" : false

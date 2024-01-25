@@ -1,4 +1,16 @@
 [ {
+  "id" : 1706179475814,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 11:44"
+}, {
+  "id" : 1706179422883,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Osteguna, urt. 25 11:43"
+}, {
   "id" : 1706139873454,
   "alertType" : "INFO",
   "description" : "Disconnected from MQTT Broker",

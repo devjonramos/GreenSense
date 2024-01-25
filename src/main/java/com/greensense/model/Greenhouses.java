@@ -5,6 +5,8 @@ import com.greensense.constants.Constants;
 import com.greensense.util.json.JSONManager;
 import lombok.Setter;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +20,19 @@ public class Greenhouses implements Constants {
 
     private List<GreenhouseModel> greenhouses;
 
+    private PropertyChangeSupport support;
+
     private Greenhouses(){
 
         greenhouses = new ArrayList<>();
         try {
-            greenhouses = JSONManager.loadJSON(JSONManager.GREENHOUSES_FILE, new TypeReference<List<GreenhouseModel>>() {
-            });
+            greenhouses = JSONManager.loadJSON(JSONManager.GREENHOUSES_FILE, new TypeReference<List<GreenhouseModel>>() {});
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        support = new PropertyChangeSupport(this);
 
     }
 
@@ -62,8 +67,12 @@ public class Greenhouses implements Constants {
     }
 
     public int indexOf(GreenhouseModel model){
-        int index = greenhouses.indexOf(model);
-        return index;
+        return greenhouses.indexOf(model);
+    }
+
+    public void remove(GreenhouseModel model) {
+        greenhouses.remove(model);
+        support.firePropertyChange(PROPERTY_DELETE_GREENHOUSE, null, null);
     }
 
     public GreenhouseModel getGreenhouseByID(int id){
@@ -91,7 +100,16 @@ public class Greenhouses implements Constants {
     }
 
     public List<GreenhouseModel> getGreenhouses() {
-        return new ArrayList<>(greenhouses);
+        return greenhouses;// new ArrayList<>(greenhouses);
     }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        support.removePropertyChangeListener(listener);
+    }
+
 
 }
