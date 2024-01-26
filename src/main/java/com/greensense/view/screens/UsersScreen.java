@@ -35,7 +35,7 @@ public class UsersScreen extends JPanel implements Screen{
 
     private UsersController controller;
 
-    private AbstractAction actionSearch;
+    private AbstractAction actionSearch, actionAdd;
     
     public UsersScreen(){
 
@@ -54,12 +54,13 @@ public class UsersScreen extends JPanel implements Screen{
     }
 
     private void createActions() {
+        actionAdd = ActionBuilder.createAction("", PROPERTY_ADD_USER, controller).build();
         actionSearch = ActionBuilder.createAction("Bilatu", PROPERTY_SEARCH_GREENHOUSES, controller).build();
     }
 
     public JToolBar createHeader(){
 
-        JButton btnAddUser = ComponentFactory.createIconButton(null, ICON_SM_PLUS);
+        JButton btnAddUser = ComponentFactory.createIconButton(actionAdd, ICON_SM_PLUS);
         JButton btnEditUser = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
 
 		return new Header(true, btnAddUser, btnEditUser);

@@ -2,6 +2,7 @@ package com.greensense.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,10 +17,7 @@ import lombok.ToString;
 public class User {
 
     @JsonProperty("id")
-    private int id;
-
-    @JsonProperty("role")
-    private int role;
+    private long id;
 
     @JsonProperty("name")
     private String name;
@@ -35,6 +33,19 @@ public class User {
 
     @JsonProperty("password")
     private String password;
+
+    @JsonProperty("role")
+    private int role;
+
+    public User(String name, String surname, String username, String password, int role){
+        this.id = System.currentTimeMillis();
+        this.name = name;
+        this.surname = surname;
+        this.lastSeen = "";
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     public String getRoleAsString(){
         

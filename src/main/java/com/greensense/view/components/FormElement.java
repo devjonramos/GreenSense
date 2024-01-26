@@ -1,34 +1,82 @@
 package com.greensense.view.components;
 
+import com.greensense.Palette;
+import com.greensense.constants.Fonts;
+import com.greensense.util.ComponentFactory;
 import lombok.Getter;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
 
 @Getter
-public class FormElement extends JPanel {
+public class FormElement extends JPanel implements Fonts {
+
+    private String name;
 
     private JLabel fieldLabel;
     private JComponent field;
 
-    public FormElement(JLabel label, JComponent fieldComponent) {
+    public FormElement(Builder builder) {
 
-        this.fieldLabel = label;
-        this.field = fieldComponent;
+        this.name = builder.name;
+        this.fieldLabel = builder.fieldLabel;
+        this.fieldLabel.setMinimumSize(new Dimension(186, this.fieldLabel.getPreferredSize().height));
+
+        this.field = builder.field;
+
+        GroupLayout layout = new GroupLayout(this);
+
+        layout.setHorizontalGroup(layout.createSequentialGroup()
+                .addComponent(fieldLabel)
+                .addComponent(field)
+        );
+
+        layout.setVerticalGroup(layout.createParallelGroup(Alignment.CENTER)
+                .addComponent(fieldLabel)
+                .addComponent(field)
+        );
 
         setOpaque(false);
-        setLayout(new GridLayout(1, 2, 8, 8));
-        setMinimumSize(new Dimension(this.getPreferredSize().width, fieldComponent.getPreferredSize().height));
-
+        setLayout(layout);
+        //setMinimumSize(new Dimension(this.getPreferredSize().width, fieldComponent.getPreferredSize().height));
+        JComboBox<String> c = new JComboBox<>();
         add(fieldLabel);
         add(field);
+
+    }
+
+    public static class Builder {
+
+        private String name;
+        private JLabel fieldLabel;
+        private JComponent field;
+
+        public Builder(String name, String label){
+            this.name = name;
+            this.fieldLabel = ComponentFactory.createLabel(label, Palette.TEXT_PRIMARY_FG, InterMedium_18);
+            this.field = ComponentFactory.createTextField(JTextField.class);
+        }
+
+        public Builder withTextField(){
+            this.field = ComponentFactory.createTextField(JTextField.class);
+            return this;
+        }
+
+        public <T> Builder withComboBox(T[] data){
+            this.field = new JComboBox<>(data);
+            return this;
+        }
+
+        public FormElement build(){
+            return new FormElement(this);
+        }
 
     }
 

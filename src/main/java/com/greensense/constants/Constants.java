@@ -11,7 +11,8 @@ import java.util.Locale;
 public interface Constants {
 
     // General use properties
-    String PROPERTY_CANCEL = "Cancel an action";
+    String PROPERTY_CONFIRM = "confirm";
+    String PROPERTY_CANCEL = "cancel";
 
     // LoginScreen
     String PROPERTY_LOGIN = "Login to account";
@@ -45,6 +46,9 @@ public interface Constants {
     String PROPERTY_UPDATE_GREENHOUSE_FAN_2 = "Update greenhouse fan 2";
     String PROPERTY_UPDATE_GREENHOUSE_PPM = "Update PPM value";
 
+
+    // UsersScreen
+    String PROPERTY_ADD_USER = "Add new user";
 
     // AlertsScreen
     String PROPERTY_UPDATE_ALERTS_LIST = "Update alerts JList"; // It repaints the JList

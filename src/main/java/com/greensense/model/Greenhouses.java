@@ -46,6 +46,14 @@ public class Greenhouses implements Constants {
 
     }
 
+    public void addGreenhouse(GreenhouseModel greenhouse){
+
+        if (!greenhouses.contains(greenhouse)){
+            greenhouses.add(greenhouse);
+        }
+
+    }
+
     public GreenhouseModel next(){
 
         if (current == greenhouses.size() - 1) return null;

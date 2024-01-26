@@ -38,6 +38,14 @@ public class Users implements Constants {
 
     }
 
+    public void addUser(User user){
+
+        if (!users.contains(user)){
+            users.add(user);
+        }
+
+    }
+
     public void save(){
 
         try {

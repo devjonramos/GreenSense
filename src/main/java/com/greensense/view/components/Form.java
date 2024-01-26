@@ -10,33 +10,38 @@ import com.greensense.util.ComponentFactory.ButtonSize;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Form extends JDialog implements Constants, Fonts, ActionListener {
 
+    private boolean submitted = false;
     private String title;
 
     private AbstractAction actionAdd, actionCancel;
 
     private JPanel contentPane;
 
-    private FormElement name;
-    private FormElement surname;
+    private List<FormElement> formElements;
 
-    public Form(JFrame frame, String title, boolean modal){
+    public Form(JFrame frame, String title, boolean modal, FormElement... elements){
         super(frame, title, modal);
 
         this.title = title;
+        this.formElements = List.of(elements);
 
         this.createActions();
         this.createContentPane();
@@ -45,15 +50,15 @@ public class Form extends JDialog implements Constants, Fonts, ActionListener {
         pack();
         setMinimumSize(new Dimension(555, this.getPreferredSize().height));
         setBackground(Color.WHITE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(frame);
         setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         setVisible(true);
 
     }
 
     private void createActions(){
-        actionAdd = ActionBuilder.createAction("Gehitu", PROPERTY_ADD_GREENHOUSE, this).build();
-        actionCancel = ActionBuilder.createAction("Cancel", PROPERTY_CANCEL, this).build();
+        actionAdd = ActionBuilder.createAction("Gehitu", PROPERTY_CONFIRM, this).build();
+        actionCancel = ActionBuilder.createAction("Atzera", PROPERTY_CANCEL, this).build();
     }
 
     private void createContentPane(){
@@ -64,72 +69,77 @@ public class Form extends JDialog implements Constants, Fonts, ActionListener {
 
         JLabel titleLabel = ComponentFactory.createLabel(title, Palette.TEXT_PRIMARY_FG, InterSemiBold_24);
 
-        JLabel nameLabel = ComponentFactory.createLabel("Name", Palette.TEXT_PRIMARY_FG, InterMedium_18);
-        JLabel surnameLabel = ComponentFactory.createLabel("Surname", Palette.TEXT_PRIMARY_FG, InterMedium_18);
-        JLabel usernameLabel = new JLabel("Username:");
-        JLabel passwordLabel = new JLabel("Password:");
-        JLabel roleLabel = new JLabel("Role:");
-
-        // Text Fields
-        JTextField nameField = ComponentFactory.createTextField(JTextField.class);
-        JTextField surnameField = ComponentFactory.createTextField(JTextField.class);
-
-        name = new FormElement(nameLabel, nameField);
-        surname = new FormElement(surnameLabel, surnameField);
-
-        JPanel formFieldsPanel = new JPanel(new GridLayout(2,2, 8,8)){{
-
-            setOpaque(false);
-
-            add(nameLabel);
-            add(nameField);
-            add(surnameLabel);
-            add(surnameField);
-
-        }};
-
         JButton saveButton = ComponentFactory.createPrimaryButton(actionAdd, ButtonSize.LARGE);
         JButton cancelButton = ComponentFactory.createPrimaryButton(actionCancel, ButtonSize.LARGE);
 
+        ParallelGroup formElementsParallelGroup = layout.createParallelGroup();
+        SequentialGroup formElementsSequentialGroup = layout.createSequentialGroup();
+
+        formElements.forEach(formElementsParallelGroup::addComponent);
+        formElements.forEach(e -> {
+            formElementsSequentialGroup.addComponent(e);
+            formElementsSequentialGroup.addGap(16);
+        });
+
         layout.setHorizontalGroup(layout.createParallelGroup()
                 .addComponent(titleLabel)
-                .addGroup(layout.createParallelGroup()
-                        .addComponent(name)
-                        .addComponent(surname)
-                )
+                .addGroup(formElementsParallelGroup)
                 .addGroup(layout.createSequentialGroup()
-                        .addComponent(saveButton)
-                        .addGap(8)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(cancelButton)
+                        .addGap(8)
+                        .addComponent(saveButton)
                 )
         );
 
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addComponent(titleLabel)
                 .addGap(24)
-                .addGroup(layout.createSequentialGroup()
-                        .addComponent(name)
-                        .addComponent(surname)
-                )
+                .addGroup(formElementsSequentialGroup)
                 .addGap(24)
                 .addGroup(layout.createParallelGroup()
-                        .addComponent(saveButton)
                         .addComponent(cancelButton)
+                        .addComponent(saveButton)
                 )
         );
 
         contentPane.setOpaque(false);
         contentPane.setLayout(layout);
-        // contentPane.setSize(new Dimension(555, 384));
-        // contentPane.setPreferredSize(new Dimension(555, 384));
         contentPane.setBorder(
                 BorderFactory.createEmptyBorder(32, 32, 32, 32)
         );
 
     }
 
+    public boolean wasSubmitted(){
+        return submitted;
+    }
+
+    public Map<String, Object> getData(){
+
+        Map<String, Object> data = new HashMap<>();
+
+        for (FormElement element : formElements) {
+
+            String key = element.getName();
+            Object value = element.getFieldValue();
+
+            data.put(key, value);
+
+        }
+
+        return data;
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        String actionCommand = e.getActionCommand();
+
+        submitted = actionCommand.equals(PROPERTY_CONFIRM);
+
+        dispose();
 
     }
 }
