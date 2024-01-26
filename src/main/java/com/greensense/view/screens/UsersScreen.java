@@ -1,10 +1,15 @@
 package com.greensense.view.screens;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.FlowLayout;
-import java.beans.PropertyChangeEvent;
-import java.util.List;
+import com.greensense.Palette;
+import com.greensense.controller.UsersController;
+import com.greensense.model.UsersTableModel;
+import com.greensense.util.ActionBuilder;
+import com.greensense.util.BorderCreator;
+import com.greensense.util.ComponentFactory;
+import com.greensense.util.ComponentFactory.ButtonSize;
+import com.greensense.view.components.Header;
+import com.greensense.view.components.UsersTable;
+import lombok.Getter;
 
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -17,29 +22,23 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
-
-import com.greensense.Palette;
-import com.greensense.controller.UsersController;
-import com.greensense.model.User;
-import com.greensense.model.Users;
-import com.greensense.util.ActionBuilder;
-import com.greensense.util.BorderCreator;
-import com.greensense.util.ComponentFactory;
-import com.greensense.util.ComponentFactory.ButtonSize;
-import com.greensense.view.components.Header;
+import java.awt.BorderLayout;
+import java.beans.PropertyChangeEvent;
 
 public class UsersScreen extends JPanel implements Screen{
 
     private UsersController controller;
 
-    private AbstractAction actionSearch, actionAdd;
-    
+    private AbstractAction actionSearch, actionAdd, actionDelete;
+
+    private UsersTableModel usersTableModel;
+    @Getter private JTable usersTable;
+
     public UsersScreen(){
 
-        controller = new UsersController(this);
+        usersTableModel = new UsersTableModel();
+        controller = new UsersController(this, usersTableModel);
         this.createActions();
 
         setLayout(new BorderLayout(0, 0));
@@ -55,13 +54,14 @@ public class UsersScreen extends JPanel implements Screen{
 
     private void createActions() {
         actionAdd = ActionBuilder.createAction("", PROPERTY_ADD_USER, controller).build();
+        actionDelete = ActionBuilder.createAction("", PROPERTY_DELETE_USER, controller).build();
         actionSearch = ActionBuilder.createAction("Bilatu", PROPERTY_SEARCH_GREENHOUSES, controller).build();
     }
 
     public JToolBar createHeader(){
 
         JButton btnAddUser = ComponentFactory.createIconButton(actionAdd, ICON_SM_PLUS);
-        JButton btnEditUser = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
+        JButton btnEditUser = ComponentFactory.createIconButton(actionDelete, ICON_SM_TRASH);
 
 		return new Header(true, btnAddUser, btnEditUser);
 
@@ -83,60 +83,8 @@ public class UsersScreen extends JPanel implements Screen{
         
 
         // Users table
-        List<User> users = Users.getInstance().getUsers();
-        String[][] usersTableData = new String[users.size()][];
 
-        int i = 0;
-        for (User user : users) {
-            
-            String[] userData = {user.getName(), user.getSurname(), user.getRole().getName(), user.getLastSeen()};
-
-            usersTableData[i] = userData;
-
-            i++;
-
-        }
-
-
-        JTable usersTable = createUsersTable(usersTableData);
-        usersTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
-
-            @Override
-            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                Component cellRendererComponent = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        
-                // Set padding for the cell
-                setBorder(BorderFactory.createEmptyBorder(0, 16, 0, 16));
-        
-                return cellRendererComponent;
-            }
-
-        });
-
-
-        JTableHeader usersTableHeader = usersTable.getTableHeader();
-        usersTableHeader.setBorder(
-            BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(1, 1, 0, 1, Palette.GREEN_400),
-                BorderFactory.createEmptyBorder(16, 16, 16, 16)
-            )
-        );
-        usersTableHeader.setDefaultRenderer((jtable, value, isSelected, hasFocus, row, column) -> {
-
-            JPanel cellPanel = new JPanel(new FlowLayout(FlowLayout.LEFT)) {{
-                setBackground(Palette.GREEN_100);
-                setBorder(
-                    BorderFactory.createEmptyBorder(16, 16, 16, 16)
-                );
-            }};
-
-            JLabel cellLabel = ComponentFactory.createLabel(value.toString(), Palette.TEXT_PRIMARY_FG, InterSemiBold_16);
-
-            cellPanel.add(cellLabel);
-
-            return cellPanel;
-
-        });
+        usersTable = new UsersTable(usersTableModel);
 
         JScrollPane tableScrollPane = new JScrollPane(usersTable){{
             setBorder(BorderFactory.createEmptyBorder());
@@ -171,35 +119,22 @@ public class UsersScreen extends JPanel implements Screen{
 
     }
 
-    private static JTable createUsersTable(String[][] usersTableData) {
-
-        String[] usersTableColumnNames = {"Izena", "Abizena", "Role", "Last Seen"};
-
-        DefaultTableModel usersTableModel = new DefaultTableModel(usersTableData, usersTableColumnNames);
-
-        JTable usersTable = new JTable(usersTableModel);
-        usersTable.setFont(InterSemiBold_16);
-        usersTable.setForeground(Palette.TEXT_PRIMARY_FG);
-        usersTable.setBorder(
-            BorderFactory.createMatteBorder(0, 1, 1, 1, Palette.GREEN_400)
-        );
-        usersTable.setRowHeight(51);
-        usersTable.setGridColor(Palette.GREEN_100);
-        usersTable.setShowHorizontalLines(true);
-        usersTable.setShowVerticalLines(false);
-
-        return usersTable;
-
-    }
-
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+
+        String property = evt.getPropertyName();
+
+        switch (property){
+            case PROPERTY_UPDATE_USERS_TABLE -> {
+                if (usersTable != null) usersTable.repaint();
+            }
+        }
 
     }
 
     @Override
     public void load() {
-
+        usersTableModel.loadData();
     }
 
     @Override

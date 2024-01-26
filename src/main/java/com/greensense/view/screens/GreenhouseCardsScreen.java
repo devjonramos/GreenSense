@@ -116,7 +116,7 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
         String property = evt.getPropertyName();
 
         switch (property){
-            case PROPERTY_DELETE_GREENHOUSE -> cardsPanel.updateCards();
+            case PROPERTY_UPDATE_GREENHOUSES -> cardsPanel.updateCards();
         }
 
     }

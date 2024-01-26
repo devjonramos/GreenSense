@@ -1,19 +1,5 @@
 package com.greensense.view.screens;
 
-import java.awt.Dimension;
-import java.awt.BorderLayout;
-
-import java.util.Random;
-
-import java.beans.PropertyChangeEvent;
-
-import javax.swing.AbstractAction;
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
-
 import com.greensense.Palette;
 import com.greensense.controller.GreenhouseController;
 import com.greensense.model.GreenhouseModel;
@@ -23,15 +9,23 @@ import com.greensense.util.ComponentFactory;
 import com.greensense.view.components.Header;
 import com.greensense.view.components.infocard.ControlCard;
 import com.greensense.view.components.infocard.DisplayCard;
-
 import com.greensense.view.components.infocard.GraphicCard;
 import lombok.Getter;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+
+import javax.swing.AbstractAction;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
+import java.awt.BorderLayout;
+import java.beans.PropertyChangeEvent;
+import java.util.Random;
 
 public class GreenhouseScreen extends JPanel implements Screen {
 
@@ -87,7 +81,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
         nameLabel = ComponentFactory.createLabel(model.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_48);
 
-        modeControlCard = new ControlCard("Modua", ICON_MD_TOOL, PROPERTY_TOGGLE_MODE, controller);
+        modeControlCard = new ControlCard("Mode: " + model.getModeName(), ICON_MD_TOOL, PROPERTY_TOGGLE_MODE, controller);
         fanControlCard1 = new ControlCard("Haizea kanpora", ICON_MD_WIND, PROPERTY_TOGGLE_FAN1, controller);
         fanControlCard2 = new ControlCard("Haizea barrura", ICON_MD_WIND, PROPERTY_TOGGLE_FAN2, controller);
         graphicDisplayCard = new DisplayCard("Grafikoa", "967");
@@ -173,6 +167,7 @@ public class GreenhouseScreen extends JPanel implements Screen {
         nameLabel.setText(name);
     }
     public void updateMode(boolean mode){
+        //modeControlCard.setName((mode) ? "AUTO" : "MAN");
         modeControlCard.setSelected(mode);
     }
 

@@ -14,7 +14,6 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @NoArgsConstructor
 public class User implements Constants {
 
@@ -47,6 +46,14 @@ public class User implements Constants {
         this.password = password;
         this.role = role;
         this.lastSeen = capitalize(DATE_FORMAT.format(new Date()));
+    }
+
+    public String getFullName(){
+        return name + " " + surname;
+    }
+
+    public String[] toStringArray(){
+        return new String[]{getName(), getSurname(), getRole().getName(), getLastSeen()};
     }
 
     @Override

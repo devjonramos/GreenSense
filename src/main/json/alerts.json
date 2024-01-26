@@ -1,4 +1,430 @@
 [ {
+  "id" : 1706292317303,
+  "alertType" : "INFO",
+  "description" : "Disconnected from MQTT Broker",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 19:05"
+}, {
+  "id" : 1706292306961,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 19:05"
+}, {
+  "id" : 1706292257803,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 19:04"
+}, {
+  "id" : 1706291397705,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:49"
+}, {
+  "id" : 1706290949111,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290949110,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290949109,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290949107,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290949106,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948343,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948342,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948341,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948340,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948338,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948079,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948078,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948076,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948075,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290948073,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:42"
+}, {
+  "id" : 1706290877640,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:41"
+}, {
+  "id" : 1706290867324,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:41"
+}, {
+  "id" : 1706290837874,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:40"
+}, {
+  "id" : 1706290824415,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:40"
+}, {
+  "id" : 1706290824413,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:40"
+}, {
+  "id" : 1706290824412,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:40"
+}, {
+  "id" : 1706290824411,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:40"
+}, {
+  "id" : 1706290824409,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:40"
+}, {
+  "id" : 1706290806183,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:40"
+}, {
+  "id" : 1706290652477,
+  "alertType" : "INFO",
+  "description" : "Disconnected from MQTT Broker",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:37"
+}, {
+  "id" : 1706290623695,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:37"
+}, {
+  "id" : 1706290622532,
+  "alertType" : "INFO",
+  "description" : "Disconnected from MQTT Broker",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:37"
+}, {
+  "id" : 1706290587430,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:36"
+}, {
+  "id" : 1706290556807,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290556806,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290556804,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290556803,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290556801,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290556800,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290556798,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290535523,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290535522,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290535521,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290535519,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290535518,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290535516,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290535515,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290521389,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290521388,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290521387,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290521385,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290521384,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290521383,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290521381,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:35"
+}, {
+  "id" : 1706290451249,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:34"
+}, {
+  "id" : 1706290449891,
+  "alertType" : "INFO",
+  "description" : "Disconnected from MQTT Broker",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:34"
+}, {
+  "id" : 1706290415301,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:33"
+}, {
+  "id" : 1706290393444,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:33"
+}, {
+  "id" : 1706290250972,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:30"
+}, {
+  "id" : 1706290193673,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:29"
+}, {
+  "id" : 1706290178697,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:29"
+}, {
+  "id" : 1706290178696,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:29"
+}, {
+  "id" : 1706290178694,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:29"
+}, {
+  "id" : 1706290178693,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:29"
+}, {
+  "id" : 1706290178691,
+  "alertType" : "INFO",
+  "description" : "Message delivered to client",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:29"
+}, {
+  "id" : 1706289903205,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:25"
+}, {
+  "id" : 1706288809987,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:06"
+}, {
+  "id" : 1706288451850,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 18:00"
+}, {
+  "id" : 1706286466063,
+  "alertType" : "INFO",
+  "description" : "Disconnected from MQTT Broker",
+  "source" : "Negutegia#6",
+  "date" : "Ostirala, urt. 26 17:27"
+}, {
+  "id" : 1706286461441,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#6",
+  "date" : "Ostirala, urt. 26 17:27"
+}, {
+  "id" : 1706283192051,
+  "alertType" : "INFO",
+  "description" : "Disconnected from MQTT Broker",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 16:33"
+}, {
+  "id" : 1706283157094,
+  "alertType" : "SUCCESS",
+  "description" : "Connected to MQTT Broker successfully",
+  "source" : "Negutegia#1",
+  "date" : "Ostirala, urt. 26 16:32"
+}, {
   "id" : 1706189476791,
   "alertType" : "INFO",
   "description" : "Message delivered to client",

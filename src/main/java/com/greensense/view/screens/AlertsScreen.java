@@ -103,11 +103,9 @@ public class AlertsScreen extends JPanel implements Screen {
 
         switch (property){
 
-            case PROPERTY_UPDATE_ALERTS_LIST:
-
-                if(alertsList != null) alertsList.repaint();
-
-                break;
+            case PROPERTY_UPDATE_ALERTS_LIST -> {
+                if (alertsList != null) alertsList.repaint();
+            }
 
         }
 

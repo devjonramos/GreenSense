@@ -46,11 +46,33 @@ public class Greenhouses implements Constants {
 
     }
 
-    public void addGreenhouse(GreenhouseModel greenhouse){
+    public boolean addGreenhouse(GreenhouseModel greenhouse){
 
-        if (!greenhouses.contains(greenhouse)){
+        if (!greenhouseExists(greenhouse)){
+
             greenhouses.add(greenhouse);
+
+            support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSES, null, null);
+
+            return true;
         }
+
+        return false;
+
+    }
+
+    public void remove(GreenhouseModel model) {
+        greenhouses.remove(model);
+        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSES, null, null);
+    }
+
+    public boolean greenhouseExists(GreenhouseModel other) {
+
+        for (GreenhouseModel greenhouse : greenhouses) {
+            if(greenhouse.equals(other)) return true;
+        }
+
+        return false;
 
     }
 
@@ -78,10 +100,7 @@ public class Greenhouses implements Constants {
         return greenhouses.indexOf(model);
     }
 
-    public void remove(GreenhouseModel model) {
-        greenhouses.remove(model);
-        support.firePropertyChange(PROPERTY_DELETE_GREENHOUSE, null, null);
-    }
+
 
     public GreenhouseModel getGreenhouseByID(int id){
 
@@ -94,6 +113,8 @@ public class Greenhouses implements Constants {
         return  null;
 
     }
+
+
 
     public void save(){
 

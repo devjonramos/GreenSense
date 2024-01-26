@@ -48,6 +48,20 @@ public class Users implements Constants {
 
     }
 
+    public boolean removeUser(User user){
+        return users.remove(user);
+    }
+
+    public User getUserByUsername(String username){
+
+        for (User user : users) {
+            if (user.getUsername().equals(username)) return user;
+        }
+
+        return null;
+
+    }
+
     public boolean userExists(User other){
 
         for (User user : users) {

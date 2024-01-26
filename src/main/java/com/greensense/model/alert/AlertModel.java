@@ -10,6 +10,7 @@ import java.util.Date;
 @Setter
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
 public class AlertModel implements Constants {
 
     public static int count = 1;
@@ -38,7 +39,5 @@ public class AlertModel implements Constants {
         this.description = description;
         this.date = capitalize(DATETIME_FORMAT.format(new Date()));
     }
-
-    public AlertModel(){}
 
 }

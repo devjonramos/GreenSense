@@ -132,8 +132,10 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
                 topic = greenhouseModel.getTopicMode();
                 view.setFanControlCardEnabled(1, !isSelected);
                 view.setFanControlCardEnabled(2, !isSelected);
+                //greenhouseModel.setMode(true);
                 greenhouseModel.setFan1(false);
                 greenhouseModel.setFan2(false);
+                //view.getModeControlCard().setName();
             }
             case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.getTopicFan(1);
             case PROPERTY_TOGGLE_FAN2 -> topic = greenhouseModel.getTopicFan(2);
@@ -148,7 +150,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
             try {
 
                 //mqttService.publish(topic, message);
-                mqttService.publish(topic, message, QoS2, true);
+                mqttService.publish(topic, message, QoS2, false);
 
             } catch (MqttException ex) {
                 throw new RuntimeException(ex);

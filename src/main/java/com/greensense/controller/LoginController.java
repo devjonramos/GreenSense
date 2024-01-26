@@ -2,6 +2,7 @@ package com.greensense.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +42,10 @@ public class LoginController implements Constants, ActionListener {
             Session session = Session.getInstance();
 
             if (session.login(username, password)) {
+
+                session.getUser().setLastSeen(
+                        capitalize(DATE_FORMAT.format(new Date()))
+                );
 
                 HomepageScreen homepage = new HomepageScreen();
                 GreenhouseCardsScreen greenhouseCards = new GreenhouseCardsScreen();

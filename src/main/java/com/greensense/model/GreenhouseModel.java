@@ -16,32 +16,31 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
 @JsonIgnoreProperties({"TOP_TOPIC_LEVEL", "TOPIC_SENSORS_PPM", "TOPIC_MODE", "TOPIC_FAN_1", "TOPIC_FAN_2"})
 public class GreenhouseModel implements Constants {
 
     public static int count = 0;
 
     private final String TOP_TOPIC_LEVEL = "greenhouses/";
-    public final String TOPIC_SENSORS_PPM = TOP_TOPIC_LEVEL + count + "/sensors/ppm";
-    public final String TOPIC_MODE = TOP_TOPIC_LEVEL + count + "/mode";
-    public final String TOPIC_FAN_1 = TOP_TOPIC_LEVEL + count + "/fans/1";
-    public final String TOPIC_FAN_2 = TOP_TOPIC_LEVEL + count + "/fans/2";
+    @Deprecated public final String TOPIC_SENSORS_PPM = TOP_TOPIC_LEVEL + count + "/sensors/ppm";
+    @Deprecated public final String TOPIC_MODE = TOP_TOPIC_LEVEL + count + "/mode";
+    @Deprecated public final String TOPIC_FAN_1 = TOP_TOPIC_LEVEL + count + "/fans/1";
+    @Deprecated public final String TOPIC_FAN_2 = TOP_TOPIC_LEVEL + count + "/fans/2";
 
-    @Deprecated public enum Mode {
-        MAN, AUTO;
-
-        public Mode fromString(String mode) {
-
-            for (Mode m : Mode.values()) {
-                if(mode.equals(m.toString())) return m;
-            }
-
-            return null;
-
-        }
-
-    }
+//    @Deprecated public enum Mode {
+//        MAN, AUTO;
+//
+//        public Mode fromString(String mode) {
+//
+//            for (Mode m : Mode.values()) {
+//                if(mode.equals(m.toString())) return m;
+//            }
+//
+//            return null;
+//
+//        }
+//
+//    }
 
     @JsonProperty("id")
     private int id;
@@ -49,8 +48,8 @@ public class GreenhouseModel implements Constants {
     @JsonProperty("name")
     private String name;
 
-    @JsonProperty("isAuto")
-    private boolean isAuto;
+    @JsonProperty("mode")
+    private boolean mode;
 
     @JsonProperty("fan1")
     private boolean fan1;
@@ -66,16 +65,20 @@ public class GreenhouseModel implements Constants {
     @Setter(AccessLevel.NONE)
     private PropertyChangeSupport support;
 
-    public GreenhouseModel(String name, boolean isAuto, int ppm, boolean fan1, boolean fan2) {
-        this.id = count++;
+    public GreenhouseModel(int id, String name, boolean mode, int ppm, boolean fan1, boolean fan2) {
+        this.id = id;
         this.name = name;
-        this.isAuto = isAuto;
+        this.mode = mode;
         this.ppm = ppm;
         this.fan1 = fan1;
         this.fan2 = fan2;
 
         this.support = new PropertyChangeSupport(this);
 
+    }
+
+    public GreenhouseModel(int id, String name){
+        this(id, name, false, 0, false, false);
     }
 
     public GreenhouseModel(){
@@ -99,7 +102,7 @@ public class GreenhouseModel implements Constants {
         this.support = model.support;
         this.setId(model.id);
         this.setName(model.name);
-        this.setAuto(model.isAuto);
+        this.setMode(model.mode);
         this.setPpm(model.ppm);
         this.setFan1(model.fan1);
         this.setFan2(model.fan2);
@@ -109,7 +112,7 @@ public class GreenhouseModel implements Constants {
 
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_NAME, null, this.name);
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_PPM, null, this.ppm);
-        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_MODE, null, this.isAuto);
+        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_MODE, null, this.mode);
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_1, null, this.fan1);
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_2, null, this.fan2);
 
@@ -118,6 +121,11 @@ public class GreenhouseModel implements Constants {
     public void setPpm(int ppm) {
         this.ppm = ppm;
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_PPM, null, this.ppm);
+    }
+
+    public void setMode(boolean mode){
+        this.mode = mode;
+        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_MODE, null, this.mode);
     }
 
     public void setFan1(boolean fan1){
@@ -130,8 +138,10 @@ public class GreenhouseModel implements Constants {
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_2, null, this.fan2);
     }
 
-    public String getMode(){
-        return (isAuto) ? "AUTO" : "MAN";
+    public String getModeName(boolean mode) { return (mode) ? "AUTO" : "MAN"; }
+
+    public String getModeName(){
+        return getModeName(this.mode);
     }
 
     public String getTopicMode(){
@@ -152,6 +162,38 @@ public class GreenhouseModel implements Constants {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         support.removePropertyChangeListener(listener);
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if(o == this) return true;
+        if(!(o instanceof GreenhouseModel)) return false;
+
+        GreenhouseModel other = (GreenhouseModel)o;
+
+        return other.name.equals(this.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = 1;
+
+
+        Object name = this.getName();
+        Object support = this.support;
+
+        result = result * 59 + this.getId();
+        result = result * 59 + (this.isMode() ? 79 : 97);
+        result = result * 59 + (this.isFan1() ? 79 : 97);
+        result = result * 59 + (this.isFan2() ? 79 : 97);
+        result = result * 59 + this.getPpm();
+        result = result * 59 + (name == null ? 43 : name.hashCode());
+        result = result * 59 + (support == null ? 43 : support.hashCode());
+
+        return result;
+
     }
 
 }

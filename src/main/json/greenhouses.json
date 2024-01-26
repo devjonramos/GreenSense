@@ -1,25 +1,37 @@
 [ {
   "id" : 1,
   "name" : "Negutegia#1",
-  "isAuto" : true,
+  "mode" : false,
   "fan1" : false,
   "fan2" : false
 }, {
   "id" : 2,
   "name" : "Negutegia#2",
-  "isAuto" : false,
+  "mode" : false,
   "fan1" : false,
   "fan2" : false
 }, {
   "id" : 3,
   "name" : "Negutegia#3",
-  "isAuto" : true,
+  "mode" : true,
   "fan1" : false,
   "fan2" : false
 }, {
   "id" : 4,
   "name" : "Negutegia#4",
-  "isAuto" : true,
+  "mode" : true,
+  "fan1" : false,
+  "fan2" : false
+}, {
+  "id" : 5,
+  "name" : "Negutegia#5",
+  "mode" : false,
+  "fan1" : false,
+  "fan2" : false
+}, {
+  "id" : 6,
+  "name" : "Negutegia#6",
+  "mode" : false,
   "fan1" : false,
   "fan2" : false
 } ]

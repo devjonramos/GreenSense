@@ -121,7 +121,7 @@ public class Form extends JDialog implements Constants, Fonts, ActionListener {
         return submitted;
     }
 
-    public boolean isValid(){
+    public boolean isFormValid(){
 
         Map<String, Object> formData = getData();
 
@@ -157,7 +157,7 @@ public class Form extends JDialog implements Constants, Fonts, ActionListener {
 
         if (actionCommand.equals(PROPERTY_CONFIRM)){
 
-            if (isValid()) {
+            if (isFormValid()) {
                 submitted = formHandler.handleFormSubmission(getData(), this);
 
                 if (submitted) dispose();

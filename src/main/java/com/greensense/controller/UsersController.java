@@ -11,21 +11,26 @@ import com.greensense.constants.Constants;
 import com.greensense.model.User;
 import com.greensense.model.UserRole;
 import com.greensense.model.Users;
+import com.greensense.model.UsersTableModel;
 import com.greensense.view.components.Form;
 import com.greensense.view.components.FormElement;
 import com.greensense.view.screens.ScreenManager;
 import com.greensense.view.screens.UsersScreen;
 
 import javax.swing.JButton;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class UsersController implements Constants, ActionListener {
 
     private final ScreenManager screenManager = ScreenManager.getInstance();
     private UsersScreen usersScreen;
+    private UsersTableModel model;
 
-    public UsersController(UsersScreen usersScreen) {
+    public UsersController(UsersScreen usersScreen, UsersTableModel model) {
         this.usersScreen = usersScreen;
+        this.model = model;
+        this.model.addPropertyChangeListener(this.usersScreen);
     }
 
     @Override
@@ -41,8 +46,6 @@ public class UsersController implements Constants, ActionListener {
 
                 JButton button = (JButton)e.getSource();
 
-                FormHandler f = new UserFormHandler();
-
                 Form form = new Form(
                         screenManager.getFrame(), "Gehitu Erabiltzailea", true, new UserFormHandler(),
                         new FormElement.Builder( "name","Izena").build(),
@@ -52,23 +55,27 @@ public class UsersController implements Constants, ActionListener {
                         new FormElement.Builder( "role","Rola").withComboBox(UserRole.values()).build()
                 );
 
-//                if (form.wasSubmitted()) {
-//
-//                    Map<String, Object> formData = form.getData();
-//
-//                    User user = new User(
-//                            (String)formData.get("name"),
-//                            (String)formData.get("surname"),
-//                            (String)formData.get("username"),
-//                            (String)formData.get("password"),
-//                            (UserRole)formData.get("role")
-//                    );
-//
-//                    Users.getInstance().addUser(user);
-//
-//                }
+                if(form.wasSubmitted()) model.loadData();
 
             }
+
+        });
+
+        commandHandler.put(PROPERTY_DELETE_USER, () -> {
+
+            JTable table = usersScreen.getUsersTable();
+
+            int selectedRow = table.getSelectedRow();
+
+            Object[] rowData = model.getRow(selectedRow);
+
+            String username = (String) rowData[0];
+
+            User user = Users.getInstance().getUserByUsername(username);
+
+            boolean removed = Users.getInstance().removeUser(user);
+
+            if(removed) model.loadData();
 
         });
 

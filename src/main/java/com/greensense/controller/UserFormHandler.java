@@ -20,16 +20,16 @@ public class UserFormHandler implements FormHandler {
                 (UserRole)formData.get("role")
         );
 
-        boolean userExists = Users.getInstance().addUser(user);
+        boolean userAdded = Users.getInstance().addUser(user);
 
-        if (userExists){
-            JOptionPane.showMessageDialog(form, "Erabiltzailea existitzen da!", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
+        if (userAdded){
             JOptionPane.showMessageDialog(form, "Erabiltzailea arazo gabe sortu da", "Info", JOptionPane.INFORMATION_MESSAGE);
         }
+        else{
+            JOptionPane.showMessageDialog(form, "Erabiltzailea existitzen da!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-        return userExists;
+        return userAdded;
 
     }
 

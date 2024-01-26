@@ -8,13 +8,10 @@ import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 import com.greensense.constants.Constants;
 import com.greensense.model.GreenhouseModel;
 import com.greensense.model.Greenhouses;
-import com.greensense.model.User;
-import com.greensense.model.Users;
 import com.greensense.view.components.Form;
 import com.greensense.view.components.FormElement;
 import com.greensense.view.screens.GreenhouseCardsScreen;
@@ -121,11 +118,13 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
                 JButton button = (JButton)e.getSource();
 
-//                Form form = new Form(
-//                        screenManager.getFrame(), "Gehitu Negutegia", true,
-//                        new FormElement.Builder("name", "Negutegiren izena").build(),
-//                        new FormElement.Builder("surname", "Surname").build()
-//                );
+                Form form = new Form(
+                        screenManager.getFrame(), "Gehitu Negutegia", true, new GreenhouseFormHandler(),
+                        new FormElement.Builder("name", "Negutegiren izena").build()
+                );
+
+
+
 //
 //                if (form.wasSubmitted()) {
 //

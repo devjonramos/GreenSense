@@ -31,6 +31,7 @@ public interface Constants {
     String PROPERTY_SEARCH_GREENHOUSES = "Search Greenhouses By Name";
     String PROPERTY_OPEN_GREENHOUSE = "Open Greenhouse";
     String PROPERTY_DELETE_GREENHOUSE = "Delete greenhouse";
+    String PROPERTY_UPDATE_GREENHOUSES = "Update greenhouses";
     String PROPERTY_ADD_GREENHOUSE = "Add new greenhouse";
 
 
@@ -49,6 +50,10 @@ public interface Constants {
 
     // UsersScreen
     String PROPERTY_ADD_USER = "Add new user";
+
+    String PROPERTY_DELETE_USER = "Delete user";
+    String PROPERTY_UPDATE_USERS_TABLE = "Update users table";
+
 
     // AlertsScreen
     String PROPERTY_UPDATE_ALERTS_LIST = "Update alerts JList"; // It repaints the JList

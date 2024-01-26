@@ -19,6 +19,7 @@ public interface Images {
     ImageIcon ICON_SM_NEXT = ImageLoader.loadImageIcon("icons/sm/ti-chevron-right.png");
     ImageIcon ICON_SM_BACK = ImageLoader.loadImageIcon("icons/sm/ti-arrow-narrow-left.png");
     ImageIcon ICON_SM_EDIT = ImageLoader.loadImageIcon("icons/sm/ti-edit-3.png");
+    ImageIcon ICON_SM_TRASH = ImageLoader.loadImageIcon("icons/sm/ti-trash.png");
     ImageIcon ICON_SM_PLUS = ImageLoader.loadImageIcon("icons/sm/ti-plus.png");
     ImageIcon ICON_SM_LOGOUT = ImageLoader.loadImageIcon("icons/sm/ti-power.png");
     ImageIcon ICON_SM_SETTINGS = ImageLoader.loadImageIcon("icons/sm/ti-settings.png");

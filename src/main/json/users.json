@@ -1,57 +1,33 @@
 [ {
-  "id" : 1,
-  "name" : "Caroline",
-  "surname" : "Forbes",
-  "username" : "caroline",
+  "id" : 1706275340990,
+  "name" : "Jon",
+  "surname" : "Ramos",
+  "username" : "jon",
   "password" : "1234",
   "role" : "ADMIN",
-  "lastSeen" : "24 Oct, 2023"
+  "lastSeen" : "Ostirala, urt. 26"
 }, {
-  "id" : 2,
-  "name" : "Klaus",
-  "surname" : "Mikaelson",
-  "username" : "klaus",
-  "password" : "5678",
+  "id" : 1706282027742,
+  "name" : "Asier",
+  "surname" : "Berreteaga",
+  "username" : "asier",
+  "password" : "1234",
   "role" : "USER",
-  "lastSeen" : "15 Dec, 2023"
+  "lastSeen" : "Ostirala, urt. 26"
 }, {
-  "id" : 1706261616516,
-  "name" : "Hope",
-  "surname" : "Mikaelson",
-  "username" : "hope",
-  "password" : "abcd",
+  "id" : 1706282140353,
+  "name" : "Asier",
+  "surname" : "Martinez de antoñana",
+  "username" : "asierm",
+  "password" : "1234",
   "role" : "USER",
-  "lastSeen" : "5 Feb, 2024"
+  "lastSeen" : "Ostirala, urt. 26"
 }, {
-  "id" : 4,
-  "name" : "Damon",
-  "surname" : "Salvatore",
-  "username" : "damon",
-  "password" : "efgh",
+  "id" : 1706282188083,
+  "name" : "Unax",
+  "surname" : "Aseguinolaza",
+  "username" : "unax",
+  "password" : "1234",
   "role" : "USER",
-  "lastSeen" : "20 Nov, 2023"
-}, {
-  "id" : 5,
-  "name" : "Stefan",
-  "surname" : "Salvatore",
-  "username" : "stefan",
-  "password" : "mnop",
-  "role" : "USER",
-  "lastSeen" : "28 Sep, 2023"
-}, {
-  "id" : 6,
-  "name" : "Bonnie",
-  "surname" : "Bennett",
-  "username" : "bonnie",
-  "password" : "qrst",
-  "role" : "USER",
-  "lastSeen" : "12 Nov, 2023"
-}, {
-  "id" : 7,
-  "name" : "Elena",
-  "surname" : "Gilbert",
-  "username" : "elena",
-  "password" : "uvwx",
-  "role" : "USER",
-  "lastSeen" : "3 Jan, 2024"
+  "lastSeen" : "Ostirala, urt. 26"
 } ]
