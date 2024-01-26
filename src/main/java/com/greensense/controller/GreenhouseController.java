@@ -61,7 +61,7 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
         mqttService.addTopic(greenhouseModel.getTopicPPM());
         mqttService.startService();
 
-        Alerts.getInstance().addAlert(new AlertModel(AlertType.SUCCESS, "Connected to MQTT Broker successfully", greenhouseModel.getName()));
+        Alerts.getInstance().addAlert(new AlertModel(AlertType.ERROR, "Connection to MQTT Broker failed!", greenhouseModel.getName()));
 
     }
 
@@ -129,12 +129,17 @@ public class GreenhouseController implements Constants, ActionListener, ToggleBu
 
         switch (toggleCommand) {
             case PROPERTY_TOGGLE_MODE -> {
+
                 topic = greenhouseModel.getTopicMode();
-                view.setFanControlCardEnabled(1, !isSelected);
-                view.setFanControlCardEnabled(2, !isSelected);
-                //greenhouseModel.setMode(true);
-                greenhouseModel.setFan1(false);
-                greenhouseModel.setFan2(false);
+
+//                view.setFanControlCardEnabled(1, !isSelected);
+//                view.setFanControlCardEnabled(2, !isSelected);
+                greenhouseModel.setMode(isSelected);
+                if (isSelected){
+                    greenhouseModel.setFan1(false);
+                    greenhouseModel.setFan2(false);
+                }
+
                 //view.getModeControlCard().setName();
             }
             case PROPERTY_TOGGLE_FAN1 -> topic = greenhouseModel.getTopicFan(1);

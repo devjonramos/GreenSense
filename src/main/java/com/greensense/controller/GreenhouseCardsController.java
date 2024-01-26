@@ -123,25 +123,6 @@ public class GreenhouseCardsController implements Constants, ActionListener {
                         new FormElement.Builder("name", "Negutegiren izena").build()
                 );
 
-
-
-//
-//                if (form.wasSubmitted()) {
-//
-//                    Map<String, Object> formData = form.getData();
-//
-//                    Greenhouses.getInstance().addGreenhouse(
-//                            new GreenhouseModel(
-//                                    (String)formData.get("name"),
-//                                    false,
-//                                    0,
-//                                    false,
-//                                    false
-//                            )
-//                    );
-//
-//                }
-
             }
 
         });

@@ -112,7 +112,9 @@ public class ComponentFactory implements Fonts {
 
         JButton button = new JButton(action);
 
+        button.setFont(InterMedium_14);
         button.setIcon(icon);
+        button.setIconTextGap(8);
         button.setOpaque(false);
         button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         button.setBorder(null);

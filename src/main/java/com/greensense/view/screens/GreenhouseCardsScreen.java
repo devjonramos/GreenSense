@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.beans.PropertyChangeEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -51,16 +52,24 @@ public class GreenhouseCardsScreen extends JPanel implements Screen {
     }
 
     private void createActions() {
-        actionAdd = ActionBuilder.createAction("", PROPERTY_ADD_GREENHOUSE, controller).build();
+        actionAdd = ActionBuilder.createAction("GEHITU NEGUTEGIA", PROPERTY_ADD_GREENHOUSE, controller).build();
         actionSearch = ActionBuilder.createAction("Bilatu", PROPERTY_SEARCH_GREENHOUSES, controller).build();
     }
 
     public JToolBar createHeader(){
 
         JButton btnAdd = ComponentFactory.createIconButton(actionAdd, ICON_SM_PLUS);
-        JButton btnEdit = ComponentFactory.createIconButton(null, ICON_SM_EDIT);
 
-		return new Header(true, btnAdd, btnEdit);
+//        JPanel btnAddPanel = new JPanel(){{
+//
+//            BoxLayout layout = new BoxLayout(this, BoxLayout.X_AXIS);
+//
+//            add(btnAdd);
+//
+//
+//        }};
+
+		return new Header(true, btnAdd);
 
     }
 

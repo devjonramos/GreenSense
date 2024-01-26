@@ -112,7 +112,7 @@ public class GreenhouseModel implements Constants {
 
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_NAME, null, this.name);
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_PPM, null, this.ppm);
-        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_MODE, null, this.mode);
+        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_MODE, null, getModeName());
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_1, null, this.fan1);
         support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_FAN_2, null, this.fan2);
 
@@ -125,7 +125,8 @@ public class GreenhouseModel implements Constants {
 
     public void setMode(boolean mode){
         this.mode = mode;
-        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_MODE, null, this.mode);
+        support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_MODE, null, getModeName());
+        //support.firePropertyChange(PROPERTY_UPDATE_GREENHOUSE_MODE, null, this.mode);
     }
 
     public void setFan1(boolean fan1){

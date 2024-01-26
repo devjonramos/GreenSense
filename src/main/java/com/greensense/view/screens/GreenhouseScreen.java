@@ -79,9 +79,9 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
         JPanel panel = new JPanel();
 
-        nameLabel = ComponentFactory.createLabel(model.getName(), Palette.TEXT_PRIMARY_FG, InterMedium_48);
+        nameLabel = ComponentFactory.createLabel("Negutegia", Palette.TEXT_PRIMARY_FG, InterMedium_48);
 
-        modeControlCard = new ControlCard("Mode: " + model.getModeName(), ICON_MD_TOOL, PROPERTY_TOGGLE_MODE, controller);
+        modeControlCard = new ControlCard("Mode: ", ICON_MD_TOOL, PROPERTY_TOGGLE_MODE, controller);
         fanControlCard1 = new ControlCard("Haizea kanpora", ICON_MD_WIND, PROPERTY_TOGGLE_FAN1, controller);
         fanControlCard2 = new ControlCard("Haizea barrura", ICON_MD_WIND, PROPERTY_TOGGLE_FAN2, controller);
         graphicDisplayCard = new DisplayCard("Grafikoa", "967");
@@ -167,14 +167,18 @@ public class GreenhouseScreen extends JPanel implements Screen {
         nameLabel.setText(name);
     }
     public void updateMode(boolean mode){
-        //modeControlCard.setName((mode) ? "AUTO" : "MAN");
+        //modeControlCard.setName((mode) ? "Mode: AUTO" : "Mode: MAN");
         modeControlCard.setSelected(mode);
     }
 
     public void updateFan(int fanId, boolean selected){
 
-        if (fanId == 1) fanControlCard1.setSelected(selected);
-        else if (fanId == 2) fanControlCard2.setSelected(selected);
+        if (fanId == 1) {
+            fanControlCard1.setSelected(selected);
+        }
+        else if (fanId == 2) {
+            fanControlCard2.setSelected(selected);
+        }
 
     }
 
@@ -203,14 +207,24 @@ public class GreenhouseScreen extends JPanel implements Screen {
 
             case PROPERTY_UPDATE_GREENHOUSE_MODE:
 
-                boolean mode = (boolean)evt.getNewValue();
+                String mode = (String)evt.getNewValue();
 
-                updateMode(mode);
+                modeControlCard.setTitle("Mode: " + mode);
 
-                if (mode){
-                    setFanControlCardEnabled(1, false);
-                    setFanControlCardEnabled(2, false);
+                if (mode.equals("AUTO")){
+                    fanControlCard1.setToggleEnabled(false);
+                    fanControlCard2.setToggleEnabled(false);
                 }
+
+                //updateMode(mode);
+
+//                setFanControlCardEnabled(1, !mode);
+//                setFanControlCardEnabled(2, !mode);
+
+//                if (mode){
+//                    setFanControlCardEnabled(1, false);
+//                    setFanControlCardEnabled(2, false);
+//                }
 
                 break;
 

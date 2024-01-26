@@ -59,7 +59,7 @@ public class MQTTService implements Constants {
                 System.out.println("[MQTT] Ready");
 
             } catch (MqttException e) {
-                e.printStackTrace();
+                System.err.println("[MQTT] Connection to broker failed: " + e.getMessage());
             }
 
         });

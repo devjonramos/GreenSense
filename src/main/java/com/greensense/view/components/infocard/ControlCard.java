@@ -1,6 +1,5 @@
 package com.greensense.view.components.infocard;
 
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
@@ -10,10 +9,8 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.GroupLayout.Alignment;
 
 import com.greensense.Palette;
-import com.greensense.constants.Fonts;
 import com.greensense.util.ComponentFactory;
 import com.greensense.view.components.togglebutton.ToggleButton;
 import com.greensense.view.components.togglebutton.ToggleButtonListener;
@@ -21,21 +18,22 @@ import lombok.Getter;
 
 public class ControlCard extends JPanel implements InfoCard {
 
-    private String name;
+    private String title;
     private ImageIcon icon;
     private ControlCard controlCard = this;
 
     @Getter
     private ToggleButton toggleButton;
+    private JLabel titleLabel;
 
     private ToggleButtonListener listener;
 
-    public ControlCard(String name, ImageIcon icon, String command, ToggleButtonListener listener) {
+    public ControlCard(String title, ImageIcon icon, String command, ToggleButtonListener listener) {
 
-        this.name = name;
+        this.title = title;
         this.icon = icon;
         this.listener = listener;
-        this.toggleButton = new ToggleButton(this.name.toLowerCase());
+        this.toggleButton = new ToggleButton(this.title.toLowerCase());
         this.toggleButton.addToggleListener(listener);
         this.toggleButton.setToggleCommand(command);
 
@@ -59,7 +57,7 @@ public class ControlCard extends JPanel implements InfoCard {
 
         }};
 
-        JLabel nameLabel = ComponentFactory.createLabel(this.name, Palette.TEXT_PRIMARY_FG, InterMedium_32);
+        titleLabel = ComponentFactory.createLabel(this.title, Palette.TEXT_PRIMARY_FG, InterMedium_32);
 
         GroupLayout layout = new GroupLayout(this);
 
@@ -71,7 +69,7 @@ public class ControlCard extends JPanel implements InfoCard {
                 // )
                 .addComponent(cardHeader)
                 .addGroup(layout.createSequentialGroup()
-                        .addComponent(nameLabel)
+                        .addComponent(titleLabel)
                 )
         );
 
@@ -83,7 +81,7 @@ public class ControlCard extends JPanel implements InfoCard {
                 .addComponent(cardHeader)
                 .addGap(16)
                 .addGroup(layout.createParallelGroup()
-                        .addComponent(nameLabel)
+                        .addComponent(titleLabel)
                 )
         );
 
@@ -99,6 +97,15 @@ public class ControlCard extends JPanel implements InfoCard {
                 )
         );
 
+    }
+
+    public void setToggleEnabled(boolean enabled){
+        toggleButton.setEnabled(enabled);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+        titleLabel.setText(this.title);
     }
 
     public void setSelected(boolean selected){

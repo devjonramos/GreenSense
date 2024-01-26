@@ -38,7 +38,6 @@ public class Main {
             frame.setContentPane(mainPanel);
             frame.pack();
             frame.setSize(1028, 860);
-            // this.pack() // For a dynamic window size
             frame.setLocationRelativeTo(null);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
@@ -46,7 +45,6 @@ public class Main {
 
                 @Override
                 public void windowClosing(WindowEvent e) {
-                    System.out.println("Window closing");
                     Alerts.getInstance().save();
                     Users.getInstance().save();
                     Greenhouses.getInstance().save();

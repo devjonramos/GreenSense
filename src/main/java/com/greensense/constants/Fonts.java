@@ -21,6 +21,7 @@ public interface Fonts {
     // Inter Medium
     Font InterMedium = FontLoader.loadFont("fonts/Inter/Inter-Medium.ttf");
     Font InterMedium_9 = FontLoader.changeFontSize(InterMedium, 9.0f);     // 9px
+    Font InterMedium_14 = FontLoader.changeFontSize(InterMedium, 14.0f);   // 14px
     Font InterMedium_16 = FontLoader.changeFontSize(InterMedium, 16.0f);   // 16px
     Font InterMedium_18 = FontLoader.changeFontSize(InterMedium, 18.0f);   // 18px
     Font InterMedium_24 = FontLoader.changeFontSize(InterMedium, 24.0f);   // 24px
