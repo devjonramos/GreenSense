@@ -9,6 +9,7 @@ import java.util.Map;
 
 import com.greensense.constants.Constants;
 import com.greensense.model.User;
+import com.greensense.model.UserRole;
 import com.greensense.model.Users;
 import com.greensense.view.components.Form;
 import com.greensense.view.components.FormElement;
@@ -40,30 +41,32 @@ public class UsersController implements Constants, ActionListener {
 
                 JButton button = (JButton)e.getSource();
 
+                FormHandler f = new UserFormHandler();
+
                 Form form = new Form(
-                        screenManager.getFrame(), "Gehitu Erabiltzailea", true,
+                        screenManager.getFrame(), "Gehitu Erabiltzailea", true, new UserFormHandler(),
                         new FormElement.Builder( "name","Izena").build(),
                         new FormElement.Builder( "surname","Abizena").build(),
                         new FormElement.Builder( "username","Erabiltzailea").build(),
                         new FormElement.Builder( "password","Pasahitza").build(),
-                        new FormElement.Builder( "role","Rola").withComboBox(new String[]{"aaa","bbb","ccc"}).build()
+                        new FormElement.Builder( "role","Rola").withComboBox(UserRole.values()).build()
                 );
 
-                if (form.wasSubmitted()) {
-
-                    Map<String, Object> formData = form.getData();
-
-                    Users.getInstance().addUser(
-                            new User(
-                                    (String)formData.get("name"),
-                                    (String)formData.get("surname"),
-                                    (String)formData.get("username"),
-                                    (String)formData.get("password"),
-                                    (int)formData.get("role")
-                            )
-                    );
-
-                }
+//                if (form.wasSubmitted()) {
+//
+//                    Map<String, Object> formData = form.getData();
+//
+//                    User user = new User(
+//                            (String)formData.get("name"),
+//                            (String)formData.get("surname"),
+//                            (String)formData.get("username"),
+//                            (String)formData.get("password"),
+//                            (UserRole)formData.get("role")
+//                    );
+//
+//                    Users.getInstance().addUser(user);
+//
+//                }
 
             }
 

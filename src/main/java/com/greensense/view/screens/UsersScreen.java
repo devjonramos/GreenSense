@@ -89,7 +89,7 @@ public class UsersScreen extends JPanel implements Screen{
         int i = 0;
         for (User user : users) {
             
-            String[] userData = {user.getName(), user.getSurname(), user.getRoleAsString(), user.getLastSeen()};
+            String[] userData = {user.getName(), user.getSurname(), user.getRole().getName(), user.getLastSeen()};
 
             usersTableData[i] = userData;
 

@@ -3,6 +3,7 @@ package com.greensense.view.components;
 import com.greensense.Palette;
 import com.greensense.constants.Constants;
 import com.greensense.constants.Fonts;
+import com.greensense.controller.FormHandler;
 import com.greensense.util.ActionBuilder;
 import com.greensense.util.ComponentFactory;
 import com.greensense.util.ComponentFactory.ButtonSize;
@@ -16,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 import java.awt.Color;
@@ -28,8 +30,10 @@ import java.util.Map;
 
 public class Form extends JDialog implements Constants, Fonts, ActionListener {
 
-    private boolean submitted = false;
+    private FormHandler formHandler;
     private String title;
+    private boolean submitted = false;
+
 
     private AbstractAction actionAdd, actionCancel;
 
@@ -37,11 +41,13 @@ public class Form extends JDialog implements Constants, Fonts, ActionListener {
 
     private List<FormElement> formElements;
 
-    public Form(JFrame frame, String title, boolean modal, FormElement... elements){
+    public Form(JFrame frame, String title, boolean modal, FormHandler formHandler, FormElement... elements){
         super(frame, title, modal);
 
-        this.title = title;
         this.formElements = List.of(elements);
+        this.formHandler = formHandler;
+        this.title = title;
+
 
         this.createActions();
         this.createContentPane();
@@ -115,6 +121,18 @@ public class Form extends JDialog implements Constants, Fonts, ActionListener {
         return submitted;
     }
 
+    public boolean isValid(){
+
+        Map<String, Object> formData = getData();
+
+        for (Object value : formData.values()) {
+            if (value.toString().isBlank()) return false;
+        }
+
+        return true;
+
+    }
+
     public Map<String, Object> getData(){
 
         Map<String, Object> data = new HashMap<>();
@@ -137,9 +155,23 @@ public class Form extends JDialog implements Constants, Fonts, ActionListener {
 
         String actionCommand = e.getActionCommand();
 
-        submitted = actionCommand.equals(PROPERTY_CONFIRM);
+        if (actionCommand.equals(PROPERTY_CONFIRM)){
 
-        dispose();
+            if (isValid()) {
+                submitted = formHandler.handleFormSubmission(getData(), this);
+
+                if (submitted) dispose();
+
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Kanpo guztiak bete behar dira!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        else {
+            submitted = false;
+            dispose();
+        }
 
     }
 }

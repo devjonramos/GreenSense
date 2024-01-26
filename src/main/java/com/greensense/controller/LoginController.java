@@ -42,15 +42,15 @@ public class LoginController implements Constants, ActionListener {
 
             if (session.login(username, password)) {
 
-                 HomepageScreen homepage = new HomepageScreen();
-                 GreenhouseCardsScreen greenhouseCards = new GreenhouseCardsScreen();
-                 UsersScreen usersScreen = new UsersScreen();
-                 AlertsScreen alertsScreen = new AlertsScreen();
+                HomepageScreen homepage = new HomepageScreen();
+                GreenhouseCardsScreen greenhouseCards = new GreenhouseCardsScreen();
+                UsersScreen usersScreen = new UsersScreen();
+                AlertsScreen alertsScreen = new AlertsScreen();
 
-                 screenManager.addScreen(homepage, "homepage");
-                 screenManager.addScreen(greenhouseCards, "greenhouses");
-                 screenManager.addScreen(usersScreen, "users");
-                 screenManager.addScreen(alertsScreen, "alerts");
+                screenManager.addScreen(homepage, "homepage");
+                screenManager.addScreen(greenhouseCards, "greenhouses");
+                screenManager.addScreen(usersScreen, "users");
+                screenManager.addScreen(alertsScreen, "alerts");
 
                 screenManager.showScreen("homepage");
 

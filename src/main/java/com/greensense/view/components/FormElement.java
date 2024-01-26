@@ -46,7 +46,7 @@ public class FormElement extends JPanel implements Fonts {
         setOpaque(false);
         setLayout(layout);
         //setMinimumSize(new Dimension(this.getPreferredSize().width, fieldComponent.getPreferredSize().height));
-        JComboBox<String> c = new JComboBox<>();
+
         add(fieldLabel);
         add(field);
 
@@ -85,7 +85,7 @@ public class FormElement extends JPanel implements Fonts {
         Object value = null;
 
         if(this.field instanceof JTextField) value = ((JTextField) this.field).getText();
-        else if (this.field instanceof JComboBox) value = ((JComboBox) this.field).getSelectedItem().toString();
+        else if (this.field instanceof JComboBox) value = ((JComboBox) this.field).getSelectedItem();
         
         return value;
 

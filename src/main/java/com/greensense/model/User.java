@@ -2,19 +2,21 @@ package com.greensense.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.AllArgsConstructor;
+import com.greensense.constants.Constants;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
-public class User {
+public class User implements Constants {
 
     @JsonProperty("id")
     private long id;
@@ -25,9 +27,6 @@ public class User {
     @JsonProperty("surname")
     private String surname;
 
-    @JsonProperty("lastSeen")
-    private String lastSeen;
-
     @JsonProperty("username")
     private String username;
 
@@ -35,26 +34,54 @@ public class User {
     private String password;
 
     @JsonProperty("role")
-    private int role;
+    private UserRole role;
 
-    public User(String name, String surname, String username, String password, int role){
+    @JsonProperty("lastSeen")
+    private String lastSeen;
+
+    public User(String name, String surname, String username, String password, UserRole role){
         this.id = System.currentTimeMillis();
         this.name = name;
         this.surname = surname;
-        this.lastSeen = "";
         this.username = username;
         this.password = password;
         this.role = role;
+        this.lastSeen = capitalize(DATE_FORMAT.format(new Date()));
     }
 
-    public String getRoleAsString(){
-        
-        if (this.role == 1) {
-            return "Admin";
-        }
+    @Override
+    public boolean equals(Object o){
+        if(o == this) return true;
+        if(!(o instanceof User)) return false;
 
-        return "Erabiltzailea";
+        User other = (User)o;
 
+        return (other.name.equals(this.name) && other.surname.equals(this.surname)) || other.username.equals(this.username);
+
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = 1;
+        long id = this.getId();
+
+        Object name = this.getName();
+        Object surname = this.getSurname();
+        Object username = this.getUsername();
+        Object password = this.getPassword();
+        Object role = this.getRole();
+        Object lastSeen = this.getLastSeen();
+
+        result = result * 59 + (int)(id >>> 32 ^ id);
+        result = result * 59 + (name == null ? 43 : name.hashCode());
+        result = result * 59 + (surname == null ? 43 : surname.hashCode());
+        result = result * 59 + (username == null ? 43 : username.hashCode());
+        result = result * 59 + (password == null ? 43 : password.hashCode());
+        result = result * 59 + (role == null ? 43 : role.hashCode());
+        result = result * 59 + (lastSeen == null ? 43 : lastSeen.hashCode());
+
+        return result;
     }
 
 }

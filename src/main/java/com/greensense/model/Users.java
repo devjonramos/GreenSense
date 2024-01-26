@@ -38,11 +38,23 @@ public class Users implements Constants {
 
     }
 
-    public void addUser(User user){
+    public boolean addUser(User user){
 
-        if (!users.contains(user)){
-            users.add(user);
+        if (!userExists(user)){
+            return users.add(user);
         }
+
+        return false;
+
+    }
+
+    public boolean userExists(User other){
+
+        for (User user : users) {
+            if (user.equals(other)) return true;
+        }
+
+        return false;
 
     }
 

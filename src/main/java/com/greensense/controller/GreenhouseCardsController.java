@@ -121,27 +121,27 @@ public class GreenhouseCardsController implements Constants, ActionListener {
 
                 JButton button = (JButton)e.getSource();
 
-                Form form = new Form(
-                        screenManager.getFrame(), "Gehitu Negutegia", true,
-                        new FormElement.Builder("name", "Negutegiren izena").build(),
-                        new FormElement.Builder("surname", "Surname").build()
-                );
-
-                if (form.wasSubmitted()) {
-
-                    Map<String, Object> formData = form.getData();
-
-                    Greenhouses.getInstance().addGreenhouse(
-                            new GreenhouseModel(
-                                    (String)formData.get("name"),
-                                    false,
-                                    0,
-                                    false,
-                                    false
-                            )
-                    );
-
-                }
+//                Form form = new Form(
+//                        screenManager.getFrame(), "Gehitu Negutegia", true,
+//                        new FormElement.Builder("name", "Negutegiren izena").build(),
+//                        new FormElement.Builder("surname", "Surname").build()
+//                );
+//
+//                if (form.wasSubmitted()) {
+//
+//                    Map<String, Object> formData = form.getData();
+//
+//                    Greenhouses.getInstance().addGreenhouse(
+//                            new GreenhouseModel(
+//                                    (String)formData.get("name"),
+//                                    false,
+//                                    0,
+//                                    false,
+//                                    false
+//                            )
+//                    );
+//
+//                }
 
             }
 

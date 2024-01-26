@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import com.greensense.constants.Constants;
 import com.greensense.model.Session;
+import com.greensense.model.UserRole;
 import com.greensense.view.screens.HomepageScreen;
 import com.greensense.view.screens.ScreenManager;
 
@@ -50,7 +51,7 @@ public class HomepageController implements Constants, ActionListener {
             
             Session session = Session.getInstance();
 
-            if (session.getUser().getRole() == 1) {
+            if (session.getUser().getRole() == UserRole.ADMIN) {
 
                 screenManager.showScreen("users");
 

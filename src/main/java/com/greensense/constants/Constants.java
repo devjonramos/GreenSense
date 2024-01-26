@@ -89,7 +89,8 @@ public interface Constants {
 
 
     // Date constants
-    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEEE, MMM d HH:mm", new Locale("eu", "ES"));
+    SimpleDateFormat DATETIME_FORMAT = new SimpleDateFormat("EEEE, MMM d HH:mm", new Locale("eu", "ES"));
+    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("EEEE, MMM d", new Locale("eu", "ES"));
 
     default String capitalize(String input) {
         return input.substring(0, 1).toUpperCase() + input.substring(1);

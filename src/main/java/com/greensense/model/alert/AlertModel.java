@@ -36,7 +36,7 @@ public class AlertModel implements Constants {
         this.alertType = alertType;
         this.source = source;
         this.description = description;
-        this.date = capitalize(DATE_FORMAT.format(new Date()));
+        this.date = capitalize(DATETIME_FORMAT.format(new Date()));
     }
 
     public AlertModel(){}

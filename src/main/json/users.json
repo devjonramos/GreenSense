@@ -2,56 +2,56 @@
   "id" : 1,
   "name" : "Caroline",
   "surname" : "Forbes",
-  "lastSeen" : "24 Oct, 2023",
   "username" : "caroline",
   "password" : "1234",
-  "role" : 1
+  "role" : "ADMIN",
+  "lastSeen" : "24 Oct, 2023"
 }, {
   "id" : 2,
   "name" : "Klaus",
   "surname" : "Mikaelson",
-  "lastSeen" : "15 Dec, 2023",
   "username" : "klaus",
   "password" : "5678",
-  "role" : 2
+  "role" : "USER",
+  "lastSeen" : "15 Dec, 2023"
 }, {
-  "id" : 3,
+  "id" : 1706261616516,
   "name" : "Hope",
   "surname" : "Mikaelson",
-  "lastSeen" : "5 Feb, 2024",
   "username" : "hope",
   "password" : "abcd",
-  "role" : 2
+  "role" : "USER",
+  "lastSeen" : "5 Feb, 2024"
 }, {
   "id" : 4,
   "name" : "Damon",
   "surname" : "Salvatore",
-  "lastSeen" : "20 Nov, 2023",
   "username" : "damon",
   "password" : "efgh",
-  "role" : 2
+  "role" : "USER",
+  "lastSeen" : "20 Nov, 2023"
 }, {
   "id" : 5,
   "name" : "Stefan",
   "surname" : "Salvatore",
-  "lastSeen" : "28 Sep, 2023",
   "username" : "stefan",
   "password" : "mnop",
-  "role" : 2
+  "role" : "USER",
+  "lastSeen" : "28 Sep, 2023"
 }, {
   "id" : 6,
   "name" : "Bonnie",
   "surname" : "Bennett",
-  "lastSeen" : "12 Nov, 2023",
   "username" : "bonnie",
   "password" : "qrst",
-  "role" : 2
+  "role" : "USER",
+  "lastSeen" : "12 Nov, 2023"
 }, {
   "id" : 7,
   "name" : "Elena",
   "surname" : "Gilbert",
-  "lastSeen" : "3 Jan, 2024",
   "username" : "elena",
   "password" : "uvwx",
-  "role" : 2
+  "role" : "USER",
+  "lastSeen" : "3 Jan, 2024"
 } ]
